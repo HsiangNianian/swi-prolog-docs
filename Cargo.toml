@@ -1,0 +1,7 @@
+[package]
+name = "swi-prolog-docs"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+mdbook = "0.4.43"
