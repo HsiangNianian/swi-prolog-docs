@@ -53,6 +53,8 @@ jobs:
       with:
         name: swi-prolog-docs-${{ matrix.platform.runner }}-${{ github.sha }}
         path: |
+          swi-prolog-docs/*
+          src/*
           README.md
           LICENSE
     - uses: softprops/action-gh-release@v1
