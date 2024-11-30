@@ -64,7 +64,7 @@ jobs:
         mdbook --version
     - name: Run mdBook Build
       run:  |
-        ls -R
+        cd swi-prolog-docs
         mdbook build
         mv book/html/* book/
         mv "book/typst-pdf/swi-prolog-docs.pdf" book/
