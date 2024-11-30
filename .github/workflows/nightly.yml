@@ -37,7 +37,6 @@ jobs:
   nightly:
     needs: init
     strategy:
-      fail-fast: false
       matrix:
         platform:
           - runner: ubuntu-latest
