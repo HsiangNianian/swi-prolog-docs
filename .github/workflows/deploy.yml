@@ -71,7 +71,6 @@ jobs:
         cd swi-prolog-docs
         mdbook build
         mv book/html/* book/
-        ll book
         mv "book/typst-pdf/SWI-Prolog 中文文档.pdf" book/
         rm -r book/html/
         rm -rf book/typst-pdf/
