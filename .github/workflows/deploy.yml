@@ -71,7 +71,7 @@ jobs:
         cd swi-prolog-docs
         mdbook build
         mv book/html/* book/
-        mv "book/typst-pdf/swi-prolog-docs.pdf" book/
+        mv "book/typst-pdf/SWI-Prolog 中文文档.pdf" book/
         rm -r book/html/
         rm -rf book/typst-pdf/
     - name: Deploy gh-pages
