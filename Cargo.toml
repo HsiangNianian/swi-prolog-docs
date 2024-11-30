@@ -1,9 +1,12 @@
 [package]
 name = "swi-prolog-docs"
-version = "0.1.0"
+version = "0.1.1"
 edition = "2021"
 license = "BSD-3-Clause"
 description = "Documentation for SWI-Prolog"
+
+[lib]
+name = "swi_prolog_docs"
 
 [dependencies]
 mdbook = "0.4.43"
