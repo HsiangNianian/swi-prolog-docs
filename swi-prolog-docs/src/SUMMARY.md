@@ -1,4 +1,6 @@
-# 快速入门
-
-[开始 SWI-Prolog](./chapter_1/1.1.md)
-[从控制台添加规则](./chapter_1/1.2.md)
+- [快速入门](./chapter_1/README.md)
+- [用户启动文件](./chapter_2/README.md)
+- [初始化文件和目标](./chapter_3/README.md)
+- [命令行选项](./chapter_4/README.md)
+- [UI 主题](./chapter_5/README.md)
+- [GNU Emacs 接口](./chapter_6/README.md)
