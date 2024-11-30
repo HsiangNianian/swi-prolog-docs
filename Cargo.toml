@@ -5,3 +5,4 @@ edition = "2021"
 
 [dependencies]
 mdbook = "0.4.43"
+mdbook-typst-pdf = "0.5.1"
