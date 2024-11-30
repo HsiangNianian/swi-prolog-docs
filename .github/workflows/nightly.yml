@@ -53,11 +53,7 @@ jobs:
             target: ppc64le
     runs-on: ${{ matrix.os }}
     steps:
-    - uses: actboy168/setup-luamake@master
     - uses: actions/checkout@v4
-      with:
-        submodules: true
-    - run: luamake all -mode release
     - uses: actboy168/action-zip@main
       id: zip
       with:
