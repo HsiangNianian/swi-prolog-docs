@@ -40,17 +40,11 @@ jobs:
       matrix:
         platform:
           - runner: ubuntu-latest
-            target: x86_64
-          - runner: ubuntu-latest
-            target: x86
-          - runner: ubuntu-latest
-            target: aarch64
-          - runner: ubuntu-latest
-            target: armv7
-          - runner: ubuntu-latest
-            target: s390x
-          - runner: ubuntu-latest
-            target: ppc64le
+            os: ubuntu-latest
+          - runner: windows-latest
+            os: windows-latest
+          - runner: macos-latest
+            os: macos-latest
     runs-on: ${{ matrix.os }}
     steps:
     - uses: actions/checkout@v4
