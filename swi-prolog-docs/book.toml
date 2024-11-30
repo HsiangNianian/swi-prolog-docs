@@ -1,6 +1,18 @@
 [book]
-authors = ["HsiangNianian"]
-language = "en"
-multilingual = false
-src = "src"
-title = "swi-prolog-docs"
+title = "SWI-Prolog 中文文档"
+authors = [
+    "HsiangNianian",
+]
+
+[output.html]
+additional-css = []
+additional-js = [""]
+git-repository-url = "https://github.com/HsiangNianian/swi-prolog-docs/tree/main"
+edit-url-template = "https://github.com/HsiangNianian/swi-prolog-docs/edit/main/{path}"
+
+[output.typst-pdf]
+pdf = true
+section-number = true
+
+[rust]
+edition = "2021"
