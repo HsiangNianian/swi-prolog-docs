@@ -45,7 +45,7 @@ jobs:
             os: windows-latest
           - runner: macos-latest
             os: macos-latest
-    runs-on: ${{ matrix.os }}
+    runs-on: ${{ matrix.platform.runner }}
     steps:
     - uses: actions/checkout@v4
     - uses: actboy168/action-zip@main
