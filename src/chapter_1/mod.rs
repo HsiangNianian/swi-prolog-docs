@@ -132,6 +132,4 @@
 /// ?- halt.
 /// $
 /// ```
-pub fn chapter_1() {
-    println!("chapter_1");
-}
+pub fn chapter_1() {}
