@@ -6,7 +6,7 @@ authors = [
 
 [output.html]
 git-repository-url = "https://github.com/HsiangNianian/swi-prolog-docs/tree/main"
-edit-url-template = "https://github.com/HsiangNianian/swi-prolog-docs/edit/main/{path}"
+edit-url-template = "https://github.com/HsiangNianian/swi-prolog-docs/edit/main/swi-prolog-docs/{path}"
 
 [output.typst-pdf]
 pdf = true
