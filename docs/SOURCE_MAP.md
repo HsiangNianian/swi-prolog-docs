@@ -35,6 +35,7 @@ Use this map when translating, re-translating, or checking whether
 | `chapter_15` | SWI-Prolog 语法 | The SWI-Prolog syntax | `syntax` | <https://www.swi-prolog.org/pldoc/man?section=syntax> |
 | `chapter_16` | 有理树（循环项） | Rational trees (cyclic terms) | `cyclic` | <https://www.swi-prolog.org/pldoc/man?section=cyclic> |
 | `chapter_17` | 即时子句索引 | Just-in-time clause indexing | `jitindex` | <https://www.swi-prolog.org/pldoc/man?section=jitindex> |
+| `chapter_18` | 宽字符支持 | Wide character support | `widechars` | <https://www.swi-prolog.org/pldoc/man?section=widechars> |
 
 ## Overview Translation Queue
 
@@ -42,7 +43,6 @@ Continue the Overview chapter in this upstream order:
 
 | Proposed local chapter | Chinese title | Upstream title | Upstream label | Online section |
 | --- | --- | --- | --- | --- |
-| `chapter_18` | 宽字符支持 | Wide character support | `widechars` | <https://www.swi-prolog.org/pldoc/man?section=widechars> |
 | `chapter_19` | 系统限制 | System limits | `limits` | <https://www.swi-prolog.org/pldoc/man?section=limits> |
 | `chapter_20` | 二进制兼容性 | Binary compatibility | `abi-versions` | <https://www.swi-prolog.org/pldoc/man?section=abi-versions> |
 

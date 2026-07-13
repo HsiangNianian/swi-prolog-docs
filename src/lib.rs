@@ -113,6 +113,11 @@ include_chapter!(
     "即时子句索引",
     "../swi-prolog-docs/src/chapter_17/README.md"
 );
+include_chapter!(
+    chapter_18,
+    "宽字符支持",
+    "../swi-prolog-docs/src/chapter_18/README.md"
+);
 
 /// Chapters exposed in the same order as the mdBook summary.
 pub const CHAPTERS: &[Chapter] = &[
@@ -200,5 +205,10 @@ pub const CHAPTERS: &[Chapter] = &[
         slug: "chapter_17",
         title: chapter_17::TITLE,
         markdown: chapter_17::MARKDOWN,
+    },
+    Chapter {
+        slug: "chapter_18",
+        title: chapter_18::TITLE,
+        markdown: chapter_18::MARKDOWN,
     },
 ];
