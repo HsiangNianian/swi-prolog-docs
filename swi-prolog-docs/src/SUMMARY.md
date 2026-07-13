@@ -14,3 +14,4 @@
 - [库的自动加载](./chapter_14/README.md)
 - [SWI-Prolog 语法](./chapter_15/README.md)
 - [有理树（循环项）](./chapter_16/README.md)
+- [即时子句索引](./chapter_17/README.md)
