@@ -36,6 +36,7 @@ Use this map when translating, re-translating, or checking whether
 | `chapter_16` | 有理树（循环项） | Rational trees (cyclic terms) | `cyclic` | <https://www.swi-prolog.org/pldoc/man?section=cyclic> |
 | `chapter_17` | 即时子句索引 | Just-in-time clause indexing | `jitindex` | <https://www.swi-prolog.org/pldoc/man?section=jitindex> |
 | `chapter_18` | 宽字符支持 | Wide character support | `widechars` | <https://www.swi-prolog.org/pldoc/man?section=widechars> |
+| `chapter_19` | 系统限制 | System limits | `limits` | <https://www.swi-prolog.org/pldoc/man?section=limits> |
 
 ## Overview Translation Queue
 
@@ -43,8 +44,8 @@ Continue the Overview chapter in this upstream order:
 
 | Proposed local chapter | Chinese title | Upstream title | Upstream label | Online section |
 | --- | --- | --- | --- | --- |
-| `chapter_19` | 系统限制 | System limits | `limits` | <https://www.swi-prolog.org/pldoc/man?section=limits> |
-| `chapter_20` | 二进制兼容性 | Binary compatibility | `abi-versions` | <https://www.swi-prolog.org/pldoc/man?section=abi-versions> |
+| `chapter_20` | SWI-Prolog 和 32 位机器 | SWI-Prolog and 32-bit machines | `32bits` | <https://www.swi-prolog.org/pldoc/man?section=32bits> |
+| `chapter_21` | 二进制兼容性 | Binary compatibility | `abi-versions` | <https://www.swi-prolog.org/pldoc/man?section=abi-versions> |
 
 ## Translation Notes
 
@@ -53,5 +54,7 @@ Continue the Overview chapter in this upstream order:
 - Keep local Markdown compatible with both mdBook and rustdoc.
 - Use local chapter numbers for repository structure only. Preserve upstream
   section names and labels in this map.
+- `chapter_20` comes from `man/bit64.plx`, which is included by
+  `man/overview.plx`.
 - When an upstream section is split into multiple local files, document the
   split in this file before changing `SUMMARY.md`.
