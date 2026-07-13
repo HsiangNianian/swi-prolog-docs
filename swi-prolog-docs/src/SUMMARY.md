@@ -4,3 +4,4 @@
 - [命令行选项](./chapter_4/README.md)
 - [UI 主题](./chapter_5/README.md)
 - [GNU Emacs 接口](./chapter_6/README.md)
+- [在线帮助](./chapter_7/README.md)

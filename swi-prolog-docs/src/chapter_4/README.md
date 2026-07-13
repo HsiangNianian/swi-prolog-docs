@@ -46,7 +46,7 @@ cc -I$PLBASE/include -L$PLBASE/lib/$PLARCH ...
 请注意，许多命令行选项都由 Prolog 标志反映。我们打算将它们作为同义词处理。目前，一些命令行标志在加载已保存状态完成之前会影响 Prolog 初始化，而其他一些标志在 Prolog 初始化之后可能不会更改。例如，未来版本将支持 -Dhome=dir 来更改 Prolog 安装目录的概念。
 
 --debug-on-interrupt
-立即启用中断信号 (Control-C、SIGINT) 上的调试。通常在进入交互式顶层时启用中断调试。此标志可用于在执行来自 -g 或初始化/[1,2] 的目标时在中断上启动调试器。另请参阅 Prolog 标志 debug_on_interrupt。
+立即启用中断信号 (Control-C、SIGINT) 上的调试。通常在进入交互式顶层时启用中断调试。此标志可用于在执行来自 `-g` 或 `initialization/[1,2]` 的目标时在中断上启动调试器。另请参阅 Prolog 标志 debug_on_interrupt。
 
 --home[=DIR]
 使用 DIR 作为主目录。详情请参阅第 12.6 节。如果省略 DIR，则打印找到的位置并退出进程。如果找不到位置，则打印错误并以状态 1 退出进程。
@@ -101,10 +101,10 @@ cc -I$PLBASE/include -L$PLBASE/lib/$PLARCH ...
 使用 file 作为初始化文件，而不是默认的 init.pl。‘-f none’ 停止 SWI-Prolog 搜索启动文件。此选项可用作 -s file 的替代，可阻止 Prolog 加载个人初始化文件。另请参阅第 2.2 节。
 
 -F script
-从 SWI-Prolog 主目录中选择一个启动脚本。脚本文件名为 <script>.rc。默认脚本名称从可执行文件推导而来，从程序名称中获取前导字母数字字符（字母、数字和下划线）。-F none 停止查找脚本。旨在简单管理略有不同的版本。例如，可以编写脚本 iso.rc，然后使用 pl -F iso 选择 ISO 兼容模式，或者从 iso-pl 到 pl 建立链接。
+从 SWI-Prolog 主目录中选择一个启动脚本。脚本文件名为 `<script>.rc`。默认脚本名称从可执行文件推导而来，从程序名称中获取前导字母数字字符（字母、数字和下划线）。-F none 停止查找脚本。旨在简单管理略有不同的版本。例如，可以编写脚本 iso.rc，然后使用 pl -F iso 选择 ISO 兼容模式，或者从 iso-pl 到 pl 建立链接。
 
 -x bootfile
-从 bootfile 而不是系统的默认启动文件启动。引导文件是使用 -b 或 -c 选项进行 Prolog 编译后生成的文件，或者是使用 qsave_program/[1,2] 保存的程序。
+从 bootfile 而不是系统的默认启动文件启动。引导文件是使用 -b 或 -c 选项进行 Prolog 编译后生成的文件，或者是使用 `qsave_program/[1,2]` 保存的程序。
 
 -p alias=path1[:path2 ...
 为 file_search_path 定义路径别名。alias 是别名的名称，arg path1 ... 是别名的值列表。在 Windows 上，列表分隔符为 ;。在其他系统上，它是 :。值可以是别名 (值) 或路径名形式的术语。计算出的别名使用 asserta/1 添加到 file_search_path/2，因此它们位于别名的预定义值之前。有关使用此文件定位机制的详细信息，请参阅 file_search_path/2。
@@ -126,11 +126,11 @@ cc -I$PLBASE/include -L$PLBASE/lib/$PLARCH ...
 $ swipl --stack-limit=32g
 ```
 
---stack-limit=size[bkmg]
+`--stack-limit=size[bkmg]`
 将 Prolog 堆栈的总大小限制为指定的大小。后缀将值指定为字节、千字节、兆字节或千兆字节。
---table-space=size[bkmg]
+`--table-space=size[bkmg]`
 表空间的限制。这是用于保存 memoized11 答案以进行制表的尝试的存储位置。在 64 位计算机上默认为 1Gb，在 32 位计算机上默认为 512Mb。请参阅 Prolog 标志 table_space。
---shared-table-space=size[bkmg]
+`--shared-table-space=size[bkmg]`
 共享表的表空间限制。请参阅第 7.9 节。
 
 ## 4.4 从命令行运行目标
