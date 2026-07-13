@@ -88,6 +88,10 @@ cargo doc --no-deps
 cargo test
 ```
 
+`cargo test` includes an integration check that verifies `SUMMARY.md`,
+`src/lib.rs::CHAPTERS`, chapter source files, and `docs/SOURCE_MAP.md` stay in
+sync.
+
 For mdBook-side changes, run when `mdbook` is available:
 
 ```shell
