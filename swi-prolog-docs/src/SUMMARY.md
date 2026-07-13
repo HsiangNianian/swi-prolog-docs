@@ -1,5 +1,5 @@
 - [快速入门](./chapter_1/README.md)
-- [用户启动文件](./chapter_2/README.md)
+- [用户的初始化文件](./chapter_2/README.md)
 - [初始化文件和目标](./chapter_3/README.md)
 - [命令行选项](./chapter_4/README.md)
 - [UI 主题](./chapter_5/README.md)
