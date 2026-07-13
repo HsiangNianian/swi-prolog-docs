@@ -93,6 +93,11 @@ include_chapter!(
     "钩子谓词概览",
     "../swi-prolog-docs/src/chapter_13/README.md"
 );
+include_chapter!(
+    chapter_14,
+    "库的自动加载",
+    "../swi-prolog-docs/src/chapter_14/README.md"
+);
 
 /// Chapters exposed in the same order as the mdBook summary.
 pub const CHAPTERS: &[Chapter] = &[
@@ -160,5 +165,10 @@ pub const CHAPTERS: &[Chapter] = &[
         slug: "chapter_13",
         title: chapter_13::TITLE,
         markdown: chapter_13::MARKDOWN,
+    },
+    Chapter {
+        slug: "chapter_14",
+        title: chapter_14::TITLE,
+        markdown: chapter_14::MARKDOWN,
     },
 ];

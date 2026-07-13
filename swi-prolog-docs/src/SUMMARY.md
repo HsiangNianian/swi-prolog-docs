@@ -11,3 +11,4 @@
 - [加载和运行项目](./chapter_11/README.md)
 - [环境控制（Prolog 标志）](./chapter_12/README.md)
 - [钩子谓词概览](./chapter_13/README.md)
+- [库的自动加载](./chapter_14/README.md)
