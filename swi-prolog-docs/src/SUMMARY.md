@@ -5,3 +5,5 @@
 - [UI 主题](./chapter_5/README.md)
 - [GNU Emacs 接口](./chapter_6/README.md)
 - [在线帮助](./chapter_7/README.md)
+- [命令行历史](./chapter_8/README.md)
+- [复用顶层绑定](./chapter_9/README.md)

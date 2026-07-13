@@ -63,6 +63,16 @@ include_chapter!(
     "在线帮助",
     "../swi-prolog-docs/src/chapter_7/README.md"
 );
+include_chapter!(
+    chapter_8,
+    "命令行历史",
+    "../swi-prolog-docs/src/chapter_8/README.md"
+);
+include_chapter!(
+    chapter_9,
+    "复用顶层绑定",
+    "../swi-prolog-docs/src/chapter_9/README.md"
+);
 
 /// Chapters exposed in the same order as the mdBook summary.
 pub const CHAPTERS: &[Chapter] = &[
@@ -100,5 +110,15 @@ pub const CHAPTERS: &[Chapter] = &[
         slug: "chapter_7",
         title: chapter_7::TITLE,
         markdown: chapter_7::MARKDOWN,
+    },
+    Chapter {
+        slug: "chapter_8",
+        title: chapter_8::TITLE,
+        markdown: chapter_8::MARKDOWN,
+    },
+    Chapter {
+        slug: "chapter_9",
+        title: chapter_9::TITLE,
+        markdown: chapter_9::MARKDOWN,
     },
 ];
