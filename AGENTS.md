@@ -19,6 +19,7 @@ Do not copy chapter bodies into `src/`.
 - `swi-prolog-docs/book.toml`: mdBook configuration.
 - `swi-prolog-docs/src/SUMMARY.md`: mdBook table of contents.
 - `swi-prolog-docs/src/chapter_*/README.md`: translated chapter Markdown.
+- `docs/SOURCE_MAP.md`: upstream SWI-Prolog manual section map.
 - `src/lib.rs`: thin Rust-facing wrapper using `include_str!`.
 - `src/main.rs`: informational binary entry point.
 
@@ -39,13 +40,18 @@ When adding or renaming a chapter:
 
 1. Add or update `swi-prolog-docs/src/chapter_N/README.md`.
 2. Add or update its entry in `swi-prolog-docs/src/SUMMARY.md`.
-3. Add or update the matching `include_chapter!` entry in `src/lib.rs`.
-4. Add or update the corresponding `Chapter` entry in `CHAPTERS`.
-5. Keep the order in `CHAPTERS` the same as `SUMMARY.md`.
+3. Add or update the upstream mapping in `docs/SOURCE_MAP.md`.
+4. Add or update the matching `include_chapter!` entry in `src/lib.rs`.
+5. Add or update the corresponding `Chapter` entry in `CHAPTERS`.
+6. Keep the order in `CHAPTERS` the same as `SUMMARY.md`.
 
 Do not create `src/chapter_N/mod.rs` files for copied docs.
 
 ## Markdown Compatibility
+
+For the current Overview translation, use upstream
+`SWI-Prolog/swipl-devel:man/overview.plx` and the online section links recorded
+in `docs/SOURCE_MAP.md`.
 
 The same Markdown is parsed by mdBook and rustdoc. Prefer Markdown that is valid
 in both:

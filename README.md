@@ -22,3 +22,6 @@ mdbook build swi-prolog-docs
 
 The PDF backend is optional for local builds. Install `mdbook-typst-pdf` when you
 need the PDF output as well as HTML.
+
+See `docs/SOURCE_MAP.md` for the upstream SWI-Prolog manual sections mapped to
+local chapter files.
