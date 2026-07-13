@@ -12,3 +12,4 @@
 - [环境控制（Prolog 标志）](./chapter_12/README.md)
 - [钩子谓词概览](./chapter_13/README.md)
 - [库的自动加载](./chapter_14/README.md)
+- [SWI-Prolog 语法](./chapter_15/README.md)
