@@ -29,6 +29,7 @@ Use this map when translating, re-translating, or checking whether
 | `chapter_9` | 复用顶层绑定 | Reuse of top-level bindings | `topvars` | <https://www.swi-prolog.org/pldoc/man?section=topvars> |
 | `chapter_10` | 调试器概览 | Overview of the Debugger | `debugoverview` | <https://www.swi-prolog.org/pldoc/man?section=debugoverview> |
 | `chapter_11` | 加载和运行项目 | Loading and running projects | `compilation` | <https://www.swi-prolog.org/pldoc/man?section=compilation> |
+| `chapter_12` | 环境控制（Prolog 标志） | Environment Control (Prolog flags) | `flags` | <https://www.swi-prolog.org/pldoc/man?section=flags> |
 
 ## Overview Translation Queue
 
@@ -36,7 +37,6 @@ Continue the Overview chapter in this upstream order:
 
 | Proposed local chapter | Chinese title | Upstream title | Upstream label | Online section |
 | --- | --- | --- | --- | --- |
-| `chapter_12` | 环境控制（Prolog 标志） | Environment Control (Prolog flags) | `flags` | <https://www.swi-prolog.org/pldoc/man?section=flags> |
 | `chapter_13` | 钩子谓词概览 | An overview of hook predicates | `hooks` | <https://www.swi-prolog.org/pldoc/man?section=hooks> |
 | `chapter_14` | 库的自动加载 | Automatic loading of libraries | `autoload` | <https://www.swi-prolog.org/pldoc/man?section=autoload> |
 | `chapter_15` | SWI-Prolog 语法 | The SWI-Prolog syntax | `syntax` | <https://www.swi-prolog.org/pldoc/man?section=syntax> |

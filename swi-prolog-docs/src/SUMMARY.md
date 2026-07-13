@@ -9,3 +9,4 @@
 - [复用顶层绑定](./chapter_9/README.md)
 - [调试器概览](./chapter_10/README.md)
 - [加载和运行项目](./chapter_11/README.md)
+- [环境控制（Prolog 标志）](./chapter_12/README.md)
