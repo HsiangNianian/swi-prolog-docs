@@ -1,0 +1,648 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>调试器概览 - SWI-Prolog 中文文档</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body class="sidebar-visible no-js">
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('light')
+            html.classList.add(theme);
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var body = document.querySelector('body');
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../chapter_1/index.html"><strong aria-hidden="true">1.</strong> 快速入门</a></li><li class="chapter-item expanded "><a href="../chapter_2/index.html"><strong aria-hidden="true">2.</strong> 用户的初始化文件</a></li><li class="chapter-item expanded "><a href="../chapter_3/index.html"><strong aria-hidden="true">3.</strong> 初始化文件和目标</a></li><li class="chapter-item expanded "><a href="../chapter_4/index.html"><strong aria-hidden="true">4.</strong> 命令行选项</a></li><li class="chapter-item expanded "><a href="../chapter_5/index.html"><strong aria-hidden="true">5.</strong> UI 主题</a></li><li class="chapter-item expanded "><a href="../chapter_6/index.html"><strong aria-hidden="true">6.</strong> GNU Emacs 接口</a></li><li class="chapter-item expanded "><a href="../chapter_7/index.html"><strong aria-hidden="true">7.</strong> 在线帮助</a></li><li class="chapter-item expanded "><a href="../chapter_8/index.html"><strong aria-hidden="true">8.</strong> 命令行历史</a></li><li class="chapter-item expanded "><a href="../chapter_9/index.html"><strong aria-hidden="true">9.</strong> 复用顶层绑定</a></li><li class="chapter-item expanded "><a href="../chapter_10/index.html" class="active"><strong aria-hidden="true">10.</strong> 调试器概览</a></li><li class="chapter-item expanded "><a href="../chapter_11/index.html"><strong aria-hidden="true">11.</strong> 加载和运行项目</a></li><li class="chapter-item expanded "><a href="../chapter_12/index.html"><strong aria-hidden="true">12.</strong> 环境控制（Prolog 标志）</a></li><li class="chapter-item expanded "><a href="../chapter_13/index.html"><strong aria-hidden="true">13.</strong> 钩子谓词概览</a></li><li class="chapter-item expanded "><a href="../chapter_14/index.html"><strong aria-hidden="true">14.</strong> 库的自动加载</a></li><li class="chapter-item expanded "><a href="../chapter_15/index.html"><strong aria-hidden="true">15.</strong> SWI-Prolog 语法</a></li><li class="chapter-item expanded "><a href="../chapter_16/index.html"><strong aria-hidden="true">16.</strong> 有理树（循环项）</a></li><li class="chapter-item expanded "><a href="../chapter_17/index.html"><strong aria-hidden="true">17.</strong> 即时子句索引</a></li><li class="chapter-item expanded "><a href="../chapter_18/index.html"><strong aria-hidden="true">18.</strong> 宽字符支持</a></li><li class="chapter-item expanded "><a href="../chapter_19/index.html"><strong aria-hidden="true">19.</strong> 系统限制</a></li><li class="chapter-item expanded "><a href="../chapter_20/index.html"><strong aria-hidden="true">20.</strong> SWI-Prolog 和 32 位机器</a></li><li class="chapter-item expanded "><a href="../chapter_21/index.html"><strong aria-hidden="true">21.</strong> 二进制兼容性</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">SWI-Prolog 中文文档</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        <a href="https://github.com/HsiangNianian/swi-prolog-docs/tree/main" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+                        <a href="https://github.com/HsiangNianian/swi-prolog-docs/edit/main/swi-prolog-docs/src/chapter_10/README.md" title="Suggest an edit" aria-label="Suggest an edit">
+                            <i id="git-edit-button" class="fa fa-edit"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="调试器概览"><a class="header" href="#调试器概览">调试器概览</a></h1>
+<p>像 C++、Python 或 JavaScript 这样的命令式语言，大多执行近似线性的代码，中间带有一些分支和子例程调用。它们的调试器支持逐行单步执行并在每一行暂停，或者运行程序直到命中断点后暂停。暂停时，用户可以检查当前程序状态，或向调试器发出命令。</p>
+<p>Prolog 的执行模型是逻辑式的：它会尝试证明逻辑谓词，因此需要不同的调试方式。SWI-Prolog 使用传统 Prolog 的“Byrd 盒模型”（Byrd Box Model）或“四端口模型”（4 Port Model）作为命令行调试器的基础，并在此基础上做了一些扩展。还有另外两个调试器也建立在这套基础设施上：一个是<a href="https://www.swi-prolog.org/gtrace.html">图形调试器</a>，另一个是 <a href="https://swish.swi-prolog.org/">SWISH</a> 提供的 Web 界面中的远程调试。</p>
+<p>所有可用于操纵调试器的谓词，其参考信息见调试器章节。</p>
+<h2 id="byrd-盒模型和端口"><a class="header" href="#byrd-盒模型和端口">Byrd 盒模型和端口</a></h2>
+<p>标准 Prolog 调试工具围绕所谓的“Byrd 盒模型”或“四端口模型”构建。该模型把 Prolog 程序中的每个谓词建模为一个状态机，也就是一个“盒子”；程序求值时，这个盒子会在若干状态，也就是“端口”之间转换。开发者可以要求引擎在到达特定端口或特定谓词时暂停，以便检查程序。</p>
+<p>阅读本概览时，请记住：“端口”只是“状态”的另一种说法；每个谓词在求值期间都会穿过这些状态。这个状态机被称为“盒子”，是因为它通常画成这样：</p>
+<pre><code class="language-text">                *--------------------------------------*
+         Call   |                                      |   Exit
+     ---------&gt; +  descendant(X,Y) :- offspring(X,Y).  + ---------&gt;
+                |                                      |
+                |  descendant(X,Z) :-                  |
+     &lt;--------- +     offspring(X,Y), descendant(Y,Z). + &lt;---------
+         Fail   |                                      |   Redo
+                *--------------------------------------*
+</code></pre>
+<p>标准端口包括：<code>call</code>、<code>redo</code>、<code>exit</code> 和 <code>fail</code>。SWI-Prolog 在此基础上扩展了两个端口：<code>unify</code> 和 <code>exception</code>。每条 trace 都发生在谓词解析的某个特定阶段。回忆一下，在解析或“证明”一个谓词时，Prolog 引擎会：</p>
+<ol>
+<li>收集所有“可能”匹配的规则，也就是头部具有相同名称和参数数量的规则。
+<ul>
+<li>如果有任何规则可能匹配，会 trace 一次 <code>call</code>。</li>
+<li>当引擎回溯以寻找下一条匹配规则时，也会 trace <code>redo</code>。</li>
+</ul>
+</li>
+<li>找到下一条其头部可以与该谓词合一的规则。
+<ul>
+<li>如果找到这样的规则，会 trace <code>unify</code>，并显示合一结果。</li>
+<li>如果没有任何规则头可以合一，则 trace <code>fail</code>。</li>
+</ul>
+</li>
+<li>将合一得到的变量赋值应用到规则体中的子句，然后带着更新后的子句继续第 1 步。</li>
+<li>在匹配规则的所有规则体子句都成功、失败或抛出异常之后：
+<ul>
+<li>如果它们全都成功，会 trace <code>exit</code>，表示该规则为真。</li>
+<li>如果其中任何一个失败，会 trace <code>fail</code>，表示该规则为假。</li>
+<li>如果其中任何一个抛出异常，会 trace <code>exception</code>。</li>
+</ul>
+</li>
+</ol>
+<p>这意味着，在某个谓词最初的 <code>call</code> 和该谓词 trace 结束之间，可能出现大量 trace。</p>
+<h2 id="trace-模式示例"><a class="header" href="#trace-模式示例">Trace 模式示例</a></h2>
+<p>谓词 <code>trace/0</code> 会开启“trace 模式”。默认情况下，它会为每个谓词的每个端口产生 trace，并在每个端口暂停，以便用户检查程序状态。通常这是在 Prolog 控制台窗口中完成的；但对于嵌入式 Prolog 系统，或 Prolog 作为守护进程运行的情况，也可以通过 <a href="https://www.swi-prolog.org/pack/list?p=libssh">libssh</a> 包获得提示符来完成。</p>
+<blockquote>
+<p>注意：如果原生图形插件 XPCE 可用，命令 <code>gtrace/0</code> 和 <code>gspy/1</code> 会激活图形调试器，而 <code>tdebug/0</code> 和 <code>tspy/1</code> 允许调试任意线程。</p>
+</blockquote>
+<p>每个目标都使用 Prolog 谓词 <code>write_term/2</code> 打印。打印风格由 Prolog 标志 <code>debugger_write_options</code> 定义；可以修改该标志，也可以使用 tracer 的 <code>w</code>、<code>p</code> 和 <code>d</code> 命令修改。</p>
+<p>下面是一个展示基本流程的调试会话示例。默认情况下，<code>unify</code> 端口关闭，因为对命令行调试器来说，它在多数情况下不会提供很多额外信息。</p>
+<pre><code class="language-prolog">is_a(rock1, rock).
+is_a(rock2, rock).
+color(rock1, red).
+
+noun(X, Type) :- is_a(X, Type).
+adjective(X, color, Value) :- color(X, Value).
+</code></pre>
+<pre><code class="language-prolog">?- trace.
+true.
+
+[trace]  ?- noun(X, rock), adjective(X, color, red).
+   Call: (11) noun(_9774, rock) ? creep
+</code></pre>
+<p>谓词 <code>trace/0</code> 打开了 trace 模式，现在每个提示符都会显示为 <code>[trace] ?-</code>。用户给出的初始查询是 <code>noun(X, rock), adjective(X, color, red)</code>，意思是寻找一个“红色的石头”。最后，触发的第一个端口是初始查询中第一个谓词的 <code>Call</code>，表示引擎将要寻找第一条匹配 <code>noun(_9774, rock)</code> 的规则。</p>
+<p>按下空格键、<code>c</code> 或回车，会让 tracer 打印 <code>creep</code>，随后显示下一条 trace。tracer 还提供了许多其他命令，后文会介绍。</p>
+<pre><code class="language-prolog">is_a(rock1, rock).
+is_a(rock2, rock).
+color(rock1, red).
+
+noun(X, Type) :- is_a(X, Type).
+adjective(X, color, Value) :- color(X, Value).
+</code></pre>
+<pre><code class="language-prolog">[trace]  ?- noun(X, rock), adjective(X, color, red).
+...
+   Call: (12) is_a(_9774, rock) ? creep
+   Exit: (12) is_a(rock1, rock) ? creep
+   Exit: (11) noun(rock1, rock) ? creep
+...
+</code></pre>
+<p>接下来，<code>noun/2</code> 第一条子句的 <code>is_a/2</code> 调用得到 <code>call</code> trace，因为引擎正在寻找下一条匹配 <code>is_a(_9774, rock)</code> 的规则。由于确实存在可以合一的事实 <code>is_a(rock1, rock)</code>，trace 显示了 <code>exit</code>，也就是成功，并显示了该值。因为这是 <code>noun/2</code> 规则体中的最后一个谓词，所以 <code>noun/2</code> 本身也得到一个 <code>exit</code> trace，显示其头部的合一结果：<code>noun(rock1, rock)</code>。</p>
+<pre><code class="language-prolog">is_a(rock1, rock).
+is_a(rock2, rock).
+color(rock1, red).
+
+noun(X, Type) :- is_a(X, Type).
+adjective(X, color, Value) :- color(X, Value).
+</code></pre>
+<pre><code class="language-prolog">[trace]  ?- noun(X, rock), adjective(X, color, red).
+...
+   Call: (11) adjective(rock1, color, red) ? creep
+   Call: (12) color(rock1, red) ? creep
+   Exit: (12) color(rock1, red) ? creep
+   Exit: (11) adjective(rock1, color, red) ? creep
+   X = rock1 ;
+...
+</code></pre>
+<p>随后，Prolog 移动到初始查询中的下一个谓词 <code>adjective/3</code>，并以类似方式求解它。由于这是查询中的最后一个谓词，系统返回一个答案。按下 <code>;</code> 会请求下一个答案，并开始 Prolog 回溯。</p>
+<pre><code class="language-prolog">is_a(rock1, rock).
+is_a(rock2, rock).
+color(rock1, red).
+
+noun(X, Type) :- is_a(X, Type).
+adjective(X, color, Value) :- color(X, Value).
+</code></pre>
+<pre><code class="language-prolog">[trace]  ?- noun(X, rock), adjective(X, color, red).
+...
+   Redo: (12) is_a(_9774, rock) ? creep
+   Exit: (12) is_a(rock2, rock) ? creep
+   Exit: (11) noun(rock2, rock) ? creep
+   Call: (11) adjective(rock2, color, red) ? creep
+   Call: (12) color(rock2, red) ? creep
+   Fail: (12) color(rock2, red) ? creep
+   Fail: (11) adjective(rock2, color, red) ? creep
+false.
+</code></pre>
+<p>唯一需要 <code>redo</code> 的选择点，也就是需要回溯的地方，是 <code>noun/2</code> 中的 <code>is_a/2</code> 子句，因为还有一个潜在匹配 <code>is_a(rock2, rock)</code> 可以尝试合一。它能够合一，所以 trace 显示 <code>exit</code>；同时也使 <code>noun(rock2, rock)</code> 像前面一样以 <code>exit</code> 成功。</p>
+<p>随着 trace 继续，可以看到 <code>color(rock2, red)</code> 激活了 <code>fail</code> 端口，因为无法证明该谓词，所以整个查询最终返回 <code>false</code>。</p>
+<p>在输入 <code>notrace.</code> 关闭 trace 模式之前，之后提出的每个查询都会继续被 trace。</p>
+<h2 id="trace-模式选项leash1-和-visible1"><a class="header" href="#trace-模式选项leash1-和-visible1">Trace 模式选项：<code>leash/1</code> 和 <code>visible/1</code></a></h2>
+<p>使用 <code>trace/0</code> 启用 trace 模式时，tracer 默认会在每个谓词命中的每个端口暂停，并等待命令。谓词 <code>leash/1</code> 可用于修改哪些端口会暂停。这是全局设置，因此修改后会一直保留，直到再次修改或 SWI-Prolog 重启。通过 <code>notrace/0</code> 禁用 tracer 不会影响哪些端口被 leash。</p>
+<p><code>leash/1</code> 的参数必须以 <code>+</code> 开头表示添加，或以 <code>-</code> 开头表示移除，后跟端口名称，例如 <code>call</code>、<code>exit</code> 等。也可以使用特殊项，例如 <code>all</code>，从而不必手动添加或移除每个端口。</p>
+<p>如果只想在 <code>fail</code> 端口停止，可以这样使用 <code>leash/1</code>：</p>
+<pre><code class="language-prolog">?- leash(-all).
+true.
+
+?- leash(+fail).
+true.
+
+?- trace.
+true.
+
+[trace]  ?- noun(X, rock), adjective(X, color, red).
+   Call: (11) noun(_3794, rock)
+   Call: (12) is_a(_3794, rock)
+   Exit: (12) is_a(rock1, rock)
+   Exit: (11) noun(rock1, rock)
+   Call: (11) adjective(rock1, color, red)
+   Call: (12) color(rock1, red)
+   Exit: (12) color(rock1, red)
+   Exit: (11) adjective(rock1, color, red)
+X = rock1 ;
+   Redo: (12) is_a(_3794, rock)
+   Exit: (12) is_a(rock2, rock)
+   Exit: (11) noun(rock2, rock)
+   Call: (11) adjective(rock2, color, red)
+   Call: (12) color(rock2, red)
+   Fail: (12) color(rock2, red) ? creep
+   Fail: (11) adjective(rock2, color, red) ? creep
+false.
+</code></pre>
+<p>现在，只有以 <code>Fail:</code> 开头的行后面带有 <code>creep</code>，因为那是 tracer 唯一暂停等待命令的时候。如果希望永不暂停，只想看到所有 trace，可以使用 <code>leash(-all)</code>，并且不要重新打开任何端口。</p>
+<p>默认端口仍然会打印出来，因为另一个设置 <code>visible/1</code> 控制哪些端口会被打印。<code>visible/1</code> 的参数形式与 <code>leash/1</code> 相同。如果只想在 <code>fail</code> 端口停止并且只显示 <code>fail</code> 端口，可以这样使用 <code>leash/1</code> 和 <code>visible/1</code>：</p>
+<pre><code class="language-prolog">?- leash(-all).
+true.
+
+?- leash(+fail).
+true.
+
+?- visible(-all).
+true.
+
+?- visible(+fail).
+true.
+
+?- trace.
+true.
+
+[trace]  ?- noun(X, rock), adjective(X, color, red).
+X = rock1 ;
+   Fail: (12) color(rock2, red) ? creep
+   Fail: (11) adjective(rock2, color, red) ? creep
+false.
+</code></pre>
+<h2 id="暂停时的-trace-模式命令"><a class="header" href="#暂停时的-trace-模式命令">暂停时的 Trace 模式命令</a></h2>
+<p>当 tracer 在某个端口暂停时，除了按空格键之外，还可以做很多事情。所有动作都是单字符命令，并且无需等待回车就会执行，除非命令行选项 <code>--no-tty</code> 处于活动状态。暂停时按 <code>?</code> 或 <code>h</code> 也会打印这些命令的列表。</p>
+<h3 id="控制流命令"><a class="header" href="#控制流命令">控制流命令</a></h3>
+<div class="table-wrapper"><table><thead><tr><th>命令</th><th>键</th><th>说明</th></tr></thead><tbody>
+<tr><td><strong>Abort</strong></td><td><code>a</code></td><td>中止 Prolog 执行，参见 <code>abort/0</code></td></tr>
+<tr><td><strong>Break</strong></td><td><code>b</code></td><td>进入 Prolog break 环境，参见 <code>break/0</code></td></tr>
+<tr><td><strong>Creep</strong></td><td><code>c</code></td><td>继续执行，在下一个端口停止；也可以按回车或空格</td></tr>
+<tr><td><strong>Exit</strong></td><td><code>e</code></td><td>终止 Prolog，参见 <code>halt/0</code></td></tr>
+<tr><td><strong>Fail</strong></td><td><code>f</code></td><td>强制当前目标失败</td></tr>
+<tr><td><strong>Find</strong></td><td><code>/</code></td><td>搜索某个端口，见下文 Find 命令说明</td></tr>
+<tr><td><strong>Ignore</strong></td><td><code>i</code></td><td>忽略当前目标，假装它已经成功</td></tr>
+<tr><td><strong>Leap</strong></td><td><code>l</code></td><td>继续执行，在下一个 spy point 停止</td></tr>
+<tr><td><strong>No debug</strong></td><td><code>n</code></td><td>以 no debug 模式继续执行</td></tr>
+<tr><td><strong>Repeat find</strong></td><td><code>.</code></td><td>重复上一次 find 命令</td></tr>
+<tr><td><strong>Retry</strong></td><td><code>r</code></td><td>撤销当前目标从 <code>call</code> 端口之后的所有动作，数据库和 I/O 动作除外，并从该目标的 <code>call</code> 端口恢复执行</td></tr>
+<tr><td><strong>Skip</strong></td><td><code>s</code></td><td>继续执行，在当前目标的下一个端口停止，因此会跳过该目标子调用的所有端口</td></tr>
+<tr><td><strong>Spy</strong></td><td><code>+</code></td><td>在当前谓词上设置 spy point，参见 <code>spy/1</code></td></tr>
+<tr><td><strong>No spy</strong></td><td><code>-</code></td><td>从当前谓词移除 spy point，参见 <code>nospy/1</code></td></tr>
+<tr><td><strong>Up</strong></td><td><code>u</code></td><td>继续执行，在父目标的下一个端口停止，因此会跳过当前目标及其所有子调用。该选项适合停止 trace 由失败驱动的循环</td></tr>
+</tbody></table>
+</div>
+<h4 id="find说明和示例"><a class="header" href="#find说明和示例">Find（<code>/</code>）说明和示例</a></h4>
+<p>Find（<code>/</code>）命令会继续执行，直到找到与 find 模式匹配的端口。输入 <code>/</code> 后，用户可以输入一行来指定要搜索的端口。该行由一组表示端口类型的字母组成，后面可以跟一个可选项；该项应与该端口正在运行的目标合一。如果没有指定项，则把它视为变量，也就是搜索指定类型的任意端口。如果给出原子，则任何函子名等于该原子的目标都会匹配。示例：</p>
+<div class="table-wrapper"><table><thead><tr><th>命令</th><th>说明</th></tr></thead><tbody>
+<tr><td><code>/f</code></td><td>搜索任意 <code>fail</code> 端口</td></tr>
+<tr><td><code>/fe solve</code></td><td>搜索名称为 <code>solve</code> 的任意目标上的 <code>fail</code> 或 <code>exit</code> 端口</td></tr>
+<tr><td><code>/c solve(a, _)</code></td><td>搜索对 <code>solve/2</code> 的调用，且第一个参数是变量或原子 <code>a</code></td></tr>
+<tr><td><code>/a member(_, _)</code></td><td>搜索 <code>member/2</code> 上的任意端口。这等价于在 <code>member/2</code> 上设置 spy point</td></tr>
+</tbody></table>
+</div>
+<h3 id="信息命令"><a class="header" href="#信息命令">信息命令</a></h3>
+<div class="table-wrapper"><table><thead><tr><th>命令</th><th>键</th><th>说明</th></tr></thead><tbody>
+<tr><td><strong>Alternatives</strong></td><td><code>A</code></td><td>显示所有还有替代分支的目标</td></tr>
+<tr><td><strong>Goals</strong></td><td><code>g</code></td><td>显示父目标列表，也就是执行栈。注意，由于尾递归优化，一些父目标可能已经不存在</td></tr>
+<tr><td><strong>Help</strong></td><td><code>h</code></td><td>显示可用选项；也可以按 <code>?</code></td></tr>
+<tr><td><strong>Listing</strong></td><td><code>L</code></td><td>使用 <code>listing/1</code> 列出当前谓词</td></tr>
+</tbody></table>
+</div>
+<h3 id="格式化命令"><a class="header" href="#格式化命令">格式化命令</a></h3>
+<div class="table-wrapper"><table><thead><tr><th>命令</th><th>键</th><th>说明</th></tr></thead><tbody>
+<tr><td><strong>Context</strong></td><td><code>C</code></td><td>切换“显示上下文”。如果为 <code>on</code>，目标的上下文模块会显示在方括号中。默认值为 <code>off</code></td></tr>
+<tr><td><strong>Display</strong></td><td><code>d</code></td><td>设置 <code>debugger_write_options</code> 的 <code>max_depth(Depth)</code> 选项，限制打印项的深度。另请参阅 <code>w</code> 和 <code>p</code> 选项</td></tr>
+<tr><td><strong>Print</strong></td><td><code>p</code></td><td>将 Prolog 标志 <code>debugger_write_options</code> 设置为 <code>[quoted(true), portray(true), max_depth(10), priority(699)]</code>。这是默认值</td></tr>
+<tr><td><strong>Write</strong></td><td><code>w</code></td><td>将 Prolog 标志 <code>debugger_write_options</code> 设置为 <code>[quoted(true), attributes(write), priority(699)]</code>，绕过 <code>portray/1</code> 等</td></tr>
+</tbody></table>
+</div>
+<h2 id="trace-模式与-trace-point"><a class="header" href="#trace-模式与-trace-point">Trace 模式与 Trace Point</a></h2>
+<p>这里需要稍微绕开一下，说明几个容易混淆的相关谓词：如果只想 trace 一个谓词或一组选定谓词，可以使用 <code>trace/1</code> 或 <code>trace/2</code> 谓词设置 trace point。虽然它们使用同一个基础谓词名 <code>trace</code>，但这些谓词会忽略 <code>leash/1</code> 和 <code>visible/1</code> 的全局设置，并且在 trace 端口时不会暂停。它们实际上是另一个功能，只是也会输出 trace。</p>
+<p>trace point 设置在某个特定谓词上，并 trace 该谓词的端口；无论当前是否处于 <code>trace/0</code> 的 trace 模式，它都会工作。如果使用 <code>trace/2</code> 变体，每个 trace point 可以 trace 不同端口。</p>
+<pre><code class="language-prolog">?- trace(is_a/2).
+%         is_a/2: [all]
+true.
+
+?- noun(X, rock), adjective(X, color, red).
+ T Call: is_a(_25702, rock)
+ T Exit: is_a(rock1, rock)
+X = rock1 ;
+ T Redo: is_a(rock1, rock)
+ T Exit: is_a(rock2, rock)
+false.
+</code></pre>
+<p>请注意：这里不需要使用 <code>trace/0</code> 打开 trace 模式；它只输出执行 <code>is_a/2</code> 时命中的端口；并且程序从未暂停。</p>
+<p>实际上，如果在使用 trace point 时又打开 trace 模式，情况会变得非常混乱，因为 trace point 基础设施本身也会被 trace。</p>
+<pre><code class="language-prolog">?- trace(is_a/2).
+%         is_a/2: [all]
+true.
+
+?- trace.
+true.
+
+[trace]  ?- noun(X, rock), adjective(X, color, red).
+   Call: (11) noun(_29318, rock) ? creep
+   Call: (12) is_a(_29318, rock) ? creep
+   Call: (13) print_message(debug, frame(user:is_a(_29318, rock), trace(call))) ? creep
+   Call: (18) push_msg(frame(user:is_a(_29318, rock), trace(call))) ? creep
+   Call: (21) exception(undefined_global_variable, '$inprint_message', _30046) ? creep
+   Fail: (21) exception(undefined_global_variable, '$inprint_message', _30090) ? creep
+   Exit: (18) push_msg(frame(user:is_a(_29318, rock), trace(call))) ? creep
+   Call: (19) prolog:message(frame(user:is_a(_29318, rock), trace(call)), _30140, _30142) ? creep
+   Fail: (19) prolog:message(frame(user:is_a(_29318, rock), trace(call)), _30140, _30142) ? creep
+   Call: (19) message_property(debug, stream(_30192)) ? creep
+   Fail: (19) message_property(debug, stream(_30192)) ? creep
+   Call: (20) message_property(debug, prefix(_30200)) ? creep
+   Fail: (20) message_property(debug, prefix(_30200)) ? creep
+ T Call: is_a(_29318, rock)
+   Call: (17) pop_msg ? creep
+   Exit: (17) pop_msg ? creep
+   ...Lots more after this...
+</code></pre>
+<p>所以，trace point 和 trace mode 是两个名称容易混淆、但彼此独立的功能。</p>
+<h2 id="spy-point-和-debug-模式"><a class="header" href="#spy-point-和-debug-模式">Spy Point 和 Debug 模式</a></h2>
+<p>回到 trace 模式相关功能：由于 Prolog 程序的 trace 输出通常可能非常大，有时希望只在程序深处的某个特定点开始 trace 模式。这正是 spy point 的用途。它指定某个谓词，命中该谓词时应打开 trace 模式。</p>
+<p>可以这样启用 spy point：<code>spy(mypredicate/2)</code>。执行该命令后，第一次遇到 <code>mypredicate/2</code> 时会打开 trace 模式，并像平常一样工作。这包括遵守全局的 <code>leash/1</code> 和 <code>visible/1</code> 设置。可以使用 <code>nospy/1</code> 或 <code>nospyall/0</code> 移除 spy point。</p>
+<pre><code class="language-prolog">is_a(rock1, rock).
+is_a(rock2, rock).
+color(rock1, red).
+
+noun(X, Type) :- is_a(X, Type).
+adjective(X, color, Value) :- color(X, Value).
+</code></pre>
+<pre><code class="language-prolog">?- spy(is_a/2).
+% Spy point on is_a/2
+true.
+
+[debug]  ?- noun(X, rock), adjective(X, color, red).
+ * Call: (12) is_a(_1858, rock) ? creep
+ * Exit: (12) is_a(rock1, rock) ? creep
+   Exit: (11) noun(rock1, rock) ? creep
+   Call: (11) adjective(rock1, color, red) ? creep
+   Call: (12) color(rock1, red) ? creep
+   Exit: (12) color(rock1, red) ? creep
+   Exit: (11) adjective(rock1, color, red) ? creep
+X = rock1 ;
+ * Redo: (12) is_a(_1858, rock) ? creep
+ * Exit: (12) is_a(rock2, rock) ? creep
+   Exit: (11) noun(rock2, rock) ? creep
+   Call: (11) adjective(rock2, color, red) ? creep
+   Call: (12) color(rock2, red) ? creep
+   Fail: (12) color(rock2, red) ? creep
+   Fail: (11) adjective(rock2, color, red) ? creep
+false.
+</code></pre>
+<p>命中 spy point 后，上面的输出与对初始查询运行 <code>trace/0</code> 得到的 trace 相同，只是显然缺少 spy point 之前的所有 trace。</p>
+<p>注意，调用 <code>spy/1</code> 后，<code>?-</code> 前面会出现一个新标签，也就是 <code>[debug]</code>：</p>
+<pre><code class="language-prolog">?- spy(is_a/2).
+% Spy point on is_a/2
+true.
+
+[debug] ?-
+</code></pre>
+<p>这表示系统处于“debug 模式”。debug 模式做两件事：告诉系统监视 spy point；关闭一些会让 trace 难以理解的优化。许多 Prolog 书籍中描述的理想四端口模型，在许多 Prolog 实现中不可见，因为代码优化会移除一部分选择点和 exit 点。如果某个目标确定性成功，或其替代分支被 cut 移除，回溯点不会显示。运行在 debug 模式时，选择点只有在被 cut 移除时才会销毁，并且最后调用优化会关闭。注意：这意味着系统在 debug 模式下可能耗尽栈，而非 debug 模式下不会出现问题。</p>
+<p>可以使用 <code>nodebug/0</code> 再次关闭 debug 模式，但这样 spy point 会被忽略，虽然仍会被记住。通过 <code>debug/0</code> 重新打开 debug 模式后，会再次命中 spy point。</p>
+<pre><code class="language-prolog">is_a(rock1, rock).
+is_a(rock2, rock).
+color(rock1, red).
+
+noun(X, Type) :- is_a(X, Type).
+adjective(X, color, Value) :- color(X, Value).
+</code></pre>
+<pre><code class="language-prolog">?-  spy(is_a/2).
+% Spy point on is_a/2
+true.
+
+[debug]  ?- nodebug.
+true.
+
+?- noun(X, rock).
+X = rock1 ;
+X = rock2.
+
+?- debug.
+true.
+
+[debug]  ?- noun(X, rock).
+ * Call: (11) is_a(_47826, rock) ? creep
+ * Exit: (11) is_a(rock1, rock) ? creep
+   Exit: (10) noun(rock1, rock) ? creep
+X = rock1 ;
+ * Redo: (11) is_a(_47826, rock) ? creep
+ * Exit: (11) is_a(rock2, rock) ? creep
+   Exit: (10) noun(rock2, rock) ? creep
+X = rock2.
+</code></pre>
+<p>因此，debug 模式允许 Prolog 监视 spy point，并在命中 spy point 时启用 trace 模式。谓词 <code>tracing/0</code> 和 <code>debugging/0</code> 会报告系统是否处于这些模式之一。</p>
+<h2 id="断点"><a class="header" href="#断点">断点</a></h2>
+<p>有时候，连 spy point 也不够。某个谓词可能在许多地方使用，而只在某一次特定调用发生时打开 trace 模式会更有帮助。断点允许在命中特定源文件、行号以及该行中的字符位置时打开 trace 模式。使用的谓词是 <code>set_breakpoint/4</code> 和 <code>set_breakpoint/5</code>。可以同时激活多个断点。</p>
+<p>注意，这些谓词提供的接口并不面向最终用户。内置的 PceEmacs 编辑器也嵌入在图形调试器中，它允许根据光标位置设置断点。</p>
+<p>现在，<code>Example.pl</code> 修改为包含多个对 <code>noun/2</code> 的调用：</p>
+<pre><code class="language-prolog">is_a(rock1, rock).
+is_a(rock2, rock).
+color(rock1, red).
+
+noun(X, Type) :- is_a(X, Type).
+adjective(X, color, Value) :- color(X, Value).
+test_noun1(X, Type) :- noun(X, Type).
+test_noun2(X, Type) :- noun(X, Type).
+</code></pre>
+<p>如果只想在 <code>noun/2</code> 从 <code>test_noun2/2</code> 调用时启用 trace，可以这样使用 <code>set_breakpoint/4</code>：</p>
+<pre><code class="language-prolog">?- set_breakpoint('/...path.../Example.pl', 8, 24, ID).
+% Breakpoint 1 in 1-st clause of test_noun2/2 at Example.pl:8
+ID = 1.
+
+?- debug.
+true.
+
+[debug]  ?- noun(X, rock).
+X = rock1 .
+
+[debug]  ?- test_noun1(X, rock).
+X = rock1 .
+
+[debug]  ?- test_noun2(X, rock).
+   Call: (11) noun(_44982, rock) ? creep
+   Call: (12) is_a(_44982, rock) ? creep
+   Exit: (12) is_a(rock1, rock) ? creep
+   Exit: (11) noun(rock1, rock) ? creep
+   Exit: (10) test_noun2(rock1, rock) ? creep
+X = rock1 .
+
+[trace]  ?- notrace.
+true.
+
+[debug]  ?-
+</code></pre>
+<p>调用 <code>set_breakpoint/4</code> 时必须指定源文件 <code>Example.pl</code>、行号 <code>8</code> 和该行中的字符位置 <code>24</code>，以精确指出哪条子句应该打开 trace 模式。使用图形调试器时这会容易得多，因为它会显示源代码。</p>
+<p>如果系统不在 debug 模式下，断点不会触发。与设置 spy point 不同，<code>set_breakpoint/4</code> 不会自动进入 debug 模式。因此，示例中使用 <code>debug/0</code> 手动打开了 debug 模式。</p>
+<p>输出显示，只有对 <code>test_noun2/2</code> 的调用，也就是设置断点的位置，实际打开了 trace 模式。注意，结尾处的 <code>[trace] ?-</code> 表明 trace 模式在触发后仍保持开启。可以通过 <code>notrace/0</code> 再次关闭它，这会让系统留在 debug 模式。调用 <code>nodebug/0</code> 可以一次关闭所有调试模式，因为关闭 debug 模式会自动关闭 trace 模式。</p>
+<p>此外，SWI-Prolog 支持通过 <code>set_breakpoint_condition/2</code> 为每个断点附加任意目标，从而得到条件断点。条件断点与前面讨论的普通断点相同，只是每当断点被触发时，系统会调用给定目标；只有在该目标成功时，trace 模式才会打开。</p>
+<p>如果只想在 <code>noun/2</code> 从 <code>test_noun2/2</code> 调用，并且第一个参数为 <code>rock2</code> 时启用 trace，可以如下使用 <code>set_breakpoint_condition/2</code>。注意，条件是一个 Prolog 字符串；系统会解析该字符串以获得目标以及变量名。得到的目标会在执行该子句体的模块中调用，参见 <code>clause_property/2</code> 的 <code>module</code> 属性。</p>
+<pre><code class="language-prolog">?- set_breakpoint('/...path.../Example.pl', 8, 24, ID).
+ID = 1.
+
+?- set_breakpoint_condition(1, "X == rock2").
+true.
+
+?- debug.
+true.
+
+[debug]  ?- test_noun2(X, rock).
+X = rock1 ;
+X = rock2.
+
+[debug]  ?- test_noun2(rock2, rock).
+   Call: (11) noun(rock2, rock) ? creep
+   Call: (12) is_a(rock2, rock) ? creep
+   Exit: (12) is_a(rock2, rock) ? creep
+   Exit: (11) noun(rock2, rock) ? creep
+   Exit: (10) test_noun2(rock2, rock) ? creep
+true.
+
+[trace]  ?-
+</code></pre>
+<h2 id="命令行调试器总结"><a class="header" href="#命令行调试器总结">命令行调试器总结</a></h2>
+<p>总结来说，实际上存在两个不同的“tracing”功能：trace 模式和 trace point。两者都会使用 Byrd 盒模型向控制台写出 trace，但相似之处到此为止。</p>
+<h3 id="trace-模式"><a class="header" href="#trace-模式">Trace 模式</a></h3>
+<p>Trace 模式是主要的 Prolog 命令行调试器。它可以 trace 谓词穿过解析状态的过程，这些状态在 Byrd 盒模型中表示为端口；也可以在命中特定端口时暂停，让用户发出命令。</p>
+<p>可以通过 <code>trace/0</code> 手动打开 trace 模式。也可以在使用 <code>debug/0</code> 进入 debug 模式后，通过 <code>spy/1</code> 在遇到某个特定谓词时打开；或者通过 <code>set_breakpoint/4</code>、<code>set_breakpoint/5</code> 在遇到某个谓词的特定调用时打开。</p>
+<p>处于 trace 模式时，<code>visible/1</code> 控制哪些端口会写到控制台，<code>leash/1</code> 控制哪些端口会导致执行暂停，以便检查程序。</p>
+<p>执行暂停时，可以使用许多命令检查程序状态、让目标失败或成功，等等。</p>
+<p>Trace 模式通过 <code>notrace/0</code> 关闭，debug 模式通过 <code>nodebug/0</code> 关闭。</p>
+<h3 id="trace-point"><a class="header" href="#trace-point">Trace Point</a></h3>
+<p>Trace point 是一个独立于 trace 模式的功能，它允许在某个谓词求值时把指定端口写到控制台。它永远不会暂停程序执行，也不需要处于 trace 或 debug 模式。</p>
+<p>Trace point 通过 <code>trace/1</code> 和 <code>trace/2</code> 打开。</p>
+<p>它们不关注 <code>visible/1</code>，因为显示哪些端口是在 <code>trace/2</code> 中设置的；也不关注 <code>leash/1</code>，因为它们不会暂停执行。</p>
+<p>可以通过 <code>trace/2</code> 关闭它们。</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../chapter_9/index.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="../chapter_11/index.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../chapter_9/index.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="../chapter_11/index.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr.min.js"></script>
+        <script src="../mark.min.js"></script>
+        <script src="../searcher.js"></script>
+
+        <script src="../clipboard.min.js"></script>
+        <script src="../highlight.js"></script>
+        <script src="../book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>

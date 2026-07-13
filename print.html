@@ -1,0 +1,2328 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>SWI-Prolog 中文文档</title>
+        <meta name="robots" content="noindex">
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body class="sidebar-visible no-js">
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('light')
+            html.classList.add(theme);
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var body = document.querySelector('body');
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="chapter_1/index.html"><strong aria-hidden="true">1.</strong> 快速入门</a></li><li class="chapter-item expanded "><a href="chapter_2/index.html"><strong aria-hidden="true">2.</strong> 用户的初始化文件</a></li><li class="chapter-item expanded "><a href="chapter_3/index.html"><strong aria-hidden="true">3.</strong> 初始化文件和目标</a></li><li class="chapter-item expanded "><a href="chapter_4/index.html"><strong aria-hidden="true">4.</strong> 命令行选项</a></li><li class="chapter-item expanded "><a href="chapter_5/index.html"><strong aria-hidden="true">5.</strong> UI 主题</a></li><li class="chapter-item expanded "><a href="chapter_6/index.html"><strong aria-hidden="true">6.</strong> GNU Emacs 接口</a></li><li class="chapter-item expanded "><a href="chapter_7/index.html"><strong aria-hidden="true">7.</strong> 在线帮助</a></li><li class="chapter-item expanded "><a href="chapter_8/index.html"><strong aria-hidden="true">8.</strong> 命令行历史</a></li><li class="chapter-item expanded "><a href="chapter_9/index.html"><strong aria-hidden="true">9.</strong> 复用顶层绑定</a></li><li class="chapter-item expanded "><a href="chapter_10/index.html"><strong aria-hidden="true">10.</strong> 调试器概览</a></li><li class="chapter-item expanded "><a href="chapter_11/index.html"><strong aria-hidden="true">11.</strong> 加载和运行项目</a></li><li class="chapter-item expanded "><a href="chapter_12/index.html"><strong aria-hidden="true">12.</strong> 环境控制（Prolog 标志）</a></li><li class="chapter-item expanded "><a href="chapter_13/index.html"><strong aria-hidden="true">13.</strong> 钩子谓词概览</a></li><li class="chapter-item expanded "><a href="chapter_14/index.html"><strong aria-hidden="true">14.</strong> 库的自动加载</a></li><li class="chapter-item expanded "><a href="chapter_15/index.html"><strong aria-hidden="true">15.</strong> SWI-Prolog 语法</a></li><li class="chapter-item expanded "><a href="chapter_16/index.html"><strong aria-hidden="true">16.</strong> 有理树（循环项）</a></li><li class="chapter-item expanded "><a href="chapter_17/index.html"><strong aria-hidden="true">17.</strong> 即时子句索引</a></li><li class="chapter-item expanded "><a href="chapter_18/index.html"><strong aria-hidden="true">18.</strong> 宽字符支持</a></li><li class="chapter-item expanded "><a href="chapter_19/index.html"><strong aria-hidden="true">19.</strong> 系统限制</a></li><li class="chapter-item expanded "><a href="chapter_20/index.html"><strong aria-hidden="true">20.</strong> SWI-Prolog 和 32 位机器</a></li><li class="chapter-item expanded "><a href="chapter_21/index.html"><strong aria-hidden="true">21.</strong> 二进制兼容性</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">SWI-Prolog 中文文档</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        <a href="https://github.com/HsiangNianian/swi-prolog-docs/tree/main" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="快速入门"><a class="header" href="#快速入门">快速入门</a></h1>
+<h2 id="11-启动-swi-prolog"><a class="header" href="#11-启动-swi-prolog">1.1 启动 SWI-Prolog</a></h2>
+<h3 id="111-在-unix-上启动-swi-prolog"><a class="header" href="#111-在-unix-上启动-swi-prolog">1.1.1 在 Unix 上启动 SWI-Prolog</a></h3>
+<p>默认情况下，SWI-Prolog 安装后的可执行程序名为 <code>swipl</code>。SWI-Prolog 本身及其实用程序的命令行参数使用标准 Unix <code>man</code> 手册页记录。SWI-Prolog 通常作为交互式应用程序运行，直接启动程序即可：</p>
+<pre><code class="language-shell">$ swipl
+Welcome to SWI-Prolog ...
+...
+
+1 ?-
+</code></pre>
+<p>启动 Prolog 后，通常使用 <code>consult/1</code> 将程序载入系统。也可以把程序文件名放在方括号中作为简写。下面的目标会载入文件 <a href="https://raw.githubusercontent.com/SWI-Prolog/swipl-devel/master/demo/likes.pl"><code>likes.pl</code></a>，其中包含谓词 <code>likes/2</code> 的子句：</p>
+<pre><code class="language-prolog">?- [likes].
+true.
+
+?-
+</code></pre>
+<p>也可以把源文件作为命令行参数传给 <code>swipl</code>：</p>
+<pre><code class="language-shell">$ swipl likes.pl
+Welcome to SWI-Prolog ...
+...
+
+1 ?-
+</code></pre>
+<blockquote>
+<p>上面两个例子都假设 <code>likes.pl</code> 位于当前工作目录。如果使用命令行版本 <code>swipl</code>，工作目录就是启动 SWI-Prolog 的 shell 所在目录。如果启动的是 GUI 版本 <code>swipl-win</code>，工作目录则主要取决于操作系统。可以使用 <code>pwd/0</code> 和 <code>cd/0</code> 查看和修改工作目录。实用程序 <code>ls/0</code> 会列出工作目录内容。</p>
+<pre><code class="language-prolog">?- pwd.
+% /home/janw/src/swipl-devel/linux/
+true.
+?- cd('~/tmp').
+true.
+
+?- pwd.
+% /home/janw/tmp/
+true.
+</code></pre>
+<p>文件 <code>likes.pl</code> 也安装在 SWI-Prolog 安装目录的 <code>demo</code> 子目录中，因此可以不依赖当前工作目录，用下面的命令载入。关于 SWI-Prolog 如何指定文件位置，请参阅 <code>absolute_file_name/3</code> 和 <code>file_search_path/2</code>。</p>
+<pre><code class="language-prolog">?- [swi(demo/likes)].
+true.
+</code></pre>
+</blockquote>
+<p>从这里开始，Unix 和 Windows 用户面对的内容相同。如果你使用 Unix，可以继续阅读“从控制台添加规则”。</p>
+<h3 id="112-在-windows-上启动-swi-prolog"><a class="header" href="#112-在-windows-上启动-swi-prolog">1.1.2 在 Windows 上启动 SWI-Prolog</a></h3>
+<p>在 Windows 系统上安装 SWI-Prolog 后，用户会得到以下重要内容：</p>
+<ul>
+<li>一个名为 <code>swipl</code> 的文件夹，本文档后续称为目录；其中包含系统的可执行文件、库等。不会在该目录之外安装文件。</li>
+<li>程序 <code>swipl-win.exe</code>，提供一个用于与 Prolog 交互的窗口。程序 <code>swipl.exe</code> 是运行在控制台窗口中的 SWI-Prolog 版本。</li>
+<li>文件扩展名 <code>.pl</code> 会关联到程序 <code>swipl-win.exe</code>。打开 <code>.pl</code> 文件会启动 <code>swipl-win.exe</code>，切换到被打开文件所在目录，并载入该文件。</li>
+</ul>
+<p>启动前文提到的 <code>likes.pl</code> 文件，通常只需在 Windows 资源管理器中双击该文件。</p>
+<h2 id="12-从控制台添加规则"><a class="header" href="#12-从控制台添加规则">1.2 从控制台添加规则</a></h2>
+<p>虽然强烈建议把程序放在文件中，并在需要时编辑文件再使用 <code>make/0</code> 重新载入，但也可以直接从终端管理事实和规则。添加少量子句最方便的方法是 consult 伪文件 <code>user</code>。输入用系统的文件结束字符结束。</p>
+<pre><code class="language-prolog">?- [user].
+|: hello :- format('Hello world~n').
+|: ^D
+true.
+
+?- hello.
+Hello world
+true.
+</code></pre>
+<p>谓词 <code>assertz/1</code> 和 <code>retract/1</code> 也可以用来添加和删除规则或事实。</p>
+<h2 id="13-执行查询"><a class="header" href="#13-执行查询">1.3 执行查询</a></h2>
+<p>载入程序后，就可以向 Prolog 询问关于该程序的问题。下面的查询询问 Prolog：<code>sam</code> 喜欢什么食物。如果系统可以证明某个 <code>X</code> 满足该目标，它会以 <code>X = &lt;value&gt;</code> 的形式回答。若用户想要另一个解，可以输入分号 <code>;</code> 或空格键。若不想查看更多答案，按回车即可。如果用户按回车，或者 Prolog 知道已经没有更多答案，Prolog 会用句号 <code>.</code> 结束输出。如果 Prolog 找不到更多答案，会写出 <code>false.</code>。最后，如果查询或程序包含错误，Prolog 会用错误消息回答。</p>
+<pre><code class="language-prolog">?- likes(sam, X).
+X = dahl ;
+X = tandoori ;
+...
+X = chips.
+
+?-
+</code></pre>
+<p>注意，Prolog 写出的答案本身也是有效的 Prolog 程序；执行它可以得到与原程序相同的一组答案。</p>
+<h2 id="14-检查和修改程序"><a class="header" href="#14-检查和修改程序">1.4 检查和修改程序</a></h2>
+<p>如果配置正确，谓词 <code>edit/1</code> 会根据参数启动内置编辑器或用户配置的编辑器。参数可以是任何能够关联到位置的对象：文件名、谓词名、模块名等。如果参数只解析到一个位置，编辑器会在该位置打开；否则系统会让用户选择。</p>
+<p>如果存在图形用户界面，编辑器通常会创建新窗口，而系统会继续提示下一个命令。用户可以编辑源文件、保存文件，然后运行 <code>make/0</code> 来更新所有修改过的源文件。如果编辑器无法在窗口中打开，它会在同一控制台中打开；退出编辑器时会运行 <code>make/0</code>，重新载入任何已修改的源文件。</p>
+<pre><code class="language-prolog">?- edit(likes).
+
+true.
+?- make.
+% /home/jan/src/pl-devel/linux/likes compiled 0.00 sec, 0 clauses
+
+?- likes(sam, X).
+...
+</code></pre>
+<p>也可以使用 <code>listing/1</code> 反编译程序，如下所示。<code>listing/1</code> 的参数可以只是谓词名，也可以是形如 <code>Name/Arity</code> 的谓词指示器，例如 <code>?- listing(mild/1).</code>；还可以是一个头，例如 <code>?- listing(likes(sam, _)).</code>，用于列出所有匹配的子句。不带参数的 <code>listing/0</code> 会列出整个程序。</p>
+<pre><code class="language-prolog">?- listing(mild).
+mild(dahl).
+mild(tandoori).
+mild(kurma).
+
+true.
+</code></pre>
+<h2 id="15-停止-prolog"><a class="header" href="#15-停止-prolog">1.5 停止 Prolog</a></h2>
+<p>交互式顶层可以通过两种方式停止：输入系统文件结束字符，通常是 <code>Control-D</code>；或者执行谓词 <code>halt/0</code>：</p>
+<pre><code class="language-prolog">?- halt.
+$
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="用户的初始化文件"><a class="header" href="#用户的初始化文件">用户的初始化文件</a></h1>
+<p>系统初始化完成后，会 consult 用户的初始化文件。该文件通过 <code>absolute_file_name/3</code> 查找，并使用路径别名 <code>app_config</code>。<code>app_config</code> 指向操作系统默认的应用配置数据目录下名为 <code>swi-prolog</code> 的目录：</p>
+<ul>
+<li>在 Windows 上，它是 CSIDL 文件夹 <code>CSIDL_APPDATA</code>，通常类似 <code>C:\Documents and Settings\username\Application Data</code>。</li>
+<li>如果设置了环境变量 <code>XDG_DATA_HOME</code>，则使用该变量。这遵循 <a href="https://standards.freedesktop.org">freedesktop</a> 标准。</li>
+<li>否则使用 <code>~/.config</code> 的展开结果。</li>
+</ul>
+<p>可以用下面的调用找到该目录：</p>
+<pre><code class="language-prolog">?- absolute_file_name(app_config(.), Dir, [file_type(directory)]).
+Dir = '/home/jan/.config/swi-prolog'.
+</code></pre>
+<p>找到第一个启动文件后，系统会载入它，并停止继续寻找其他启动文件。启动文件名可以用 <code>-f file</code> 选项修改。如果 <code>File</code> 是绝对路径，则直接载入该文件；否则使用与默认启动文件相同的约定查找。最后，如果 <code>file</code> 为 <code>none</code>，则不载入任何文件。</p>
+<p>安装目录提供了 <code>customize/init.pl</code> 文件，其中包含一些常用于定制 Prolog 行为的命令，这些命令默认被注释掉，例如编辑器集成、颜色选择或历史记录参数。许多开发工具也提供菜单项，用于编辑启动文件，或从系统骨架创建新的启动文件。</p>
+<p>另请参阅命令行选项中的 <code>-s</code>（脚本）和 <code>-F</code>（系统范围初始化），以及“初始化文件和目标”。</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="初始化文件和目标"><a class="header" href="#初始化文件和目标">初始化文件和目标</a></h1>
+<p>通过命令行参数，SWI-Prolog 可以被强制载入文件，并执行用于初始化或非交互式运行的查询。最常用的选项包括：用 <code>-f file</code> 或 <code>-s file</code> 让 Prolog 载入文件，用 <code>-g goal</code> 定义初始化目标，用 <code>-t goal</code> 定义顶层目标。下面是一个从命令行直接启动应用程序的典型例子：</p>
+<pre><code class="language-shell">machine% swipl -s load.pl -g go -t halt
+</code></pre>
+<p>它告诉 SWI-Prolog：载入 <code>load.pl</code>，使用入口点 <code>go/0</code> 启动应用程序，并在 <code>go/0</code> 完成后退出，而不是进入交互式顶层。</p>
+<p>命令行中可以多次出现 <code>-g goal</code>。这些目标会按顺序执行。每个目标留下的可能选择点都会被剪除。如果某个目标失败，执行会以退出状态 <code>1</code> 停止。如果某个目标引发异常，系统会打印异常，并以退出代码 <code>2</code> 停止进程。</p>
+<p>可以使用 <code>-q</code> 抑制所有信息性消息，也会抑制初始化目标失败时通常打印的错误消息。</p>
+<p>在 MS-Windows 中，也可以用定义了适当命令行参数的快捷方式实现同样效果。另一种常见做法是编写一个 <code>run.pl</code> 文件，内容如下。双击 <code>run.pl</code> 即可启动应用程序。</p>
+<pre><code class="language-prolog">:- [load].                      % load program
+:- go.                          % run it
+:- halt.                        % and exit
+</code></pre>
+<p>“使用 PrologScript”会讨论更多脚本选项；运行时章节会讨论运行时可执行文件的生成。运行时可执行文件是一种交付可执行程序的方式，运行它时不需要完整的 Prolog 系统。</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="命令行选项"><a class="header" href="#命令行选项">命令行选项</a></h1>
+<p>SWI-Prolog 可以以下列模式之一执行：</p>
+<ul>
+<li>
+<p><code>swipl --help</code></p>
+</li>
+<li>
+<p><code>swipl --version</code></p>
+</li>
+<li>
+<p><code>swipl --arch</code></p>
+</li>
+<li>
+<p><code>swipl --dump-runtime-variables</code></p>
+<p>这些选项必须作为唯一选项出现。它们会让 Prolog 打印信息性消息并退出。参见“信息性命令行选项”。</p>
+</li>
+<li>
+<p><code>swipl [option ...] script-file [arg ...]</code></p>
+<p>在 Unix 系统中，如果执行的文件以 <code>#!/path/to/executable [option ...]</code> 开头，则会使用这种参数形式。脚本文件之后的参数可以通过 Prolog 标志 <code>argv</code> 访问。</p>
+</li>
+<li>
+<p><code>swipl [option ...] prolog-file ... [[--] arg ...]</code></p>
+<p>这是启动 Prolog 的常规方式。选项见“运行 Prolog 的命令行选项”、“控制堆栈大小”和“从命令行运行目标”。Prolog 标志 <code>argv</code> 提供对 <code>arg ...</code> 的访问。如果选项后跟一个或多个 Prolog 文件名，也就是扩展名为 <code>.pl</code>、<code>.prolog</code>，或在 Windows 上安装期间注册的用户首选扩展名的文件，则这些文件会被载入。第一个文件会记录在 Prolog 标志 <code>associated_file</code> 中。此外，<code>pl-win[.exe]</code> 会使用 <code>working_directory/2</code> 切换到这个主源文件所在的目录。</p>
+</li>
+<li>
+<p><code>swipl -o output -c prolog-file ...</code></p>
+<p>选项 <code>-c</code> 用于把一组 Prolog 文件编译成可执行文件。参见“编译选项”。</p>
+</li>
+<li>
+<p><code>swipl -o output -b bootfile prolog-file ...</code></p>
+<p>引导编译。参见“维护选项”。</p>
+</li>
+</ul>
+<h2 id="41-信息性命令行选项"><a class="header" href="#41-信息性命令行选项">4.1 信息性命令行选项</a></h2>
+<h3 id="--arch"><a class="header" href="#--arch"><code>--arch</code></a></h3>
+<p>作为唯一选项给出时，打印体系结构标识符并退出。该标识符也可通过 Prolog 标志 <code>arch</code> 查看。另请参阅 <code>--dump-runtime-variables</code>。</p>
+<h3 id="--dump-runtime-variablesformat"><a class="header" href="#--dump-runtime-variablesformat"><code>--dump-runtime-variables[=format]</code></a></h3>
+<p>作为唯一选项给出时，打印一组变量设置，可在 shell 脚本中用于处理 Prolog 参数。<code>swipl-ld</code> 也使用这个功能。下面是一个典型用法：</p>
+<pre><code class="language-shell">eval `swipl --dump-runtime-variables`
+cc -I$PLBASE/include -L$PLBASE/lib/$PLARCH ...
+</code></pre>
+<p>该选项可以跟 <code>=sh</code>，以 POSIX shell 格式输出；这是默认值。也可以跟 <code>=cmd</code>，以兼容 MS-Windows <code>cmd.exe</code> 的格式输出。</p>
+<h3 id="--help"><a class="header" href="#--help"><code>--help</code></a></h3>
+<p>作为唯一选项给出时，概述最重要的选项。</p>
+<h3 id="--version"><a class="header" href="#--version"><code>--version</code></a></h3>
+<p>作为唯一选项给出时，概述版本和体系结构标识符。</p>
+<h3 id="--abi-version"><a class="header" href="#--abi-version"><code>--abi-version</code></a></h3>
+<p>打印一个表示多方面二进制兼容性的键，也就是字符串。参见“二进制兼容性”。</p>
+<h2 id="42-运行-prolog-的命令行选项"><a class="header" href="#42-运行-prolog-的命令行选项">4.2 运行 Prolog 的命令行选项</a></h2>
+<p>注意，布尔选项可以写成 <code>--name</code> 表示 true，也可以写成 <code>--noname</code> 或 <code>--no-name</code> 表示 false。下文采用 <code>--no-name</code> 的形式，因为默认值为 true。</p>
+<h3 id="-d-namevalue"><a class="header" href="#-d-namevalue"><code>-D name[=value]</code></a></h3>
+<p>将 Prolog 标志 <code>name</code> 设置为 <code>value</code>。这些标志会在载入初始保存状态后立即设置。如果标志已经定义，<code>value</code> 会被转换为该标志的类型。如果标志尚未定义，且 <code>value</code> 表示数字，则将其设置为数字，否则设置为原子。如果没有给出 <code>=value</code>，则使用布尔值。如果 <code>name</code> 形如 <code>no-flag</code>，则把 <code>flag</code> 设置为 <code>false</code>；否则把名为 <code>name</code> 的标志设置为 <code>true</code>。<code>name[=value]</code> 可以紧跟在 <code>-D</code> 后面，也可以作为下一个命令行参数出现。</p>
+<p>许多命令行选项也会反映为 Prolog 标志。系统意图把这些形式作为同义项处理。目前，一些命令行标志会在保存状态载入完成前影响 Prolog 初始化，而另一些标志在 Prolog 初始化后可能无法更改。例如，未来版本将支持 <code>-Dhome=dir</code>，用于修改 Prolog 安装目录的概念。</p>
+<h3 id="--debug-on-interrupt"><a class="header" href="#--debug-on-interrupt"><code>--debug-on-interrupt</code></a></h3>
+<p>立即启用在中断信号上调试，也就是 <code>Control-C</code> 或 <code>SIGINT</code>。通常，中断调试会在进入交互式顶层时启用。该标志可用于在执行来自 <code>-g</code> 或 <code>initialization/[1,2]</code> 的目标时，通过中断启动调试器。另请参阅 Prolog 标志 <code>debug_on_interrupt</code>。</p>
+<h3 id="--homedir"><a class="header" href="#--homedir"><code>--home[=DIR]</code></a></h3>
+<p>如果带 <code>DIR</code>，则把 SWI-Prolog 的 home 目录设置为 <code>DIR</code>，并向进程添加环境变量 <code>SWI_HOME_DIR</code>，其值为 <code>DIR</code>。如果不带参数，则报告找到的 home 目录并退出；如果找不到位置，则打印错误并以状态 <code>1</code> 退出。关于 home 目录的定位方式，参见相关章节；关于 SWI-Prolog 如何使用该目录，参见 Prolog 标志 <code>home</code>。</p>
+<h3 id="--quiet"><a class="header" href="#--quiet"><code>--quiet</code></a></h3>
+<p>将 Prolog 标志 <code>verbose</code> 设置为 <code>silent</code>，抑制信息性消息和横幅消息。也可以写作 <code>-q</code>。</p>
+<h3 id="--no-debug"><a class="header" href="#--no-debug"><code>--no-debug</code></a></h3>
+<p>禁用调试。详情参见 <code>current_prolog_flag/2</code> 标志 <code>generate_debug_info</code>。</p>
+<h3 id="--no-signals"><a class="header" href="#--no-signals"><code>--no-signals</code></a></h3>
+<p>禁止 Prolog 处理任何信号。这一属性有时适合嵌入式应用程序。该选项会把标志 <code>signals</code> 设置为 <code>false</code>。注意，用于解除系统调用阻塞的处理器仍会安装。可以额外使用 <code>--sigalert=0</code> 阻止这一点。另请参阅 <code>--sigalert</code>。</p>
+<h3 id="--no-threads"><a class="header" href="#--no-threads"><code>--no-threads</code></a></h3>
+<p>在运行时禁用多线程版本的线程功能。另请参阅标志 <code>threads</code> 和 <code>gc_thread</code>。</p>
+<h3 id="--no-packs"><a class="header" href="#--no-packs"><code>--no-packs</code></a></h3>
+<p>不附加扩展包，也就是 add-ons。另请参阅 <code>attach_packs/0</code> 和 Prolog 标志 <code>packs</code>。</p>
+<h3 id="--no-pce"><a class="header" href="#--no-pce"><code>--no-pce</code></a></h3>
+<p>启用或禁用 xpce GUI 子系统。默认情况下，如果已安装 xpce 且系统可以访问图形环境，它会作为可自动载入组件提供。使用 <code>--pce</code> 会在用户空间中载入 xpce 系统；使用 <code>--no-pce</code> 会使其在本会话中不可用。</p>
+<h3 id="--on-errorstyle"><a class="header" href="#--on-errorstyle"><code>--on-error=style</code></a></h3>
+<p>指定如何处理错误。详情参见 Prolog 标志 <code>on_error</code>。</p>
+<h3 id="--on-warningstyle"><a class="header" href="#--on-warningstyle"><code>--on-warning=style</code></a></h3>
+<p>指定如何处理警告。详情参见 Prolog 标志 <code>on_warning</code>。</p>
+<h3 id="--pldocport"><a class="header" href="#--pldocport"><code>--pldoc[=port]</code></a></h3>
+<p>在一个空闲网络端口启动 PlDoc 文档系统，并在 <code>http://localhost:port</code> 打开用户浏览器。如果指定了 <code>port</code>，服务器会在给定端口启动，并且不会启动浏览器。</p>
+<h3 id="--sigalertnum"><a class="header" href="#--sigalertnum"><code>--sigalert=NUM</code></a></h3>
+<p>使用信号 <code>NUM</code>，范围为 <code>1</code> 到 <code>31</code>，提醒线程。这是为了让 <code>thread_signal/2</code> 以及派生的 Prolog 信号处理在目标线程阻塞于可中断系统调用时立即生效，例如 <code>sleep/1</code> 或对多数设备的读写。默认使用 <code>SIGUSR2</code>。如果 <code>NUM</code> 为 <code>0</code>，则不安装该处理器。可以用 <code>prolog_alert_signal/2</code> 在运行时查询或修改该值。</p>
+<h3 id="--no-tty"><a class="header" href="#--no-tty"><code>--no-tty</code></a></h3>
+<p>仅限 Unix。该开关控制终端，以允许向跟踪器和 <code>get_single_char/1</code> 发送单字符命令。默认情况下，除非系统检测到自己没有连接到终端，或正作为 GNU Emacs 下级进程运行，否则会启用终端操作。另请参阅 Prolog 标志 <code>tty_control</code>。</p>
+<h3 id="--win-app"><a class="header" href="#--win-app"><code>--win-app</code></a></h3>
+<p>该选项只在 <code>swipl-win.exe</code> 中可用，用于开始菜单项。它会让 <code>plwin</code> 在 <code>...\My Documents\Prolog</code> 或其本地等效文件夹中启动。若 <code>Prolog</code> 子目录不存在，则创建它。另请参阅 <code>win_folder/2</code>。</p>
+<h3 id="-o"><a class="header" href="#-o"><code>-O</code></a></h3>
+<p>优化编译。详情参见 <code>current_prolog_flag/2</code> 标志 <code>optimise</code>。</p>
+<h3 id="-l-file"><a class="header" href="#-l-file"><code>-l file</code></a></h3>
+<p>载入 <code>file</code>。该标志提供与其他一些 Prolog 系统的兼容性。在 SWI-Prolog 中，它用于跳过通过 <code>initialization/2</code> 指令指定的程序初始化。另请参阅脚本相关章节和 <code>initialize/0</code>。</p>
+<h3 id="-s-file"><a class="header" href="#-s-file"><code>-s file</code></a></h3>
+<p>将 <code>file</code> 用作脚本文件。脚本文件会在通过 <code>-f file</code> 选项指定的初始化文件之后载入。不同于 <code>-f file</code>，使用 <code>-s</code> 不会阻止 Prolog 载入个人初始化文件。</p>
+<h3 id="-f-file"><a class="header" href="#-f-file"><code>-f file</code></a></h3>
+<p>使用 <code>file</code> 作为初始化文件，而不是默认的 <code>init.pl</code>。<code>-f none</code> 会停止 SWI-Prolog 搜索启动文件。该选项可以替代 <code>-s file</code>，用于阻止 Prolog 载入个人初始化文件。另请参阅“用户的初始化文件”。</p>
+<h3 id="-f-script"><a class="header" href="#-f-script"><code>-F script</code></a></h3>
+<p>从 SWI-Prolog home 目录选择启动脚本。脚本文件名为 <code>&lt;script&gt;.rc</code>。默认的 <code>script</code> 名称从可执行文件推导而来，取程序名开头的字母数字字符，包括字母、数字和下划线。<code>-F none</code> 会停止查找脚本。该机制用于简单管理稍有差异的版本。例如，可以编写脚本 <code>iso.rc</code>，再使用 <code>pl -F iso</code> 选择 ISO 兼容模式；或者从 <code>iso-pl</code> 到 <code>pl</code> 建立链接。</p>
+<h3 id="-x-bootfile"><a class="header" href="#-x-bootfile"><code>-x bootfile</code></a></h3>
+<p>从 <code>bootfile</code> 启动，而不是从系统默认引导文件启动。引导文件可以是使用 <code>-b</code> 或 <code>-c</code> 选项进行 Prolog 编译得到的文件，也可以是使用 <code>qsave_program/[1,2]</code> 保存的程序。</p>
+<h3 id="-p-aliaspath1path2-"><a class="header" href="#-p-aliaspath1path2-"><code>-p alias=path1[:path2 ...]</code></a></h3>
+<p>为 <code>file_search_path</code> 定义路径别名。<code>alias</code> 是别名名称，<code>path1 ...</code> 是该别名的值列表。在 Windows 上，列表分隔符是 <code>;</code>；在其他系统上是 <code>:</code>。值可以是形如 <code>alias(value)</code> 的项，也可以是路径名。计算出的别名会使用 <code>asserta/1</code> 添加到 <code>file_search_path/2</code>，因此它们排在该别名的预定义值之前。关于这种文件定位机制的细节，参见 <code>file_search_path/2</code>。</p>
+<h3 id="--traditional"><a class="header" href="#--traditional"><code>--traditional</code></a></h3>
+<p>该标志禁用 SWI-Prolog 7 中引入的最重要扩展，这些扩展会造成与早期版本的不兼容。具体来说，列表会以传统方式表示，双引号文本表示为字符代码列表，并且不支持字典上的函数记法。如果存在该标志，字典作为语法实体以及作用于字典的谓词仍然可用。</p>
+<h3 id="--"><a class="header" href="#--"><code>--</code></a></h3>
+<p>停止扫描更多参数。这样可以在它之后向应用程序传递参数。可以通过 <code>current_prolog_flag/2</code> 读取标志 <code>argv</code>，以获得命令行参数。</p>
+<h2 id="43-控制堆栈大小"><a class="header" href="#43-控制堆栈大小">4.3 控制堆栈大小</a></h2>
+<p>从 7.7.14 版本起，堆栈不再分别受限，而只限制组合大小。注意，32 位系统仍然有 128Mb 限制。默认情况下，64 位机器上的组合限制为 1Gb，32 位机器上为 512Mb。</p>
+<p>例如，要把堆栈限制为 32Gb，可以使用下面的命令。注意，堆栈限制按线程应用。单个线程可以通过 <code>thread_create</code> 的 <code>stack_limit(+Bytes)</code> 选项控制。任意线程都可以调用 <code>set_prolog_flag(stack_limit, Limit)</code> 来调整堆栈限制。该限制会被从此线程创建的线程继承。</p>
+<pre><code class="language-shell">$ swipl --stack-limit=32g
+</code></pre>
+<h3 id="--stack-limitsizebkmg"><a class="header" href="#--stack-limitsizebkmg"><code>--stack-limit=size[bkmg]</code></a></h3>
+<p>将 Prolog 堆栈的组合大小限制为指定的 <code>size</code>。后缀把值指定为字节、Kbytes、Mbytes 或 Gbytes。</p>
+<h3 id="--table-spacesizebkmg"><a class="header" href="#--table-spacesizebkmg"><code>--table-space=size[bkmg]</code></a></h3>
+<p>限制表空间。表空间用于保存记忆化答案的 trie，这些答案来自制表。默认值在 64 位机器上为 1Gb，在 32 位机器上为 512Mb。另请参阅 Prolog 标志 <code>table_space</code>。</p>
+<h3 id="--shared-table-spacesizebkmg"><a class="header" href="#--shared-table-spacesizebkmg"><code>--shared-table-space=size[bkmg]</code></a></h3>
+<p>限制共享表使用的表空间。参见共享制表相关章节。</p>
+<h2 id="44-从命令行运行目标"><a class="header" href="#44-从命令行运行目标">4.4 从命令行运行目标</a></h2>
+<h3 id="-g-goal"><a class="header" href="#-g-goal"><code>-g goal</code></a></h3>
+<p><code>Goal</code> 会在进入顶层之前执行。该选项可以出现多次。详情见“初始化文件和目标”。如果没有初始化目标，系统会调用 <code>version/0</code> 打印欢迎消息。可以用 <code>--quiet</code> 抑制欢迎消息，也可以用 <code>-g true</code> 达到同样效果。<code>goal</code> 可以是复杂项。在这种情况下，通常需要使用引号，避免被 shell 展开。下面是非交互式运行目标的一种安全方式。如果 <code>go/0</code> 成功，<code>-g halt</code> 会让进程以退出代码 <code>0</code> 停止；如果失败，退出代码为 <code>1</code>；如果引发异常，退出代码为 <code>2</code>。</p>
+<pre><code class="language-shell">% swipl &lt;options&gt; -g go -g halt
+</code></pre>
+<h3 id="-t-goal"><a class="header" href="#-t-goal"><code>-t goal</code></a></h3>
+<p>使用 <code>goal</code> 作为交互式顶层，而不是默认目标 <code>prolog/0</code>。<code>goal</code> 可以是复杂项。如果顶层目标成功，SWI-Prolog 以状态 <code>0</code> 退出。如果失败，退出状态为 <code>1</code>。如果顶层引发异常，该异常会作为未捕获错误打印，并且顶层会重新启动。该标志也决定 <code>break/0</code> 和 <code>abort/0</code> 启动的目标。如果想阻止用户进入交互模式，可以用 <code>-g goal -t halt</code> 启动应用程序。</p>
+<h2 id="45-编译选项"><a class="header" href="#45-编译选项">4.5 编译选项</a></h2>
+<h3 id="-c-file-"><a class="header" href="#-c-file-"><code>-c file ...</code></a></h3>
+<p>把文件编译为“中间代码文件”。参见“加载和运行项目”。</p>
+<h3 id="-o-output"><a class="header" href="#-o-output"><code>-o output</code></a></h3>
+<p>与 <code>-c</code> 或 <code>-b</code> 结合使用，用于确定编译输出文件。</p>
+<h2 id="46-维护选项"><a class="header" href="#46-维护选项">4.6 维护选项</a></h2>
+<p>下列选项用于系统维护，仅作为参考列出。</p>
+<h3 id="-b-initfile---c-file-"><a class="header" href="#-b-initfile---c-file-"><code>-b initfile ... -c file ...</code></a></h3>
+<p>引导编译。<code>initfile ...</code> 由 C 编写的 bootstrap 编译器编译，<code>file ...</code> 由普通 Prolog 编译器编译。仅用于系统维护。</p>
+<h3 id="-d-token1token2"><a class="header" href="#-d-token1token2"><code>-d token1,token2,...</code></a></h3>
+<p>为带有指定 token 的 <code>DEBUG</code> 语句打印调试消息。只有在系统以 <code>-DO_DEBUG</code> 标志编译时才有效。仅用于系统维护。</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="ui-主题"><a class="header" href="#ui-主题">UI 主题</a></h1>
+<p>UI（颜色）主题在两个部分发挥作用：写入控制台时，以及用于基于 xpce 的开发工具时，例如 PceEmacs 或图形调试器。彩色控制台输出基于 <code>ansi_format/3</code>。基于 <code>print_message/2</code> 的中央消息基础设施会用一个 Prolog 项标记消息或消息组件，以说明其角色。钩子 <code>prolog:console_color/2</code> 会把这些角色映射到具体颜色。IDE 主题则使用 xpce 类变量；这些变量会在载入 xpce 时由 Prolog 初始化。</p>
+<p>主题实现为 Prolog 文件，位于文件搜索路径 <code>library/theme</code> 中。可以在用户初始化文件中使用下面这样的指令载入主题：</p>
+<pre><code class="language-prolog">:- use_module(library(theme/dark)).
+</code></pre>
+<p>系统提供了主题文件 <code>library(theme/auto)</code>，用于根据环境自动选择一个合理的主题。当前版本会在兼容 <code>xterm</code> 的终端模拟器上检测背景色；这类终端常见于多数 Unix 系统。如果背景色偏暗，则载入 <code>dark</code> 主题。</p>
+<p>下面是 SWI-Prolog 支持平台上的一些注意事项：</p>
+<ul>
+<li>
+<p>Unix/Linux</p>
+<p>如果使用兼容 xterm 的终端模拟器运行 Prolog，可能需要显式载入某个主题，或载入 <code>library(theme/auto)</code>。</p>
+</li>
+<li>
+<p>Epilog Prolog 控制台</p>
+<p>图形应用程序 <code>swipl-win</code> 可以通过载入主题文件来设置主题。主题文件也会设置 Epilog 控制台的前景色和背景色。</p>
+</li>
+</ul>
+<h2 id="51-主题支持状态"><a class="header" href="#51-主题支持状态">5.1 主题支持状态</a></h2>
+<p>主题支持是在 SWI-Prolog 8.1.11 中加入的。目前只覆盖了一部分 IDE 工具，唯一额外提供的主题 <code>dark</code> 也还没有很好地平衡。主题文件与 IDE 组件之间的接口，尤其是相关组件接口，还没有很好地稳定下来。欢迎通过改进 <code>dark</code> 主题做出贡献。等它完整并正常工作后，就可以开始添加新的主题。</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="gnu-emacs-接口"><a class="header" href="#gnu-emacs-接口">GNU Emacs 接口</a></h1>
+<p>SWI-Prolog 通过 <code>sweep</code> 包与 GNU Emacs 紧密集成。该包把 SWI-Prolog 嵌入为一个动态 Emacs 模块，使得 Prolog 查询可以直接从 Emacs Lisp 执行。配套的 Emacs 包 <code>sweeprolog.el</code> 可以通过标准 Emacs 包管理器 <code>package.el</code> 安装；它构建在这种嵌入能力之上，为 GNU Emacs 中的 SWI-Prolog 提供完整集成的开发环境。</p>
+<p>GNU Emacs 默认附带一个名为 <code>prolog.el</code> 的 Prolog 模式。与 <code>sweeprolog.el</code> 相比，该模式因缺少合适的 Prolog 解析器而存在一些问题。Masanobu Umeda 编写的原始 <code>prolog.el</code> 自 1989 年起就包含在 GNU Emacs 中；2006 年，Stefan Monnier 为 <code>prolog.el</code> 添加了对 SWI-Prolog 的显式支持。2011 年，原始实现的大部分被新的 Prolog 模式替换；该模式最初由 Stefan Bruda 为 XEmacs 移植编写，后来由 Stefan Monnier 改编到 GNU Emacs。此后，Stefan Monnier 与其他 GNU Emacs 贡献者一起维护它。该模式的用户可以在 <a href="https://www.metalevel.at/pceprolog/">https://www.metalevel.at/pceprolog/</a> 找到有用的配置建议。</p>
+<p>其他可用于配合 SWI-Prolog 工作的 Emacs 包包括：</p>
+<ul>
+<li>
+<p><a href="https://www.metalevel.at/ediprolog/">https://www.metalevel.at/ediprolog/</a></p>
+<p>直接在 Emacs buffer 中与 SWI-Prolog 交互。</p>
+</li>
+<li>
+<p><a href="https://www.metalevel.at/etrace/">https://www.metalevel.at/etrace/</a></p>
+<p>使用 Emacs 跟踪 Prolog 代码。</p>
+</li>
+<li>
+<p><a href="https://emacs-lsp.github.io/dap-mode/page/configuration/#swi-prolog">https://emacs-lsp.github.io/dap-mode/page/configuration/#swi-prolog</a></p>
+<p>通过 <code>dap-mode</code> 以及 <a href="https://github.com/eshelyaron/debug_adapter">https://github.com/eshelyaron/debug_adapter</a> 中的 <code>debug_adapter</code> 包，在 Emacs 中为 SWI-Prolog 提供调试适配器协议（DAP）支持。</p>
+</li>
+<li>
+<p><a href="https://emacs-lsp.github.io/lsp-mode/page/lsp-prolog/">https://emacs-lsp.github.io/lsp-mode/page/lsp-prolog/</a></p>
+<p>通过 <code>lsp-mode</code> 以及 <a href="https://github.com/jamesnvc/lsp_server">https://github.com/jamesnvc/lsp_server</a> 中的 <code>lsp_server</code> 包，在 Emacs 中为 SWI-Prolog 提供语言服务器协议（LSP）支持。</p>
+</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="在线帮助"><a class="header" href="#在线帮助">在线帮助</a></h1>
+<h2 id="71-libraryhelp基于文本的手册"><a class="header" href="#71-libraryhelp基于文本的手册">7.1 <code>library(help)</code>：基于文本的手册</a></h2>
+<p>该模块提供 <code>help/1</code> 和 <code>apropos/1</code>。前者给出某个主题的帮助，后者在手册中搜索相关主题。</p>
+<p>默认情况下，<code>help/1</code> 的结果会通过诸如 <code>less</code> 这样的分页器发送。该行为由以下内容控制：</p>
+<ul>
+<li>
+<p>Prolog 标志 <code>help_pager</code>，可以设置为下列值之一：</p>
+<ul>
+<li>
+<p><code>false</code></p>
+<p>永不使用分页器。</p>
+</li>
+<li>
+<p><code>default</code></p>
+<p>使用默认行为。系统会尝试判断 Prolog 是否运行在允许分页器的交互式环境中。如果是，它会检查环境变量 <code>PAGER</code>；否则尝试查找 <code>less</code> 程序。</p>
+</li>
+<li>
+<p><code>Callable</code></p>
+<p><code>Callable</code> 项会被解释为 <code>program_name(Arg, ...)</code>。例如，<code>less('-r')</code> 可以作为默认值。注意，如果使用单引号，程序名可以是绝对路径。</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="help"><a class="header" href="#help"><code>help</code></a></h3>
+<h3 id="helpwhat"><a class="header" href="#helpwhat"><code>help(+What)</code></a></h3>
+<p>显示 <code>What</code> 的帮助。<code>What</code> 是一个描述帮助主题的项。<code>What</code> 的可用记法包括：</p>
+<ul>
+<li>
+<p><code>Atom</code></p>
+<p>最常用但也有歧义的形式，会显示所有匹配文档。例如：</p>
+<pre><code class="language-prolog">?- help(append).
+</code></pre>
+</li>
+<li>
+<p><code>Name/Arity</code></p>
+<p>显示匹配 <code>Name/Arity</code> 的谓词帮助。<code>Arity</code> 可以未绑定。</p>
+</li>
+<li>
+<p><code>Name//Arity</code></p>
+<p>显示匹配的 DCG 规则，也就是非终结符。</p>
+</li>
+<li>
+<p><code>Module:Name</code></p>
+<p>显示 <code>Module</code> 中名为 <code>Name</code>、任意 arity 的谓词帮助。仅用于已载入代码。</p>
+</li>
+<li>
+<p><code>Module:Name/Arity</code></p>
+<p>显示 <code>Module</code> 中名为 <code>Name</code> 且 arity 为 <code>Arity</code> 的谓词帮助。仅用于已载入代码。</p>
+</li>
+<li>
+<p><code>f(Name/Arity)</code></p>
+<p>显示匹配的 Prolog 算术函数帮助。</p>
+</li>
+<li>
+<p><code>c(Name)</code></p>
+<p>显示匹配的 C 接口函数帮助。</p>
+</li>
+<li>
+<p><code>section(Label)</code></p>
+<p>显示手册中匹配 <code>Label</code> 的章节。</p>
+</li>
+</ul>
+<p><code>help/1</code> 会显示手册中的文档，也会显示已载入用户代码中的文档，前提是该代码使用 PlDoc 编写了文档。若只想显示已载入谓词的文档，可以在谓词指示器前加上定义该谓词的模块。</p>
+<p>如果精确匹配失败，该谓词会尝试模糊匹配；如果成功，会显示结果，并在开头给出警告，说明这些匹配基于模糊匹配。</p>
+<p>如果可能，结果会通过诸如 <code>less</code> 的分页器发送。该行为由 Prolog 标志 <code>help_pager</code> 控制。参见本节开头的说明。</p>
+<p>另请参阅 <code>apropos/1</code>，它用于搜索手册名称和摘要。</p>
+<h3 id="show_html_hookhtmlstring"><a class="header" href="#show_html_hookhtmlstring"><code>show_html_hook(+HTML:string)</code></a></h3>
+<p>这是一个半确定的 multifile 钩子，用于显示抽取出的 HTML 文档。如果该钩子失败，HTML 会使用 <code>html_text/2</code> 渲染为纯文本并显示在控制台上。</p>
+<h3 id="aproposquery"><a class="header" href="#aproposquery"><code>apropos(+Query)</code></a></h3>
+<p>打印手册中名称或摘要与 <code>Query</code> 匹配的对象。<code>Query</code> 可采用下列形式：</p>
+<ul>
+<li>
+<p><code>Type:Text</code></p>
+<p>查找与 <code>Text</code> 匹配的对象，并按 <code>Type</code> 过滤结果。<code>Type</code> 匹配采用大小写不敏感的前缀匹配。已定义的类型包括 <code>section</code>、<code>cfunction</code>、<code>function</code>、<code>iso_predicate</code>、<code>swi_builtin_predicate</code>、<code>library_predicate</code>、<code>dcg</code>，以及别名 <code>chapter</code>、<code>arithmetic</code>、<code>c_function</code>、<code>predicate</code>、<code>nonterminal</code> 和 <code>non_terminal</code>。例如：</p>
+<pre><code class="language-prolog">?- apropos(c:close).
+?- apropos(f:min).
+</code></pre>
+</li>
+<li>
+<p><code>Text</code></p>
+<p><code>Text</code> 会被拆分为多个 token。如果某个主题的名称或摘要中包含所有 token，则认为匹配。匹配不区分大小写。结果会按匹配质量排序。</p>
+</li>
+</ul>
+<h3 id="help_aproposquery--obj--summary--score"><a class="header" href="#help_aproposquery--obj--summary--score"><code>help_apropos(+Query, -Obj, -Summary, -Score)</code></a></h3>
+<p>在帮助数据库中查找匹配的已文档化对象。<code>Obj</code> 是正式对象标识符，<code>Summary</code> 是摘要说明，<code>Score</code> 是表示匹配质量的数字。</p>
+<h3 id="help_textpredicateterm--helptextstring"><a class="header" href="#help_textpredicateterm--helptextstring"><code>help_text(+Predicate:term, -HelpText:string)</code></a></h3>
+<p>如果 <code>Predicate</code> 是形如 <code>Name/Arity</code> 的项，且存在对应文档，则 <code>HelpText</code> 是从 HTML 帮助解析出的文本格式文档。</p>
+<h2 id="72-libraryexplain描述-prolog-项"><a class="header" href="#72-libraryexplain描述-prolog-项">7.2 <code>library(explain)</code>：描述 Prolog 项</a></h2>
+<p><code>library(explain)</code> 用于描述 Prolog 项。它最有用的功能是交叉引用能力。</p>
+<pre><code class="language-prolog">?- explain(subset(_,_)).
+"subset(_, _)" is a compound term
+    from 2-th clause of lists:subset/2
+    Referenced from 46-th clause of prolog_xref:imported/3
+    Referenced from 68-th clause of prolog_xref:imported/3
+lists:subset/2 is a predicate defined in
+    /staff/jan/lib/pl-5.6.17/library/lists.pl:307
+    Referenced from 2-th clause of lists:subset/2
+    Possibly referenced from 2-th clause of lists:subset/2
+</code></pre>
+<p>注意，PceEmacs 可以跳转到定义，<code>gxref/0</code> 可用于查看依赖概览。</p>
+<h3 id="explainterm"><a class="header" href="#explainterm"><code>explain(@Term)</code></a></h3>
+<p>解释 <code>Term</code>。<code>Term</code> 可以是任意 Prolog 数据对象。某些项具有特殊含义：</p>
+<ul>
+<li>
+<p>对谓词的完整或部分引用，会给出谓词、它的主要属性以及对该谓词的引用。部分引用包括：</p>
+<ul>
+<li><code>Module:Name/Arity</code></li>
+<li><code>Module:Head</code></li>
+<li><code>Name/Arity</code></li>
+<li><code>Name//Arity</code></li>
+<li><code>Name</code></li>
+<li><code>Module:Name</code></li>
+</ul>
+</li>
+<li>
+<p>某些谓词属性。这会列出具有该属性的谓词，谓词形式如上。该说明可以写成 <code>Module:Property</code>，也可以只写 <code>Property</code>。带模块限定的版本会把结果限制到 <code>Module</code> 中定义的谓词。支持的属性包括：</p>
+<ul>
+<li><code>dynamic</code></li>
+<li><code>thread_local</code></li>
+<li><code>multifile</code></li>
+<li><code>tabled</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="explainterm--explanation"><a class="header" href="#explainterm--explanation"><code>explain(@Term, -Explanation)</code></a></h3>
+<p>当 <code>Explanation</code> 是 <code>Term</code> 的解释时为真。<code>Explanation</code> 是一个元素列表，会使用 <code>print_message(information, explain(Explanation))</code> 打印。</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="命令行历史"><a class="header" href="#命令行历史">命令行历史</a></h1>
+<p>SWI-Prolog 提供一种查询替换机制，类似 Unix shell 中常见的历史替换。该功能是否可用由 <code>set_prolog_flag/2</code> 控制，使用 Prolog 标志 <code>history</code>。默认情况下，如果没有可用的交互式命令行编辑器，历史功能会启用。若要启用历史功能，并记住最近 50 条命令，可以把下面的内容放入启动文件：</p>
+<pre><code class="language-prolog">:- set_prolog_flag(history, 50).
+</code></pre>
+<p>历史系统允许用户根据之前输入并被系统记住的查询组合出新的查询。可用的历史命令如下。若这些序列出现在带引号的原子或字符串中，则不会进行历史展开。</p>
+<div class="table-wrapper"><table><thead><tr><th>命令</th><th>说明</th></tr></thead><tbody>
+<tr><td><code>!!.</code></td><td>重复上一条查询</td></tr>
+<tr><td><code>!nr.</code></td><td>重复编号为 <code>&lt;nr&gt;</code> 的查询</td></tr>
+<tr><td><code>!str.</code></td><td>重复最近一条以 <code>&lt;str&gt;</code> 开头的查询</td></tr>
+<tr><td><code>h.</code></td><td>显示命令历史</td></tr>
+<tr><td><code>!h.</code></td><td>显示这份历史命令列表</td></tr>
+</tbody></table>
+</div><div style="break-before: page; page-break-before: always;"></div><h1 id="复用顶层绑定"><a class="header" href="#复用顶层绑定">复用顶层绑定</a></h1>
+<p>顶层目标成功执行后得到的绑定，如果它们不太大，会被断言到一个数据库中。这里的“不太大”由 Prolog 标志 <code>toplevel_var_size</code> 定义。这些值可以在后续顶层查询中以 <code>$Var</code> 的形式复用。如果后续查询使用了同名变量，系统会把该变量关联到最近一次绑定。示例：</p>
+<pre><code class="language-prolog">1 ?- maplist(plus(1), `hello`, X).
+X = [105,102,109,109,112].
+
+2 ?- format('~s~n', [$X]).
+ifmmp
+true.
+
+3 ?-
+</code></pre>
+<p>注意，也可以通过执行 <code>=/2</code> 来设置变量：</p>
+<pre><code class="language-prolog">6 ?- X = statistics.
+X = statistics.
+
+7 ?- $X.
+% Started at Fri Aug 24 16:42:53 2018
+% 0.118 seconds cpu time for 456,902 inferences
+% 7,574 atoms, 4,058 functors, 2,912 predicates, 56 modules, 109,791 VM-codes
+%
+%                     Limit   Allocated      In use
+% Local  stack:           -       20 Kb    1,888  b
+% Global stack:           -       60 Kb       36 Kb
+% Trail  stack:           -       30 Kb    4,112  b
+%        Total:    1,024 Mb      110 Kb       42 Kb
+%
+% 3 garbage collections gained 178,400 bytes in 0.000 seconds.
+% 2 clause garbage collections gained 134 clauses in 0.000 seconds.
+% Stack shifts: 2 local, 2 global, 2 trail in 0.000 seconds
+% 2 threads, 0 finished threads used 0.000 seconds
+true.
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="调试器概览"><a class="header" href="#调试器概览">调试器概览</a></h1>
+<p>像 C++、Python 或 JavaScript 这样的命令式语言，大多执行近似线性的代码，中间带有一些分支和子例程调用。它们的调试器支持逐行单步执行并在每一行暂停，或者运行程序直到命中断点后暂停。暂停时，用户可以检查当前程序状态，或向调试器发出命令。</p>
+<p>Prolog 的执行模型是逻辑式的：它会尝试证明逻辑谓词，因此需要不同的调试方式。SWI-Prolog 使用传统 Prolog 的“Byrd 盒模型”（Byrd Box Model）或“四端口模型”（4 Port Model）作为命令行调试器的基础，并在此基础上做了一些扩展。还有另外两个调试器也建立在这套基础设施上：一个是<a href="https://www.swi-prolog.org/gtrace.html">图形调试器</a>，另一个是 <a href="https://swish.swi-prolog.org/">SWISH</a> 提供的 Web 界面中的远程调试。</p>
+<p>所有可用于操纵调试器的谓词，其参考信息见调试器章节。</p>
+<h2 id="byrd-盒模型和端口"><a class="header" href="#byrd-盒模型和端口">Byrd 盒模型和端口</a></h2>
+<p>标准 Prolog 调试工具围绕所谓的“Byrd 盒模型”或“四端口模型”构建。该模型把 Prolog 程序中的每个谓词建模为一个状态机，也就是一个“盒子”；程序求值时，这个盒子会在若干状态，也就是“端口”之间转换。开发者可以要求引擎在到达特定端口或特定谓词时暂停，以便检查程序。</p>
+<p>阅读本概览时，请记住：“端口”只是“状态”的另一种说法；每个谓词在求值期间都会穿过这些状态。这个状态机被称为“盒子”，是因为它通常画成这样：</p>
+<pre><code class="language-text">                *--------------------------------------*
+         Call   |                                      |   Exit
+     ---------&gt; +  descendant(X,Y) :- offspring(X,Y).  + ---------&gt;
+                |                                      |
+                |  descendant(X,Z) :-                  |
+     &lt;--------- +     offspring(X,Y), descendant(Y,Z). + &lt;---------
+         Fail   |                                      |   Redo
+                *--------------------------------------*
+</code></pre>
+<p>标准端口包括：<code>call</code>、<code>redo</code>、<code>exit</code> 和 <code>fail</code>。SWI-Prolog 在此基础上扩展了两个端口：<code>unify</code> 和 <code>exception</code>。每条 trace 都发生在谓词解析的某个特定阶段。回忆一下，在解析或“证明”一个谓词时，Prolog 引擎会：</p>
+<ol>
+<li>收集所有“可能”匹配的规则，也就是头部具有相同名称和参数数量的规则。
+<ul>
+<li>如果有任何规则可能匹配，会 trace 一次 <code>call</code>。</li>
+<li>当引擎回溯以寻找下一条匹配规则时，也会 trace <code>redo</code>。</li>
+</ul>
+</li>
+<li>找到下一条其头部可以与该谓词合一的规则。
+<ul>
+<li>如果找到这样的规则，会 trace <code>unify</code>，并显示合一结果。</li>
+<li>如果没有任何规则头可以合一，则 trace <code>fail</code>。</li>
+</ul>
+</li>
+<li>将合一得到的变量赋值应用到规则体中的子句，然后带着更新后的子句继续第 1 步。</li>
+<li>在匹配规则的所有规则体子句都成功、失败或抛出异常之后：
+<ul>
+<li>如果它们全都成功，会 trace <code>exit</code>，表示该规则为真。</li>
+<li>如果其中任何一个失败，会 trace <code>fail</code>，表示该规则为假。</li>
+<li>如果其中任何一个抛出异常，会 trace <code>exception</code>。</li>
+</ul>
+</li>
+</ol>
+<p>这意味着，在某个谓词最初的 <code>call</code> 和该谓词 trace 结束之间，可能出现大量 trace。</p>
+<h2 id="trace-模式示例"><a class="header" href="#trace-模式示例">Trace 模式示例</a></h2>
+<p>谓词 <code>trace/0</code> 会开启“trace 模式”。默认情况下，它会为每个谓词的每个端口产生 trace，并在每个端口暂停，以便用户检查程序状态。通常这是在 Prolog 控制台窗口中完成的；但对于嵌入式 Prolog 系统，或 Prolog 作为守护进程运行的情况，也可以通过 <a href="https://www.swi-prolog.org/pack/list?p=libssh">libssh</a> 包获得提示符来完成。</p>
+<blockquote>
+<p>注意：如果原生图形插件 XPCE 可用，命令 <code>gtrace/0</code> 和 <code>gspy/1</code> 会激活图形调试器，而 <code>tdebug/0</code> 和 <code>tspy/1</code> 允许调试任意线程。</p>
+</blockquote>
+<p>每个目标都使用 Prolog 谓词 <code>write_term/2</code> 打印。打印风格由 Prolog 标志 <code>debugger_write_options</code> 定义；可以修改该标志，也可以使用 tracer 的 <code>w</code>、<code>p</code> 和 <code>d</code> 命令修改。</p>
+<p>下面是一个展示基本流程的调试会话示例。默认情况下，<code>unify</code> 端口关闭，因为对命令行调试器来说，它在多数情况下不会提供很多额外信息。</p>
+<pre><code class="language-prolog">is_a(rock1, rock).
+is_a(rock2, rock).
+color(rock1, red).
+
+noun(X, Type) :- is_a(X, Type).
+adjective(X, color, Value) :- color(X, Value).
+</code></pre>
+<pre><code class="language-prolog">?- trace.
+true.
+
+[trace]  ?- noun(X, rock), adjective(X, color, red).
+   Call: (11) noun(_9774, rock) ? creep
+</code></pre>
+<p>谓词 <code>trace/0</code> 打开了 trace 模式，现在每个提示符都会显示为 <code>[trace] ?-</code>。用户给出的初始查询是 <code>noun(X, rock), adjective(X, color, red)</code>，意思是寻找一个“红色的石头”。最后，触发的第一个端口是初始查询中第一个谓词的 <code>Call</code>，表示引擎将要寻找第一条匹配 <code>noun(_9774, rock)</code> 的规则。</p>
+<p>按下空格键、<code>c</code> 或回车，会让 tracer 打印 <code>creep</code>，随后显示下一条 trace。tracer 还提供了许多其他命令，后文会介绍。</p>
+<pre><code class="language-prolog">is_a(rock1, rock).
+is_a(rock2, rock).
+color(rock1, red).
+
+noun(X, Type) :- is_a(X, Type).
+adjective(X, color, Value) :- color(X, Value).
+</code></pre>
+<pre><code class="language-prolog">[trace]  ?- noun(X, rock), adjective(X, color, red).
+...
+   Call: (12) is_a(_9774, rock) ? creep
+   Exit: (12) is_a(rock1, rock) ? creep
+   Exit: (11) noun(rock1, rock) ? creep
+...
+</code></pre>
+<p>接下来，<code>noun/2</code> 第一条子句的 <code>is_a/2</code> 调用得到 <code>call</code> trace，因为引擎正在寻找下一条匹配 <code>is_a(_9774, rock)</code> 的规则。由于确实存在可以合一的事实 <code>is_a(rock1, rock)</code>，trace 显示了 <code>exit</code>，也就是成功，并显示了该值。因为这是 <code>noun/2</code> 规则体中的最后一个谓词，所以 <code>noun/2</code> 本身也得到一个 <code>exit</code> trace，显示其头部的合一结果：<code>noun(rock1, rock)</code>。</p>
+<pre><code class="language-prolog">is_a(rock1, rock).
+is_a(rock2, rock).
+color(rock1, red).
+
+noun(X, Type) :- is_a(X, Type).
+adjective(X, color, Value) :- color(X, Value).
+</code></pre>
+<pre><code class="language-prolog">[trace]  ?- noun(X, rock), adjective(X, color, red).
+...
+   Call: (11) adjective(rock1, color, red) ? creep
+   Call: (12) color(rock1, red) ? creep
+   Exit: (12) color(rock1, red) ? creep
+   Exit: (11) adjective(rock1, color, red) ? creep
+   X = rock1 ;
+...
+</code></pre>
+<p>随后，Prolog 移动到初始查询中的下一个谓词 <code>adjective/3</code>，并以类似方式求解它。由于这是查询中的最后一个谓词，系统返回一个答案。按下 <code>;</code> 会请求下一个答案，并开始 Prolog 回溯。</p>
+<pre><code class="language-prolog">is_a(rock1, rock).
+is_a(rock2, rock).
+color(rock1, red).
+
+noun(X, Type) :- is_a(X, Type).
+adjective(X, color, Value) :- color(X, Value).
+</code></pre>
+<pre><code class="language-prolog">[trace]  ?- noun(X, rock), adjective(X, color, red).
+...
+   Redo: (12) is_a(_9774, rock) ? creep
+   Exit: (12) is_a(rock2, rock) ? creep
+   Exit: (11) noun(rock2, rock) ? creep
+   Call: (11) adjective(rock2, color, red) ? creep
+   Call: (12) color(rock2, red) ? creep
+   Fail: (12) color(rock2, red) ? creep
+   Fail: (11) adjective(rock2, color, red) ? creep
+false.
+</code></pre>
+<p>唯一需要 <code>redo</code> 的选择点，也就是需要回溯的地方，是 <code>noun/2</code> 中的 <code>is_a/2</code> 子句，因为还有一个潜在匹配 <code>is_a(rock2, rock)</code> 可以尝试合一。它能够合一，所以 trace 显示 <code>exit</code>；同时也使 <code>noun(rock2, rock)</code> 像前面一样以 <code>exit</code> 成功。</p>
+<p>随着 trace 继续，可以看到 <code>color(rock2, red)</code> 激活了 <code>fail</code> 端口，因为无法证明该谓词，所以整个查询最终返回 <code>false</code>。</p>
+<p>在输入 <code>notrace.</code> 关闭 trace 模式之前，之后提出的每个查询都会继续被 trace。</p>
+<h2 id="trace-模式选项leash1-和-visible1"><a class="header" href="#trace-模式选项leash1-和-visible1">Trace 模式选项：<code>leash/1</code> 和 <code>visible/1</code></a></h2>
+<p>使用 <code>trace/0</code> 启用 trace 模式时，tracer 默认会在每个谓词命中的每个端口暂停，并等待命令。谓词 <code>leash/1</code> 可用于修改哪些端口会暂停。这是全局设置，因此修改后会一直保留，直到再次修改或 SWI-Prolog 重启。通过 <code>notrace/0</code> 禁用 tracer 不会影响哪些端口被 leash。</p>
+<p><code>leash/1</code> 的参数必须以 <code>+</code> 开头表示添加，或以 <code>-</code> 开头表示移除，后跟端口名称，例如 <code>call</code>、<code>exit</code> 等。也可以使用特殊项，例如 <code>all</code>，从而不必手动添加或移除每个端口。</p>
+<p>如果只想在 <code>fail</code> 端口停止，可以这样使用 <code>leash/1</code>：</p>
+<pre><code class="language-prolog">?- leash(-all).
+true.
+
+?- leash(+fail).
+true.
+
+?- trace.
+true.
+
+[trace]  ?- noun(X, rock), adjective(X, color, red).
+   Call: (11) noun(_3794, rock)
+   Call: (12) is_a(_3794, rock)
+   Exit: (12) is_a(rock1, rock)
+   Exit: (11) noun(rock1, rock)
+   Call: (11) adjective(rock1, color, red)
+   Call: (12) color(rock1, red)
+   Exit: (12) color(rock1, red)
+   Exit: (11) adjective(rock1, color, red)
+X = rock1 ;
+   Redo: (12) is_a(_3794, rock)
+   Exit: (12) is_a(rock2, rock)
+   Exit: (11) noun(rock2, rock)
+   Call: (11) adjective(rock2, color, red)
+   Call: (12) color(rock2, red)
+   Fail: (12) color(rock2, red) ? creep
+   Fail: (11) adjective(rock2, color, red) ? creep
+false.
+</code></pre>
+<p>现在，只有以 <code>Fail:</code> 开头的行后面带有 <code>creep</code>，因为那是 tracer 唯一暂停等待命令的时候。如果希望永不暂停，只想看到所有 trace，可以使用 <code>leash(-all)</code>，并且不要重新打开任何端口。</p>
+<p>默认端口仍然会打印出来，因为另一个设置 <code>visible/1</code> 控制哪些端口会被打印。<code>visible/1</code> 的参数形式与 <code>leash/1</code> 相同。如果只想在 <code>fail</code> 端口停止并且只显示 <code>fail</code> 端口，可以这样使用 <code>leash/1</code> 和 <code>visible/1</code>：</p>
+<pre><code class="language-prolog">?- leash(-all).
+true.
+
+?- leash(+fail).
+true.
+
+?- visible(-all).
+true.
+
+?- visible(+fail).
+true.
+
+?- trace.
+true.
+
+[trace]  ?- noun(X, rock), adjective(X, color, red).
+X = rock1 ;
+   Fail: (12) color(rock2, red) ? creep
+   Fail: (11) adjective(rock2, color, red) ? creep
+false.
+</code></pre>
+<h2 id="暂停时的-trace-模式命令"><a class="header" href="#暂停时的-trace-模式命令">暂停时的 Trace 模式命令</a></h2>
+<p>当 tracer 在某个端口暂停时，除了按空格键之外，还可以做很多事情。所有动作都是单字符命令，并且无需等待回车就会执行，除非命令行选项 <code>--no-tty</code> 处于活动状态。暂停时按 <code>?</code> 或 <code>h</code> 也会打印这些命令的列表。</p>
+<h3 id="控制流命令"><a class="header" href="#控制流命令">控制流命令</a></h3>
+<div class="table-wrapper"><table><thead><tr><th>命令</th><th>键</th><th>说明</th></tr></thead><tbody>
+<tr><td><strong>Abort</strong></td><td><code>a</code></td><td>中止 Prolog 执行，参见 <code>abort/0</code></td></tr>
+<tr><td><strong>Break</strong></td><td><code>b</code></td><td>进入 Prolog break 环境，参见 <code>break/0</code></td></tr>
+<tr><td><strong>Creep</strong></td><td><code>c</code></td><td>继续执行，在下一个端口停止；也可以按回车或空格</td></tr>
+<tr><td><strong>Exit</strong></td><td><code>e</code></td><td>终止 Prolog，参见 <code>halt/0</code></td></tr>
+<tr><td><strong>Fail</strong></td><td><code>f</code></td><td>强制当前目标失败</td></tr>
+<tr><td><strong>Find</strong></td><td><code>/</code></td><td>搜索某个端口，见下文 Find 命令说明</td></tr>
+<tr><td><strong>Ignore</strong></td><td><code>i</code></td><td>忽略当前目标，假装它已经成功</td></tr>
+<tr><td><strong>Leap</strong></td><td><code>l</code></td><td>继续执行，在下一个 spy point 停止</td></tr>
+<tr><td><strong>No debug</strong></td><td><code>n</code></td><td>以 no debug 模式继续执行</td></tr>
+<tr><td><strong>Repeat find</strong></td><td><code>.</code></td><td>重复上一次 find 命令</td></tr>
+<tr><td><strong>Retry</strong></td><td><code>r</code></td><td>撤销当前目标从 <code>call</code> 端口之后的所有动作，数据库和 I/O 动作除外，并从该目标的 <code>call</code> 端口恢复执行</td></tr>
+<tr><td><strong>Skip</strong></td><td><code>s</code></td><td>继续执行，在当前目标的下一个端口停止，因此会跳过该目标子调用的所有端口</td></tr>
+<tr><td><strong>Spy</strong></td><td><code>+</code></td><td>在当前谓词上设置 spy point，参见 <code>spy/1</code></td></tr>
+<tr><td><strong>No spy</strong></td><td><code>-</code></td><td>从当前谓词移除 spy point，参见 <code>nospy/1</code></td></tr>
+<tr><td><strong>Up</strong></td><td><code>u</code></td><td>继续执行，在父目标的下一个端口停止，因此会跳过当前目标及其所有子调用。该选项适合停止 trace 由失败驱动的循环</td></tr>
+</tbody></table>
+</div>
+<h4 id="find说明和示例"><a class="header" href="#find说明和示例">Find（<code>/</code>）说明和示例</a></h4>
+<p>Find（<code>/</code>）命令会继续执行，直到找到与 find 模式匹配的端口。输入 <code>/</code> 后，用户可以输入一行来指定要搜索的端口。该行由一组表示端口类型的字母组成，后面可以跟一个可选项；该项应与该端口正在运行的目标合一。如果没有指定项，则把它视为变量，也就是搜索指定类型的任意端口。如果给出原子，则任何函子名等于该原子的目标都会匹配。示例：</p>
+<div class="table-wrapper"><table><thead><tr><th>命令</th><th>说明</th></tr></thead><tbody>
+<tr><td><code>/f</code></td><td>搜索任意 <code>fail</code> 端口</td></tr>
+<tr><td><code>/fe solve</code></td><td>搜索名称为 <code>solve</code> 的任意目标上的 <code>fail</code> 或 <code>exit</code> 端口</td></tr>
+<tr><td><code>/c solve(a, _)</code></td><td>搜索对 <code>solve/2</code> 的调用，且第一个参数是变量或原子 <code>a</code></td></tr>
+<tr><td><code>/a member(_, _)</code></td><td>搜索 <code>member/2</code> 上的任意端口。这等价于在 <code>member/2</code> 上设置 spy point</td></tr>
+</tbody></table>
+</div>
+<h3 id="信息命令"><a class="header" href="#信息命令">信息命令</a></h3>
+<div class="table-wrapper"><table><thead><tr><th>命令</th><th>键</th><th>说明</th></tr></thead><tbody>
+<tr><td><strong>Alternatives</strong></td><td><code>A</code></td><td>显示所有还有替代分支的目标</td></tr>
+<tr><td><strong>Goals</strong></td><td><code>g</code></td><td>显示父目标列表，也就是执行栈。注意，由于尾递归优化，一些父目标可能已经不存在</td></tr>
+<tr><td><strong>Help</strong></td><td><code>h</code></td><td>显示可用选项；也可以按 <code>?</code></td></tr>
+<tr><td><strong>Listing</strong></td><td><code>L</code></td><td>使用 <code>listing/1</code> 列出当前谓词</td></tr>
+</tbody></table>
+</div>
+<h3 id="格式化命令"><a class="header" href="#格式化命令">格式化命令</a></h3>
+<div class="table-wrapper"><table><thead><tr><th>命令</th><th>键</th><th>说明</th></tr></thead><tbody>
+<tr><td><strong>Context</strong></td><td><code>C</code></td><td>切换“显示上下文”。如果为 <code>on</code>，目标的上下文模块会显示在方括号中。默认值为 <code>off</code></td></tr>
+<tr><td><strong>Display</strong></td><td><code>d</code></td><td>设置 <code>debugger_write_options</code> 的 <code>max_depth(Depth)</code> 选项，限制打印项的深度。另请参阅 <code>w</code> 和 <code>p</code> 选项</td></tr>
+<tr><td><strong>Print</strong></td><td><code>p</code></td><td>将 Prolog 标志 <code>debugger_write_options</code> 设置为 <code>[quoted(true), portray(true), max_depth(10), priority(699)]</code>。这是默认值</td></tr>
+<tr><td><strong>Write</strong></td><td><code>w</code></td><td>将 Prolog 标志 <code>debugger_write_options</code> 设置为 <code>[quoted(true), attributes(write), priority(699)]</code>，绕过 <code>portray/1</code> 等</td></tr>
+</tbody></table>
+</div>
+<h2 id="trace-模式与-trace-point"><a class="header" href="#trace-模式与-trace-point">Trace 模式与 Trace Point</a></h2>
+<p>这里需要稍微绕开一下，说明几个容易混淆的相关谓词：如果只想 trace 一个谓词或一组选定谓词，可以使用 <code>trace/1</code> 或 <code>trace/2</code> 谓词设置 trace point。虽然它们使用同一个基础谓词名 <code>trace</code>，但这些谓词会忽略 <code>leash/1</code> 和 <code>visible/1</code> 的全局设置，并且在 trace 端口时不会暂停。它们实际上是另一个功能，只是也会输出 trace。</p>
+<p>trace point 设置在某个特定谓词上，并 trace 该谓词的端口；无论当前是否处于 <code>trace/0</code> 的 trace 模式，它都会工作。如果使用 <code>trace/2</code> 变体，每个 trace point 可以 trace 不同端口。</p>
+<pre><code class="language-prolog">?- trace(is_a/2).
+%         is_a/2: [all]
+true.
+
+?- noun(X, rock), adjective(X, color, red).
+ T Call: is_a(_25702, rock)
+ T Exit: is_a(rock1, rock)
+X = rock1 ;
+ T Redo: is_a(rock1, rock)
+ T Exit: is_a(rock2, rock)
+false.
+</code></pre>
+<p>请注意：这里不需要使用 <code>trace/0</code> 打开 trace 模式；它只输出执行 <code>is_a/2</code> 时命中的端口；并且程序从未暂停。</p>
+<p>实际上，如果在使用 trace point 时又打开 trace 模式，情况会变得非常混乱，因为 trace point 基础设施本身也会被 trace。</p>
+<pre><code class="language-prolog">?- trace(is_a/2).
+%         is_a/2: [all]
+true.
+
+?- trace.
+true.
+
+[trace]  ?- noun(X, rock), adjective(X, color, red).
+   Call: (11) noun(_29318, rock) ? creep
+   Call: (12) is_a(_29318, rock) ? creep
+   Call: (13) print_message(debug, frame(user:is_a(_29318, rock), trace(call))) ? creep
+   Call: (18) push_msg(frame(user:is_a(_29318, rock), trace(call))) ? creep
+   Call: (21) exception(undefined_global_variable, '$inprint_message', _30046) ? creep
+   Fail: (21) exception(undefined_global_variable, '$inprint_message', _30090) ? creep
+   Exit: (18) push_msg(frame(user:is_a(_29318, rock), trace(call))) ? creep
+   Call: (19) prolog:message(frame(user:is_a(_29318, rock), trace(call)), _30140, _30142) ? creep
+   Fail: (19) prolog:message(frame(user:is_a(_29318, rock), trace(call)), _30140, _30142) ? creep
+   Call: (19) message_property(debug, stream(_30192)) ? creep
+   Fail: (19) message_property(debug, stream(_30192)) ? creep
+   Call: (20) message_property(debug, prefix(_30200)) ? creep
+   Fail: (20) message_property(debug, prefix(_30200)) ? creep
+ T Call: is_a(_29318, rock)
+   Call: (17) pop_msg ? creep
+   Exit: (17) pop_msg ? creep
+   ...Lots more after this...
+</code></pre>
+<p>所以，trace point 和 trace mode 是两个名称容易混淆、但彼此独立的功能。</p>
+<h2 id="spy-point-和-debug-模式"><a class="header" href="#spy-point-和-debug-模式">Spy Point 和 Debug 模式</a></h2>
+<p>回到 trace 模式相关功能：由于 Prolog 程序的 trace 输出通常可能非常大，有时希望只在程序深处的某个特定点开始 trace 模式。这正是 spy point 的用途。它指定某个谓词，命中该谓词时应打开 trace 模式。</p>
+<p>可以这样启用 spy point：<code>spy(mypredicate/2)</code>。执行该命令后，第一次遇到 <code>mypredicate/2</code> 时会打开 trace 模式，并像平常一样工作。这包括遵守全局的 <code>leash/1</code> 和 <code>visible/1</code> 设置。可以使用 <code>nospy/1</code> 或 <code>nospyall/0</code> 移除 spy point。</p>
+<pre><code class="language-prolog">is_a(rock1, rock).
+is_a(rock2, rock).
+color(rock1, red).
+
+noun(X, Type) :- is_a(X, Type).
+adjective(X, color, Value) :- color(X, Value).
+</code></pre>
+<pre><code class="language-prolog">?- spy(is_a/2).
+% Spy point on is_a/2
+true.
+
+[debug]  ?- noun(X, rock), adjective(X, color, red).
+ * Call: (12) is_a(_1858, rock) ? creep
+ * Exit: (12) is_a(rock1, rock) ? creep
+   Exit: (11) noun(rock1, rock) ? creep
+   Call: (11) adjective(rock1, color, red) ? creep
+   Call: (12) color(rock1, red) ? creep
+   Exit: (12) color(rock1, red) ? creep
+   Exit: (11) adjective(rock1, color, red) ? creep
+X = rock1 ;
+ * Redo: (12) is_a(_1858, rock) ? creep
+ * Exit: (12) is_a(rock2, rock) ? creep
+   Exit: (11) noun(rock2, rock) ? creep
+   Call: (11) adjective(rock2, color, red) ? creep
+   Call: (12) color(rock2, red) ? creep
+   Fail: (12) color(rock2, red) ? creep
+   Fail: (11) adjective(rock2, color, red) ? creep
+false.
+</code></pre>
+<p>命中 spy point 后，上面的输出与对初始查询运行 <code>trace/0</code> 得到的 trace 相同，只是显然缺少 spy point 之前的所有 trace。</p>
+<p>注意，调用 <code>spy/1</code> 后，<code>?-</code> 前面会出现一个新标签，也就是 <code>[debug]</code>：</p>
+<pre><code class="language-prolog">?- spy(is_a/2).
+% Spy point on is_a/2
+true.
+
+[debug] ?-
+</code></pre>
+<p>这表示系统处于“debug 模式”。debug 模式做两件事：告诉系统监视 spy point；关闭一些会让 trace 难以理解的优化。许多 Prolog 书籍中描述的理想四端口模型，在许多 Prolog 实现中不可见，因为代码优化会移除一部分选择点和 exit 点。如果某个目标确定性成功，或其替代分支被 cut 移除，回溯点不会显示。运行在 debug 模式时，选择点只有在被 cut 移除时才会销毁，并且最后调用优化会关闭。注意：这意味着系统在 debug 模式下可能耗尽栈，而非 debug 模式下不会出现问题。</p>
+<p>可以使用 <code>nodebug/0</code> 再次关闭 debug 模式，但这样 spy point 会被忽略，虽然仍会被记住。通过 <code>debug/0</code> 重新打开 debug 模式后，会再次命中 spy point。</p>
+<pre><code class="language-prolog">is_a(rock1, rock).
+is_a(rock2, rock).
+color(rock1, red).
+
+noun(X, Type) :- is_a(X, Type).
+adjective(X, color, Value) :- color(X, Value).
+</code></pre>
+<pre><code class="language-prolog">?-  spy(is_a/2).
+% Spy point on is_a/2
+true.
+
+[debug]  ?- nodebug.
+true.
+
+?- noun(X, rock).
+X = rock1 ;
+X = rock2.
+
+?- debug.
+true.
+
+[debug]  ?- noun(X, rock).
+ * Call: (11) is_a(_47826, rock) ? creep
+ * Exit: (11) is_a(rock1, rock) ? creep
+   Exit: (10) noun(rock1, rock) ? creep
+X = rock1 ;
+ * Redo: (11) is_a(_47826, rock) ? creep
+ * Exit: (11) is_a(rock2, rock) ? creep
+   Exit: (10) noun(rock2, rock) ? creep
+X = rock2.
+</code></pre>
+<p>因此，debug 模式允许 Prolog 监视 spy point，并在命中 spy point 时启用 trace 模式。谓词 <code>tracing/0</code> 和 <code>debugging/0</code> 会报告系统是否处于这些模式之一。</p>
+<h2 id="断点"><a class="header" href="#断点">断点</a></h2>
+<p>有时候，连 spy point 也不够。某个谓词可能在许多地方使用，而只在某一次特定调用发生时打开 trace 模式会更有帮助。断点允许在命中特定源文件、行号以及该行中的字符位置时打开 trace 模式。使用的谓词是 <code>set_breakpoint/4</code> 和 <code>set_breakpoint/5</code>。可以同时激活多个断点。</p>
+<p>注意，这些谓词提供的接口并不面向最终用户。内置的 PceEmacs 编辑器也嵌入在图形调试器中，它允许根据光标位置设置断点。</p>
+<p>现在，<code>Example.pl</code> 修改为包含多个对 <code>noun/2</code> 的调用：</p>
+<pre><code class="language-prolog">is_a(rock1, rock).
+is_a(rock2, rock).
+color(rock1, red).
+
+noun(X, Type) :- is_a(X, Type).
+adjective(X, color, Value) :- color(X, Value).
+test_noun1(X, Type) :- noun(X, Type).
+test_noun2(X, Type) :- noun(X, Type).
+</code></pre>
+<p>如果只想在 <code>noun/2</code> 从 <code>test_noun2/2</code> 调用时启用 trace，可以这样使用 <code>set_breakpoint/4</code>：</p>
+<pre><code class="language-prolog">?- set_breakpoint('/...path.../Example.pl', 8, 24, ID).
+% Breakpoint 1 in 1-st clause of test_noun2/2 at Example.pl:8
+ID = 1.
+
+?- debug.
+true.
+
+[debug]  ?- noun(X, rock).
+X = rock1 .
+
+[debug]  ?- test_noun1(X, rock).
+X = rock1 .
+
+[debug]  ?- test_noun2(X, rock).
+   Call: (11) noun(_44982, rock) ? creep
+   Call: (12) is_a(_44982, rock) ? creep
+   Exit: (12) is_a(rock1, rock) ? creep
+   Exit: (11) noun(rock1, rock) ? creep
+   Exit: (10) test_noun2(rock1, rock) ? creep
+X = rock1 .
+
+[trace]  ?- notrace.
+true.
+
+[debug]  ?-
+</code></pre>
+<p>调用 <code>set_breakpoint/4</code> 时必须指定源文件 <code>Example.pl</code>、行号 <code>8</code> 和该行中的字符位置 <code>24</code>，以精确指出哪条子句应该打开 trace 模式。使用图形调试器时这会容易得多，因为它会显示源代码。</p>
+<p>如果系统不在 debug 模式下，断点不会触发。与设置 spy point 不同，<code>set_breakpoint/4</code> 不会自动进入 debug 模式。因此，示例中使用 <code>debug/0</code> 手动打开了 debug 模式。</p>
+<p>输出显示，只有对 <code>test_noun2/2</code> 的调用，也就是设置断点的位置，实际打开了 trace 模式。注意，结尾处的 <code>[trace] ?-</code> 表明 trace 模式在触发后仍保持开启。可以通过 <code>notrace/0</code> 再次关闭它，这会让系统留在 debug 模式。调用 <code>nodebug/0</code> 可以一次关闭所有调试模式，因为关闭 debug 模式会自动关闭 trace 模式。</p>
+<p>此外，SWI-Prolog 支持通过 <code>set_breakpoint_condition/2</code> 为每个断点附加任意目标，从而得到条件断点。条件断点与前面讨论的普通断点相同，只是每当断点被触发时，系统会调用给定目标；只有在该目标成功时，trace 模式才会打开。</p>
+<p>如果只想在 <code>noun/2</code> 从 <code>test_noun2/2</code> 调用，并且第一个参数为 <code>rock2</code> 时启用 trace，可以如下使用 <code>set_breakpoint_condition/2</code>。注意，条件是一个 Prolog 字符串；系统会解析该字符串以获得目标以及变量名。得到的目标会在执行该子句体的模块中调用，参见 <code>clause_property/2</code> 的 <code>module</code> 属性。</p>
+<pre><code class="language-prolog">?- set_breakpoint('/...path.../Example.pl', 8, 24, ID).
+ID = 1.
+
+?- set_breakpoint_condition(1, "X == rock2").
+true.
+
+?- debug.
+true.
+
+[debug]  ?- test_noun2(X, rock).
+X = rock1 ;
+X = rock2.
+
+[debug]  ?- test_noun2(rock2, rock).
+   Call: (11) noun(rock2, rock) ? creep
+   Call: (12) is_a(rock2, rock) ? creep
+   Exit: (12) is_a(rock2, rock) ? creep
+   Exit: (11) noun(rock2, rock) ? creep
+   Exit: (10) test_noun2(rock2, rock) ? creep
+true.
+
+[trace]  ?-
+</code></pre>
+<h2 id="命令行调试器总结"><a class="header" href="#命令行调试器总结">命令行调试器总结</a></h2>
+<p>总结来说，实际上存在两个不同的“tracing”功能：trace 模式和 trace point。两者都会使用 Byrd 盒模型向控制台写出 trace，但相似之处到此为止。</p>
+<h3 id="trace-模式"><a class="header" href="#trace-模式">Trace 模式</a></h3>
+<p>Trace 模式是主要的 Prolog 命令行调试器。它可以 trace 谓词穿过解析状态的过程，这些状态在 Byrd 盒模型中表示为端口；也可以在命中特定端口时暂停，让用户发出命令。</p>
+<p>可以通过 <code>trace/0</code> 手动打开 trace 模式。也可以在使用 <code>debug/0</code> 进入 debug 模式后，通过 <code>spy/1</code> 在遇到某个特定谓词时打开；或者通过 <code>set_breakpoint/4</code>、<code>set_breakpoint/5</code> 在遇到某个谓词的特定调用时打开。</p>
+<p>处于 trace 模式时，<code>visible/1</code> 控制哪些端口会写到控制台，<code>leash/1</code> 控制哪些端口会导致执行暂停，以便检查程序。</p>
+<p>执行暂停时，可以使用许多命令检查程序状态、让目标失败或成功，等等。</p>
+<p>Trace 模式通过 <code>notrace/0</code> 关闭，debug 模式通过 <code>nodebug/0</code> 关闭。</p>
+<h3 id="trace-point"><a class="header" href="#trace-point">Trace Point</a></h3>
+<p>Trace point 是一个独立于 trace 模式的功能，它允许在某个谓词求值时把指定端口写到控制台。它永远不会暂停程序执行，也不需要处于 trace 或 debug 模式。</p>
+<p>Trace point 通过 <code>trace/1</code> 和 <code>trace/2</code> 打开。</p>
+<p>它们不关注 <code>visible/1</code>，因为显示哪些端口是在 <code>trace/2</code> 中设置的；也不关注 <code>leash/1</code>，因为它们不会暂停执行。</p>
+<p>可以通过 <code>trace/2</code> 关闭它们。</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="加载和运行项目"><a class="header" href="#加载和运行项目">加载和运行项目</a></h1>
+<p>大多数 Prolog 程序会拆分到多个文件中，这些文件组织在一个目录里，也可以再分到多个子目录中。通常，所有文件都是 Prolog 模块（module）文件，参见模块章节。这个目录通常包含一个文件，常命名为 <code>load.pl</code>，它会使用 <code>use_module/[1,2]</code> 载入所有其他文件（模块）；对于不使用模块的项目，则使用 <code>ensure_loaded/1</code>。</p>
+<p>如果项目是应用程序，而不是库，则有几种启动方式。一种选择是使用命令行选项 <code>-g goal</code>。经典 Prolog 方式是使用 <code>initialization/1</code> 指令。后一种方式的问题在于，这类指令既用于模块中的运行时初始化，也用于启动应用程序，而它们的执行顺序很难控制。因此，SWI-Prolog 引入了 <code>initialization/2</code>，增加一个参数来指定初始化的角色，并间接指定初始化顺序。现在，应用程序入口点可以这样声明：</p>
+<pre><code class="language-prolog">:- initialization(start, main).
+
+start :-
+    ...
+</code></pre>
+<p>采用这些约定后，可以用下面的命令行运行应用程序。其中 <code>option ...</code> 是 Prolog 选项，用来控制例如内存限制等设置；通常不需要指定。<code>arg ...</code> 会通过 Prolog 标志 <code>argv</code> 提供给程序。</p>
+<pre><code class="language-shell">% swipl [option ...] load.pl [arg ...]
+</code></pre>
+<p>如果只想载入代码而不运行应用程序，并且入口点是通过上面所述的 <code>initialization/2</code> 指令启动的，则可以使用 <code>-l</code>。载入之后，可以调试和/或编辑应用程序。</p>
+<pre><code class="language-shell">% swipl [option ...] -l load.pl [arg ...]
+</code></pre>
+<p>应用程序通常不会像上面那样直接使用 <code>start/0</code>，而是使用库 <code>library(main)</code> 中的 <code>main/0</code>。谓词 <code>main/0</code> 会为非开发场景做好准备，并用应用程序的 <code>argv</code>（命令行参数）调用 <code>main/1</code>。这些参数通常会使用同一库中的 <code>argv_options/2</code> 处理为位置参数（positional arguments）和选项（options）。</p>
+<p>上面的方式在命令行中使用 Prolog 时可以很好工作，但在难以控制 SWI-Prolog 命令行的场景中不太适合，例如使用 <code>swipl-win</code>，或在 Emacs 等 IDE 下运行 Prolog。把一个使用上述 <code>initialization/2</code> 指令的程序载入顶层：</p>
+<pre><code class="language-prolog">?- [load].
+</code></pre>
+<p><strong>不会</strong>启动入口点。而使用 <code>swipl-win</code> 打开 <code>.pl</code> 文件则会启动入口点。</p>
+<h2 id="运行应用程序"><a class="header" href="#运行应用程序">运行应用程序</a></h2>
+<p>如果想让程序可用于真实场景，有多种选择。最佳选择取决于程序是否只在装有 SWI-Prolog 开发系统的机器上使用、程序大小，以及操作系统（Unix 或 Windows）。有四种选择：</p>
+<ul>
+<li>
+<p>在类 Unix 系统上，可以使用 shebang 魔法序列把 Prolog 源文件变成可执行文件。参见“使用 PrologScript”。</p>
+</li>
+<li>
+<p>在任何系统上，都可以使用 shell 脚本（Unix 的 <code>sh</code> 或 Windows 的 <code>cmd</code>）来启动应用程序。参见“创建 shell 脚本”。</p>
+</li>
+<li>
+<p>在任何系统上，都可以创建一个保存状态（saved state），其中包含虚拟机代码和启动序列。保存状态可以是独立的；在采取一些预防措施后，它们也可以在未安装 SWI-Prolog 本身的环境中工作。它们启动很快，但体积较大；如果程序使用原生代码扩展和文件资源，从该程序创建保存状态并不简单，具体细节取决于操作系统和所需资源。参见“创建保存状态”。</p>
+</li>
+<li>
+<p>在任何系统上，都可以把一个 Prolog 文件加入指定目录，并允许用下面的形式启动它：</p>
+<pre><code class="language-shell">swipl name [arg ...]
+</code></pre>
+<p>可以通过 Prolog 包（pack）、用户专属目录，或系统级目录，向 Prolog 安装添加新命令。参见“SWI-Prolog 应用脚本”。</p>
+</li>
+</ul>
+<h3 id="使用-prologscript"><a class="header" href="#使用-prologscript">使用 PrologScript</a></h3>
+<p>Prolog 源文件可以用 Unix 的 <code>#!</code> 魔法开头直接作为 Unix 程序使用。Unix 的 <code>#!</code> 魔法是允许的，因为如果 Prolog 文件的第一个字符是 <code>#</code>，第一行会被视为注释。<code>#</code> 号也可以合法地作为普通 Prolog 子句的开头。在极少数确实需要这种写法的情况下，请把第一行留空，或添加一个头部注释。要创建 Prolog 脚本，可以使用下面两种形式之一作为第一行。第一种可把脚本绑定到某个特定的 Prolog 安装，后一种则使用 <code>$PATH</code> 中默认安装的 Prolog。</p>
+<pre><code class="language-shell">#!/path/to/swipl
+#!/usr/bin/env swipl
+</code></pre>
+<p>不同 Unix 派生系统对 HashBang 行中可执行程序参数的解释不同。为了可移植性，<code>#!</code> 后面必须立即跟一个可执行文件的绝对路径，并且应当没有参数或只有一个参数。可执行文件路径和参数都不能使用引号或空格。以这种方式启动时，Prolog 标志 <code>argv</code> 包含脚本调用之后的命令行参数。</p>
+<p>从 7.5.8 版本开始，<code>initialization/2</code> 支持 <code>When</code> 选项 <code>program</code> 和 <code>main</code>，因此可以如下定义一个 Prolog 脚本，用于求值命令行中的算术表达式。注意，<code>main/0</code> 由库 <code>library(main)</code> 定义。它会在禁用信号处理之后，用命令行参数调用 <code>main/1</code>。</p>
+<pre><code class="language-prolog">#!/usr/bin/env swipl
+
+:- initialization(main, main).
+
+main(Argv) :-
+    atomic_list_concat(Argv, ' ', SingleArg),
+    term_to_atom(Term, SingleArg),
+    Val is Term,
+    format('~w~n', [Val]).
+</code></pre>
+<p>下面是两个运行示例：</p>
+<pre><code class="language-shell">% ./eval 1+2
+3
+% ./eval foo
+ERROR: is/2: Arithmetic: `foo/0' is not a function
+</code></pre>
+<p>出于调试或检查目的，可以使用 <code>-l</code> 或 <code>-t</code> 启动 Prolog 脚本。例如，<code>-l</code> 只会载入脚本，忽略 <code>main</code> 和 <code>program</code> 初始化。</p>
+<pre><code class="language-prolog">swipl -l eval 1+1
+&lt;banner&gt;
+
+?- main.
+2
+true.
+
+?-
+</code></pre>
+<p>也可以使用 <code>-t prolog</code> 强制程序在应用程序完成后进入交互式顶层：</p>
+<pre><code class="language-prolog">swipl -t prolog eval 1+1
+2
+?-
+</code></pre>
+<p>Windows 版本会直接忽略 <code>#!</code> 行。旧版本曾经从 HashBang 行中提取命令行参数。从 5.9 版本开始，所有相关设置都可以通过指令完成。由于 HashBang 行处理存在兼容性问题，SWI-Prolog 决定完全移除这项处理。</p>
+<h3 id="创建-shell-脚本"><a class="header" href="#创建-shell-脚本">创建 shell 脚本</a></h3>
+<p>随着 PrologScript 的引入（参见“使用 PrologScript”），本节说明的 shell 脚本方式对于大多数应用程序已经显得多余。</p>
+<p>尤其是在 Unix 系统上，对于规模不太大的应用程序，编写一个只负责载入应用程序并调用入口点的 shell 脚本，通常是不错的选择。下面先给出脚本骨架，随后给出获取程序参数的 Prolog 代码。详情参见库 <code>library(main)</code> 和 <code>argv_options/3</code>。</p>
+<pre><code class="language-shell">#!/bin/sh
+
+base=&lt;absolute-path-to-source&gt;
+SWIPL=swipl
+
+exec $SWIPL "$base/load.pl" -- "$@"
+</code></pre>
+<pre><code class="language-prolog">:- use_module(library(main)).
+:- initialization(main,main).
+
+main(Argv) :-
+    argv_options(Argv, Positional, Options),
+    go(Positional, Options).
+
+go(Positional, Options) :-
+    ...
+</code></pre>
+<p>在 Windows 系统上，可以通过创建指向 Prolog 的快捷方式并传入适当选项，或编写 <code>.bat</code> 文件，达成类似行为。</p>
+<h3 id="创建保存状态"><a class="header" href="#创建保存状态">创建保存状态</a></h3>
+<p>对于较大的程序，以及必须在没有安装 SWI-Prolog 开发系统的机器上运行的程序，创建保存状态是最佳方案。保存状态使用 <code>qsave_program/[1,2]</code> 或命令行选项 <code>-c</code> 创建。保存状态是一个文件，包含机器无关的中间代码，并采用专为快速载入设计的格式。保存状态不依赖 CPU 指令集或字节序。32 位和 64 位的保存状态不兼容。通常，保存状态只能在创建它的同一 Prolog 版本上运行。也可以把仿真器集成到保存状态中，从而创建一个单文件但机器相关的可执行文件。这个过程会在运行时章节中说明。</p>
+<h3 id="使用--c-命令行选项进行编译"><a class="header" href="#使用--c-命令行选项进行编译">使用 <code>-c</code> 命令行选项进行编译</a></h3>
+<p>该机制会载入一系列 Prolog 源文件，然后像 <code>qsave_program/2</code> 一样创建保存状态。命令语法如下：</p>
+<pre><code class="language-shell">% swipl [option ...] [-o output] -c file.pl ...
+</code></pre>
+<p>参数 <code>options</code> 是传给 <code>qsave_program/2</code> 的选项，写成下面的格式。选项名称及其值由 <code>qsave_program/2</code> 说明。</p>
+<pre><code class="language-text">--option-name=option-value
+</code></pre>
+<p>例如，要创建一个独立可执行文件，使其启动时执行 <code>main/0</code>，并且通过 <code>load.pl</code> 载入源代码，可以使用下面的命令：</p>
+<pre><code class="language-shell">% swipl --goal=main --stand_alone=true -o myprog -c load.pl
+</code></pre>
+<p>这与执行下面的内容效果完全相同：</p>
+<pre><code class="language-prolog">% swipl
+&lt;banner&gt;
+
+?- [load].
+?- qsave_program(myprog,
+         [ goal(main),
+           stand_alone(true)
+         ]).
+?- halt.
+</code></pre>
+<h3 id="swi-prolog-应用脚本"><a class="header" href="#swi-prolog-应用脚本">SWI-Prolog 应用脚本</a></h3>
+<p>从 9.1.18 版本开始，SWI-Prolog 允许用下面的命令启动应用程序：</p>
+<pre><code class="language-shell">swipl [option ...] [path:]name [arg ...]
+</code></pre>
+<p>这条命令行首先处理“命令行选项”中说明的 Prolog 选项。注意，大多数标准 Prolog 命令行选项在这里并不相关。<code>-f</code> 默认值为 <code>none</code>，这意味着默认不会载入用户初始化文件。如果应用程序希望载入用户初始化文件，应在该文件存在时载入 <code>user_app_config(init)</code>（参见 <code>exists_source/1</code>）。</p>
+<p>接下来，它会使用 SWI-Prolog 的文件搜索机制（由 <code>absolute_file_name/3</code> 定义）定位 <code>path(name)</code>。载入这个文件后，它会查找通过 <code>initialization/2</code> 为 <code>main</code> 注册的最后一个目标，如本章前文所述；如果没有 <code>main</code> 的初始化指令，程序会以错误终止。默认情况下，入口点终止后应用程序也会终止。入口点可以通过调用 <code>cli_enable_development_system/0</code> 启用交互式 Prolog REPL 循环。除了 <code>main</code> 之外，也允许使用其他形式的 <code>initialization/2</code> 指令。</p>
+<p><code>[path:]name</code> 后面的所有命令行选项，都可以通过 Prolog 标志 <code>argv</code> 访问。</p>
+<p>可选的 <code>path</code> 默认为 <code>app</code>。默认情况下，应用会在下面这些目录中搜索。详情参见 <code>file_search_path/2</code>。</p>
+<ol>
+<li>SWI-Prolog 安装目录中的 <code>app</code> 目录。</li>
+<li>用户和站点配置。在使用 XDG 文件名约定的 POSIX 系统上，这通常是 <code>~/.local/share/swi-prolog/app/</code> 和 <code>/usr/share/swi-prolog/app</code>。</li>
+<li>Prolog 包（pack）的 <code>app</code> 目录。</li>
+</ol>
+<p>安装会提供下列应用：</p>
+<h4 id="app"><a class="header" href="#app"><code>app</code></a></h4>
+<p>打印已安装应用的信息。例如，要列出所有可用应用，运行：</p>
+<pre><code class="language-shell">swipl app list
+</code></pre>
+<h4 id="pack"><a class="header" href="#pack"><code>pack</code></a></h4>
+<p>Prolog 包的命令行管理工具。这是 Prolog 库 <code>library(prolog_pack)</code> 的前端。例如，要查找与 <em>type</em> 相关的包，可以使用下面的命令：</p>
+<pre><code class="language-shell">swipl pack find type
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="环境控制prolog-标志"><a class="header" href="#环境控制prolog-标志">环境控制（Prolog 标志）</a></h1>
+<p>谓词 <code>current_prolog_flag/2</code> 和 <code>set_prolog_flag/2</code> 允许用户检查和修改执行环境。它们提供对安装特性、可选功能、操作系统、外部代码环境、命令行参数、版本信息的访问，也提供一些运行时标志，用于控制特定谓词的运行时行为，从而兼容其他 Prolog 环境。</p>
+<h2 id="current_prolog_flag2"><a class="header" href="#current_prolog_flag2"><code>current_prolog_flag/2</code></a></h2>
+<p><code>current_prolog_flag(?Key, -Value)</code> 定义了访问安装特性的接口，包括编译进系统的选项、版本、home 目录等。如果两个参数都未绑定，它会生成所有已定义的 Prolog 标志。如果 <code>Key</code> 已实例化，它会把 <code>Value</code> 与该 Prolog 标志的值合一；如果 <code>Key</code> 不是 Prolog 标志，则失败。</p>
+<p>标记为可变（changeable）的标志可以由用户使用 <code>set_prolog_flag/2</code> 修改。标志值有类型。标记为 <code>bool</code> 的标志可以取值 <code>true</code> 或 <code>false</code>。谓词 <code>create_prolog_flag/3</code> 可用于创建描述或控制库和应用程序行为的标志。库 <code>library(settings)</code> 为管理应用程序参数提供了另一种接口。</p>
+<p>有些 Prolog 标志并不是在所有版本中都定义。下文通常会用“如果存在且为 true”来说明这种情况。一个布尔 Prolog 标志为 true，当且仅当该 Prolog 标志存在，并且 <code>Value</code> 是原子 <code>true</code>。对这类标志的测试应写成下面这样：</p>
+<pre><code class="language-prolog">(   current_prolog_flag(windows, true)
+-&gt;  &lt;Do MS-Windows things&gt;
+;   &lt;Do normal things&gt;
+)
+</code></pre>
+<p>有些 Prolog 标志的作用域限定在一个源文件内。这意味着，如果在文件内部用指令设置它们，载入该文件开始时遇到的标志值会在载入完成后恢复。目前，下列标志具有源文件作用域：<code>generate_debug_info</code> 和 <code>optimise</code>。</p>
+<p>新线程会复制创建它的线程（即父线程）的所有标志。这使用 copy-on-write 技术实现。因此，在线程内部修改某个标志不会影响其他线程。</p>
+<h3 id="abi_version-dict-r"><a class="header" href="#abi_version-dict-r"><code>abi_version</code> (<code>dict</code>, <code>r</code>)</a></h3>
+<p>该标志的值是一个 dict，其中的键描述各种应用程序二进制接口（Application Binary Interface，ABI）组件的版本。详情见“二进制兼容性”。</p>
+<h3 id="access_level-atom-rw"><a class="header" href="#access_level-atom-rw"><code>access_level</code> (<code>atom</code>, <code>rw</code>)</a></h3>
+<p>该标志定义普通“用户”视图（<code>user</code>，默认值）或“系统”视图。在系统视图中，所有系统代码都可以像普通用户代码一样完全访问。在用户视图中，某些操作不被允许，某些细节会保持不可见。具体后果没有完全定义；例如，在系统访问级别下可以跟踪系统代码，也可以重定义系统谓词。</p>
+<h3 id="address_bits-integer-r"><a class="header" href="#address_bits-integer-r"><code>address_bits</code> (<code>integer</code>, <code>r</code>)</a></h3>
+<p>宿主机器的地址大小，通常为 32 或 64。除了最大堆栈限制之外，这对用户几乎没有影响。另请参阅 Prolog 标志 <code>arch</code>。</p>
+<h3 id="agc_close_streams-boolean-rw"><a class="header" href="#agc_close_streams-boolean-rw"><code>agc_close_streams</code> (<code>boolean</code>, <code>rw</code>)</a></h3>
+<p>当为 <code>true</code> 时，原子垃圾回收器会关闭那些仍处于打开状态但已被垃圾回收的流，并打印警告。默认值为 <code>false</code>，未来版本可能改为 <code>true</code>。下面是这类警告示例：</p>
+<pre><code class="language-text">WARNING: AGC: closed &lt;stream&gt;(0x560e29014400)
+</code></pre>
+<p>注意，不应把关闭 I/O 流的工作留给原子垃圾回收器。原因是原子垃圾回收器可能要过很久才运行，而且它是保守的（conservative），并不保证所有垃圾原子都能被回收。使用 I/O 流的代码应使用 <code>setup_call_cleanup/3</code>，结构如下，其中 <code>process/1</code> 是从 <code>Stream</code> 读取或写入的谓词。</p>
+<pre><code class="language-prolog">setup_call_cleanup(
+    open(..., Stream),
+    process(Stream),
+    close(Stream)),
+...
+</code></pre>
+<p>注意，该标志在 <code>main</code> 线程中的设置会生效。</p>
+<h3 id="agc_margin-integer-rw"><a class="header" href="#agc_margin-integer-rw"><code>agc_margin</code> (<code>integer</code>, <code>rw</code>)</a></h3>
+<p>如果可能成为垃圾的原子数量达到这个值，则在第一个机会执行原子垃圾回收。初始值为 10,000，可以修改。值为 0 会禁用原子垃圾回收。另请参阅 <code>PL_register_atom()</code>。由于 SWI-Prolog 对原子长度没有限制，10,000 个原子仍可能占用大量内存。使用超大原子的应用程序可能希望显式调用 <code>garbage_collect_atoms/0</code>，或降低这个阈值。</p>
+<h3 id="allow_dot_in_atom-bool-rw"><a class="header" href="#allow_dot_in_atom-bool-rw"><code>allow_dot_in_atom</code> (<code>bool</code>, <code>rw</code>)</a></h3>
+<p>如果为 <code>true</code>（默认值为 <code>false</code>），未加引号且以字母开头的原子中可以嵌入点号。嵌入的点号后面必须跟一个标识符继续字符，也就是字母、数字或下划线。许多语言允许在标识符中使用点号，因此这个标志对定义 DSL 可能有用。注意，这会与级联函数式记法冲突。例如，如果该标志设置为 <code>true</code>，<code>Post.meta.author</code> 会被读取为 <code>.(Post, 'meta.author')</code>。</p>
+<h3 id="allow_variable_name_as_functor-bool-rw"><a class="header" href="#allow_variable_name_as_functor-bool-rw"><code>allow_variable_name_as_functor</code> (<code>bool</code>, <code>rw</code>)</a></h3>
+<p>如果为 true（默认值为 false），<code>Functor(arg)</code> 会被读取为 <code>'Functor'(arg)</code>。有些应用程序使用 Prolog 的 <code>read/1</code> 谓词读取应用程序自定义的脚本语言。在这些场景中，常常很难向非 Prolog 用户解释常量和函数只能以小写字母开头。可以通过带 <code>variable_names</code> 选项调用 <code>read_term/2</code>，并把变量绑定到它们的名称，把变量转换为以大写字母开头的原子。借助此功能，<code>F(x)</code> 可以变成这类脚本语言中的合法语法。该特性由 Robert van Engelen 建议，属于 SWI-Prolog 特有功能。</p>
+<h3 id="android-bool-r"><a class="header" href="#android-bool-r"><code>android</code> (<code>bool</code>, <code>r</code>)</a></h3>
+<p>如果存在且为 true，表示正在 Android 操作系统上运行。其他操作系统上不存在该标志。</p>
+<h3 id="android_api-integer-r"><a class="header" href="#android_api-integer-r"><code>android_api</code> (<code>integer</code>, <code>r</code>)</a></h3>
+<p>如果在 Android 上运行，该标志表示 C 宏 <code>__ANDROID_API__</code> 定义的编译期 API Level。在其他操作系统上未定义。这个 API level 不一定与运行设备的 API level 匹配，因为它表示编译时的 API level。</p>
+<h3 id="answer_write_options-term-rw"><a class="header" href="#answer_write_options-term-rw"><code>answer_write_options</code> (<code>term</code>, <code>rw</code>)</a></h3>
+<p>交互式顶层使用该标志打印绑定（答案）的值。打印查询答案时，标志值会传给 <code>write_term/2</code>。默认值为 <code>[quoted(true), portray(true), max_depth(10), attributes(portray)]</code>。</p>
+<h3 id="atom_normalize_hook-bool-r"><a class="header" href="#atom_normalize_hook-bool-r"><code>atom_normalize_hook</code> (<code>bool</code>, <code>r</code>)</a></h3>
+<p>当内核原子规范化 hook 处于活动状态时为 <code>true</code>。该 hook 由 <code>PL_atom_normalize_hook()</code> 注册，并由 <code>library(unicode)</code> 使用。读取器会用它在精确 NFC 检查和基于 <code>wcwidth</code> 的后备 NFC 检查之间做选择。另请参阅 <code>unicode_atoms</code>。</p>
+<h3 id="apple-bool-r"><a class="header" href="#apple-bool-r"><code>apple</code> (<code>bool</code>, <code>r</code>)</a></h3>
+<p>如果存在且为 <code>true</code>，操作系统是 MacOSX。若用于编译该 SWI-Prolog 版本的 C 编译器定义了 <code>__APPLE__</code>，则会定义该标志。注意，在 MacOSX 上也会定义 <code>unix</code> 标志。</p>
+<h3 id="apple_universal_binary-bool-r"><a class="header" href="#apple_universal_binary-bool-r"><code>apple_universal_binary</code> (<code>bool</code>, <code>r</code>)</a></h3>
+<p>如果存在且为 <code>true</code>，SWI-Prolog 构建为通用二进制（universal binary）。通用二进制包含多个体系结构的原生可执行代码。目前支持的体系结构是 <code>x86_64</code> 和 <code>arm64</code>。组件的体系结构前缀是 <code>fat-darwin</code>，而 <code>arch</code> 取决于实际 CPU 类型。</p>
+<h3 id="arch-atom-r"><a class="header" href="#arch-atom-r"><code>arch</code> (<code>atom</code>, <code>r</code>)</a></h3>
+<p>SWI-Prolog 正在运行的硬件和操作系统标识符。它用于为正确体系结构选择外部文件。另请参阅共享库相关章节和 <code>file_search_path/2</code>。在 Apple 平台上，另请参阅 <code>apple_universal_binary</code>。</p>
+<h3 id="argv-list-rw"><a class="header" href="#argv-list-rw"><code>argv</code> (<code>list</code>, <code>rw</code>)</a></h3>
+<p>一个原子列表，表示应用程序命令行参数。应用程序命令行参数是 Prolog 初始化期间未处理的那些参数。注意，Prolog 的参数处理会在 <code>--</code> 或第一个非选项参数处停止。另请参阅 <code>os_argv</code>。在 6.5.2 之前，<code>argv</code> 的定义等同于现在的 <code>os_argv</code>。出于兼容性和实用性的原因，后来修改为当前定义。</p>
+<h3 id="associated_file-atom-r"><a class="header" href="#associated_file-atom-r"><code>associated_file</code> (<code>atom</code>, <code>r</code>)</a></h3>
+<p>如果 Prolog 启动时以某个 Prolog 文件作为参数，则设置该标志。例如，<code>edit/0</code> 会使用它编辑初始文件。</p>
+<h3 id="autoload-atom-rw"><a class="header" href="#autoload-atom-rw"><code>autoload</code> (<code>atom</code>, <code>rw</code>)</a></h3>
+<p>该标志控制基于 <code>autoload/1</code>、<code>autoload/2</code> 以及自动加载库（autoload libraries）的谓词自动加载。它有下列取值：</p>
+<ul>
+<li><code>false</code>：谓词永不自动加载。如果谓词之前通过 <code>autoload/[1,2]</code> 导入，则立即用 <code>use_module/[1,2]</code> 载入引用的文件。注意，很多开发工具（例如 <code>listing/1</code>）必须先显式导入，才能在顶层使用。</li>
+<li><code>explicit</code>：不从自动加载库中自动加载，但对通过 <code>autoload/[1,2]</code> 导入的谓词使用惰性加载。</li>
+<li><code>user</code>：类似 <code>false</code>，但会把库谓词自动加载到全局 <code>user</code> 模块。这会让开发工具和库隐式可用于顶层，但不适用于模块。</li>
+<li><code>user_or_explicit</code>：组合 <code>explicit</code> 和 <code>user</code>，既为通过 <code>autoload/[1,2]</code> 导入的谓词提供惰性加载，又让整个库对顶层隐式可访问。</li>
+<li><code>true</code>：在所有地方提供完整自动加载。这是默认值。</li>
+</ul>
+<h3 id="back_quotes-codescharsstringsymbol_char-rw"><a class="header" href="#back_quotes-codescharsstringsymbol_char-rw"><code>back_quotes</code> (<code>codes,chars,string,symbol_char</code>, <code>rw</code>)</a></h3>
+<p>定义反引号内容的项表示形式。默认值为 <code>codes</code>。如果给出 <code>--traditional</code>，默认值为 <code>symbol_char</code>，这允许在由符号组成的运算符中使用反引号。旧版本有一个布尔标志 <code>backquoted_strings</code>，用于在 <code>string</code> 和 <code>symbol_char</code> 之间切换。另请参阅字符串章节。</p>
+<h3 id="backtrace-bool-rw"><a class="header" href="#backtrace-bool-rw"><code>backtrace</code> (<code>bool</code>, <code>rw</code>)</a></h3>
+<p>如果为 <code>true</code>（默认值），在未捕获异常上打印回溯。</p>
+<h3 id="backtrace_depth-integer-rw"><a class="header" href="#backtrace_depth-integer-rw"><code>backtrace_depth</code> (<code>integer</code>, <code>rw</code>)</a></h3>
+<p>如果启用了错误回溯，该标志定义打印的最大栈帧数。默认值为 20。</p>
+<h3 id="backtrace_goal_depth-integer-rw"><a class="header" href="#backtrace_goal_depth-integer-rw"><code>backtrace_goal_depth</code> (<code>integer</code>, <code>rw</code>)</a></h3>
+<p>回溯栈帧会在对目标做浅拷贝后打印。该标志决定目标项被拷贝的深度。默认值为 <code>3</code>。</p>
+<h3 id="backtrace_show_lines-bool-rw"><a class="header" href="#backtrace_show_lines-bool-rw"><code>backtrace_show_lines</code> (<code>bool</code>, <code>rw</code>)</a></h3>
+<p>如果为 <code>true</code>（默认值），尝试重建异常发生处的行号。</p>
+<h3 id="bounded-bool-r"><a class="header" href="#bounded-bool-r"><code>bounded</code> (<code>bool</code>, <code>r</code>)</a></h3>
+<p>ISO Prolog 标志。如果为 <code>true</code>，整数表示受 <code>min_integer</code> 和 <code>max_integer</code> 约束。如果为 <code>false</code>，整数可以任意大，且 <code>min_integer</code> 和 <code>max_integer</code> 不存在。标志 <code>max_integer_size</code> 可用于强制任意限制，而不是耗尽内存。参见算术类型相关章节。</p>
+<h3 id="break_level-integer-r"><a class="header" href="#break_level-integer-r"><code>break_level</code> (<code>integer</code>, <code>r</code>)</a></h3>
+<p>当前 break level。通过 <code>-t</code> 启动的初始顶层值为 0。参见 <code>break/0</code>。未运行顶层循环的线程没有该标志。</p>
+<h3 id="build_type-atom-r"><a class="header" href="#build_type-atom-r"><code>build_type</code> (<code>atom</code>, <code>r</code>)</a></h3>
+<p>该标志表示构建此 SWI-Prolog 实例时的 CMake <code>CMAKE_BUILD_TYPE</code>。可能值取决于平台。一些常见值包括 <code>Debug</code>、<code>Release</code>、<code>MinSizeRel</code>、<code>RelWithDebInfo</code>、<code>Sanitize</code>、<code>DEB</code> 或 <code>PGO</code>。</p>
+<h3 id="bundle-bool-r"><a class="header" href="#bundle-bool-r"><code>bundle</code> (<code>bool</code>, <code>r</code>)</a></h3>
+<p>当 SWI-Prolog 作为独立 bundle 安装时为 true。SWI-Prolog 下载页分发的 Windows 和 MacOS 二进制包都会设置该标志。它用于调整文件搜索配置。</p>
+<h3 id="c_cc-atom-rw"><a class="header" href="#c_cc-atom-rw"><code>c_cc</code> (<code>atom</code>, <code>rw</code>)</a></h3>
+<p>用于编译 SWI-Prolog 的 C 编译器名称，通常是 <code>gcc</code>、<code>clang</code> 或 <code>cc</code>。参见 <code>swipl-ld</code> 相关章节。</p>
+<h3 id="c_cflags-atom-rw"><a class="header" href="#c_cflags-atom-rw"><code>c_cflags</code> (<code>atom</code>, <code>rw</code>)</a></h3>
+<p>用于编译 SWI-Prolog 的 CFLAGS。参见 <code>swipl-ld</code> 相关章节。</p>
+<h3 id="c_cxx-atom-rw"><a class="header" href="#c_cxx-atom-rw"><code>c_cxx</code> (<code>atom</code>, <code>rw</code>)</a></h3>
+<p>用于测试 SWI-Prolog C++ 绑定的 C++ 编译器名称。这也是 <code>swipl-ld</code> 使用的默认 C++ 编译器，并用于通过默认设置编译 pack。注意，SWI-Prolog 本身不包含 C++ 代码，C++ 绑定只由头文件组成。因此不会出现 C++ ABI 兼容性问题。</p>
+<h3 id="c_ldflags-atom-rw"><a class="header" href="#c_ldflags-atom-rw"><code>c_ldflags</code> (<code>atom</code>, <code>rw</code>)</a></h3>
+<p>用于链接 SWI-Prolog 的 LDFLAGS。参见 <code>swipl-ld</code> 相关章节。</p>
+<h3 id="c_libplso-atom-rw"><a class="header" href="#c_libplso-atom-rw"><code>c_libplso</code> (<code>atom</code>, <code>rw</code>)</a></h3>
+<p>把扩展（共享对象或 DLL）链接到 SWI-Prolog 所需的库。在 ELF 系统上通常为空，在基于 COFF 的系统上通常为 <code>-lswipl</code>。参见 <code>swipl-ld</code> 相关章节。</p>
+<h3 id="c_libs-atom-rw"><a class="header" href="#c_libs-atom-rw"><code>c_libs</code> (<code>atom</code>, <code>rw</code>)</a></h3>
+<p>链接嵌入 SWI-Prolog 的可执行文件所需的库。如果 SWI-Prolog 内核是共享库（DLL），通常为 <code>-lswipl</code>。如果 SWI-Prolog 内核位于静态库中，该标志还包含其依赖项。</p>
+<h3 id="char_conversion-bool-rw"><a class="header" href="#char_conversion-bool-rw"><code>char_conversion</code> (<code>bool</code>, <code>rw</code>)</a></h3>
+<p>决定读取项时是否执行字符转换。另请参阅 <code>char_conversion/2</code>。</p>
+<h3 id="character_escapes-bool-rw"><a class="header" href="#character_escapes-bool-rw"><code>character_escapes</code> (<code>bool</code>, <code>rw</code>)</a></h3>
+<p>如果为 <code>true</code>（默认值），<code>read/1</code> 会在带引号的原子和字符串中解释 <code>\</code> 转义序列。可以修改。该标志局部于修改它的模块。参见字符转义语法章节。</p>
+<h3 id="character_escapes_unicode-bool-rw"><a class="header" href="#character_escapes_unicode-bool-rw"><code>character_escapes_unicode</code> (<code>bool</code>, <code>rw</code>)</a></h3>
+<p>如果为 <code>true</code>（默认值），<code>write/1</code> 及相关谓词会使用 <code>\uXXXX</code> 或 <code>\UXXXXXXXX</code> 语法写出转义字符，而不是 ISO Prolog 的 <code>\x&lt;hex&gt;\</code> 语法。SWI-Prolog 可以读取两种形式。</p>
+<h3 id="ci_speedup-float-rw"><a class="header" href="#ci_speedup-float-rw"><code>ci_speedup</code> (<code>float</code>, <code>rw</code>)</a></h3>
+<p>如果某个哈希用于子句索引时至少达到该标志指定的加速比，则考虑生成该哈希。默认值为 1.5。</p>
+<h3 id="ci_max_var_fraction-float-rw"><a class="header" href="#ci_max_var_fraction-float-rw"><code>ci_max_var_fraction</code> (<code>float</code>, <code>rw</code>)</a></h3>
+<p>如果某个参数在超过该比例的子句中未绑定，则不为该参数创建子句索引哈希表。默认值为 0.1。</p>
+<h3 id="ci_min_speedup_ratio-float-rw"><a class="header" href="#ci_min_speedup_ratio-float-rw"><code>ci_min_speedup_ratio</code> (<code>float</code>, <code>rw</code>)</a></h3>
+<p>如果多参数哈希至少达到该值指定的效率，则考虑添加它。默认值为 3.0。</p>
+<h3 id="ci_max_lookahead-integer-rw"><a class="header" href="#ci_max_lookahead-integer-rw"><code>ci_max_lookahead</code> (<code>integer</code>, <code>rw</code>)</a></h3>
+<p>如果找到一个子句，则在子句列表中最多向前扫描该数量的子句，以寻找可能的替代匹配。默认值为 100。</p>
+<h3 id="ci_min_clauses-integer-rw"><a class="header" href="#ci_min_clauses-integer-rw"><code>ci_min_clauses</code> (<code>integer</code>, <code>rw</code>)</a></h3>
+<p>如果主索引参数（第一个参数）已实例化，当谓词拥有超过该数量的子句时，仍考虑使用哈希。默认值为 10。</p>
+<h3 id="cmake_build_type-atom-ro"><a class="header" href="#cmake_build_type-atom-ro"><code>cmake_build_type</code> (<code>atom</code>, <code>ro</code>)</a></h3>
+<p>提供构建此 SWI-Prolog 版本时使用的 CMake build type。</p>
+<h3 id="colon_sets_calling_context-bool-ro"><a class="header" href="#colon_sets_calling_context-bool-ro"><code>colon_sets_calling_context</code> (<code>bool</code>, <code>ro</code>)</a></h3>
+<p>使用结构 <code>Module:Goal</code> 会为执行 <code>Goal</code> 设置调用上下文。该标志由 ISO/IEC 13211-2（Prolog 模块标准）定义。参见模块章节。</p>
+<h3 id="color_term-bool-rw"><a class="header" href="#color_term-bool-rw"><code>color_term</code> (<code>bool</code>, <code>rw</code>)</a></h3>
+<p>该标志由库 <code>library(ansi_term)</code> 管理。如果下面两个条件都为真，该库会在启动时载入。注意，这意味着从系统或个人初始化文件中把该标志设置为 <code>false</code> 会禁用彩色输出。谓词 <code>message_property/2</code> 可用于按传给 <code>print_message/2</code> 的消息类型控制实际配色方案。</p>
+<ul>
+<li><code>stream_property(current_output, tty(true))</code></li>
+<li><code>\+ current_prolog_flag(color_term, false)</code></li>
+</ul>
+<h3 id="compile_meta_arguments-atom-rw"><a class="header" href="#compile_meta_arguments-atom-rw"><code>compile_meta_arguments</code> (<code>atom</code>, <code>rw</code>)</a></h3>
+<p>该标志控制传给标记为 <code>0</code> 或 <code>^</code> 的元调用的参数如何编译（参见 <code>meta_predicate/1</code>）。支持下列取值：</p>
+<ul>
+<li><code>false</code>：默认值。元参数原样传递。如果参数是控制结构（例如 <code>(A,B)</code>、<code>(A;B)</code>、<code>(A-&gt;B;C)</code> 等），则在调用元谓词时将其编译为分配在环境栈上的临时子句。</li>
+<li><code>control</code>：把包含控制结构的元参数编译为辅助谓词。这通常能改善性能和调试体验。</li>
+<li><code>always</code>：总是创建中间子句，即使对系统谓词也是如此。将来这可用于把生成谓词的普通头替换为特殊引用，类似 <code>assert/2</code> 使用的数据库引用，从而直接访问可执行代码，避免元调用的运行时谓词查找。</li>
+</ul>
+<h3 id="compiled_at-atom-r"><a class="header" href="#compiled_at-atom-r"><code>compiled_at</code> (<code>atom</code>, <code>r</code>)</a></h3>
+<p>描述系统的编译时间。只有用于编译 SWI-Prolog 的 C 编译器提供 <code>__DATE__</code> 和 <code>__TIME__</code> 宏时才可用。</p>
+<h3 id="conda-bool-r"><a class="header" href="#conda-bool-r"><code>conda</code> (<code>bool</code>, <code>r</code>)</a></h3>
+<p>在 Conda 环境中构建时设置为 <code>true</code>。</p>
+<h3 id="console_menu-bool-r"><a class="header" href="#console_menu-bool-r"><code>console_menu</code> (<code>bool</code>, <code>r</code>)</a></h3>
+<p>当 I/O 绑定到 Epilog（<code>swipl-win</code>）Prolog 控制台时设置为 <code>true</code>，表示该控制台支持菜单。另请参阅 Epilog API 章节。</p>
+<h3 id="cpu_count-integer-rw"><a class="header" href="#cpu_count-integer-rw"><code>cpu_count</code> (<code>integer</code>, <code>rw</code>)</a></h3>
+<p>系统中的物理 CPU 或核心数量。该标志标记为读写，是为了允许假装系统拥有更多或更少处理器。另请参阅 <code>thread_setconcurrency/2</code> 和库 <code>library(thread)</code>。如果系统上无法获取 CPU 数量，则该标志不可用。该标志不会包含在保存状态中（参见 <code>qsave_program/1</code>）。</p>
+<h3 id="dde-bool-r"><a class="header" href="#dde-bool-r"><code>dde</code> (<code>bool</code>, <code>r</code>)</a></h3>
+<p>如果该 Prolog 实例支持 DDE，则设置为 <code>true</code>。</p>
+<h3 id="debug-bool-rw"><a class="header" href="#debug-bool-rw"><code>debug</code> (<code>bool</code>, <code>rw</code>)</a></h3>
+<p>打开或关闭调试模式。如果调试模式已激活，系统会捕捉遇到的 spy point（参见 <code>spy/1</code>）和断点。此外，最后调用优化会被禁用，系统在销毁选择点时也会更保守，以简化调试。</p>
+<p>禁用这些优化可能导致在关闭调试模式时行为正确的程序耗尽内存。</p>
+<h3 id="debug_on_error-bool-rw"><a class="header" href="#debug_on_error-bool-rw"><code>debug_on_error</code> (<code>bool</code>, <code>rw</code>)</a></h3>
+<p>如果为 <code>true</code>，检测到错误后启动 tracer。否则继续执行。引发错误的目标通常会失败。另请参阅 Prolog 标志 <code>report_error</code>。默认值为 <code>true</code>。</p>
+<h3 id="debug_on_interrupt-bool-rw"><a class="header" href="#debug_on_interrupt-bool-rw"><code>debug_on_interrupt</code> (<code>bool</code>, <code>rw</code>)</a></h3>
+<p>如果为 <code>true</code>，在 <code>Control-C</code> 上启动调试器。更精确地说，是在收到 <code>SIGINT</code> 时启动。初始值为 <code>false</code>，进入交互式顶层时会设为 <code>true</code>。若要立即开始处理中断，请参阅命令行选项 <code>--debug-on-interrupt</code>。</p>
+<h3 id="debugger_show_context-bool-rw"><a class="header" href="#debugger_show_context-bool-rw"><code>debugger_show_context</code> (<code>bool</code>, <code>rw</code>)</a></h3>
+<p>如果为 <code>true</code>，tracer 打印栈帧时显示上下文模块。通常通过 tracer 的 <code>C</code> 选项控制。</p>
+<h3 id="debugger_write_options-term-rw"><a class="header" href="#debugger_write_options-term-rw"><code>debugger_write_options</code> (<code>term</code>, <code>rw</code>)</a></h3>
+<p>该参数作为选项列表传给 <code>write_term/2</code>，用于调试器打印目标。调试器的 <code>w</code>、<code>p</code> 和 <code>&lt;N&gt; d</code> 命令会修改它。默认值为 <code>[quoted(true), portray(true), max_depth(10), attributes(portray)]</code>。</p>
+<h3 id="determinism_error-atom-rw"><a class="header" href="#determinism_error-atom-rw"><code>determinism_error</code> (<code>atom</code>, <code>rw</code>)</a></h3>
+<p>该标志定义谓词的确定性与声明不一致时的行为。参见 <code>det/1</code>。可能值为 <code>error</code>（默认值）、<code>warning</code> 和 <code>silent</code>。</p>
+<h3 id="dialect-atom-r"><a class="header" href="#dialect-atom-r"><code>dialect</code> (<code>atom</code>, <code>r</code>)</a></h3>
+<p>固定为 <code>swi</code>。下面的代码是检测 SWI-Prolog 的可靠且可移植方法：</p>
+<pre><code class="language-prolog">is_dialect(swi) :-
+    catch(current_prolog_flag(dialect, swi), _, fail).
+</code></pre>
+<h3 id="dir_sep-atom-r"><a class="header" href="#dir_sep-atom-r"><code>dir_sep</code> (<code>atom</code>, <code>r</code>)</a></h3>
+<p>操作系统文件名中的目录分隔符。通常为 <code>/</code>，但 Windows 上为 <code>\</code>。</p>
+<h3 id="double_quotes-codescharsatomstring-rw"><a class="header" href="#double_quotes-codescharsatomstring-rw"><code>double_quotes</code> (<code>codes,chars,atom,string</code>, <code>rw</code>)</a></h3>
+<p>该标志决定 Prolog 如何读取双引号字符串。和 <code>character_escapes</code>、<code>back_quotes</code> 一样，它按模块维护。默认值为 <code>string</code>，会生成字符串。如果给出 <code>--traditional</code>，默认值为 <code>codes</code>，会生成字符代码列表，即表示 Unicode 码点的整数。取值 <code>chars</code> 会生成单字符原子列表；取值 <code>atom</code> 会让双引号与单引号相同，从而创建原子。另请参阅扩展章节。</p>
+<h3 id="editor-atom-rw"><a class="header" href="#editor-atom-rw"><code>editor</code> (<code>atom</code>, <code>rw</code>)</a></h3>
+<p>决定 <code>edit/1</code> 使用的编辑器。关于选择编辑器的细节，参见自定义编辑器章节。</p>
+<h3 id="emacs_inferior_process-bool-r"><a class="header" href="#emacs_inferior_process-bool-r"><code>emacs_inferior_process</code> (<code>bool</code>, <code>r</code>)</a></h3>
+<p>如果为 true，SWI-Prolog 正作为 GNU/X-Emacs 的下级进程运行。如果环境变量 <code>EMACS</code> 为 <code>t</code> 且 <code>INFERIOR</code> 为 <code>yes</code>，SWI-Prolog 会假定这一点成立。</p>
+<h3 id="encoding-atom-rw"><a class="header" href="#encoding-atom-rw"><code>encoding</code> (<code>atom</code>, <code>rw</code>)</a></h3>
+<p>以 <code>text</code> 模式打开文件时使用的默认编码。初始值从环境推导。详情参见编码章节。</p>
+<h3 id="executable-atom-r"><a class="header" href="#executable-atom-r"><code>executable</code> (<code>atom</code>, <code>r</code>)</a></h3>
+<p>正在运行的可执行文件路径名。<code>qsave_program/2</code> 会把它作为默认仿真器。</p>
+<h3 id="executable_format-atom-r"><a class="header" href="#executable_format-atom-r"><code>executable_format</code> (<code>atom</code>, <code>r</code>)</a></h3>
+<p>SWI-Prolog 可执行文件的格式，例如当 <code>swipl</code> 是 ELF 二进制文件时为 <code>elf</code>。</p>
+<h3 id="engines-bool-r"><a class="header" href="#engines-bool-r"><code>engines</code> (<code>bool</code>, <code>r</code>)</a></h3>
+<p>如果支持 engines，则为 true。在多线程版本中总是如此。单线程版本的 SWI-Prolog 也可能启用 engines。</p>
+<h3 id="exit_status-integer-r"><a class="header" href="#exit_status-integer-r"><code>exit_status</code> (<code>integer</code>, <code>r</code>)</a></h3>
+<p>由 <code>halt/1</code> 设置为其参数，使注册到 <code>at_halt/1</code> 的 hook 可以访问退出状态。</p>
+<h3 id="file_name_case_handling-atom-rw"><a class="header" href="#file_name_case_handling-atom-rw"><code>file_name_case_handling</code> (<code>atom</code>, <code>rw</code>)</a></h3>
+<p>该标志定义 Prolog 如何处理文件名大小写。它用于大小写规范化，并用于判断两个名称是否指向同一文件。注意，文件名大小写处理通常是文件系统属性，而 Prolog 只有一个全局标志来决定其文件处理方式。该标志有下列取值：</p>
+<ul>
+<li><code>case_sensitive</code>：文件系统完全区分大小写。Prolog 不执行任何大小写修改或不区分大小写的匹配。这是 Unix 系统上的默认值。</li>
+<li><code>case_preserving</code>：文件系统不区分大小写，但保留用户创建文件时使用的大小写。这是 Windows 系统上的默认值。</li>
+<li><code>case_insensitive</code>：文件系统既不存储也不匹配大小写。在这种情况下，Prolog 会把所有文件名映射为小写。</li>
+</ul>
+<h3 id="file_name_variables-bool-rw"><a class="header" href="#file_name_variables-bool-rw"><code>file_name_variables</code> (<code>bool</code>, <code>rw</code>)</a></h3>
+<p>如果为 <code>true</code>（默认值为 <code>false</code>），会在接受文件名的内建谓词参数中展开 <code>$varname</code> 和 <code>~</code>，例如 <code>open/3</code>、<code>exists_file/1</code>、<code>access_file/2</code> 等。谓词 <code>expand_file_name/2</code> 可用于展开环境变量和通配符模式。该 Prolog 标志旨在兼容旧版本 SWI-Prolog。</p>
+<h3 id="file_search_cache_time-number-rw"><a class="header" href="#file_search_cache_time-number-rw"><code>file_search_cache_time</code> (<code>number</code>, <code>rw</code>)</a></h3>
+<p><code>absolute_file_name/3</code> 搜索结果的缓存时间，单位为秒。在该时间限制内，系统会先检查旧搜索结果是否仍满足条件。默认值为 10 秒，通常可以避免编译期间对库文件等进行大多数重复搜索。将该值设为 0 会禁用缓存。</p>
+<h3 id="float_max-float-r"><a class="header" href="#float_max-float-r"><code>float_max</code> (<code>float</code>, <code>r</code>)</a></h3>
+<p>可表示的最大浮点数。</p>
+<h3 id="float_max_integer-float-r"><a class="header" href="#float_max_integer-float-r"><code>float_max_integer</code> (<code>float</code>, <code>r</code>)</a></h3>
+<p>能用浮点数精确表示的最大整数。</p>
+<h3 id="float_min-float-r"><a class="header" href="#float_min-float-r"><code>float_min</code> (<code>float</code>, <code>r</code>)</a></h3>
+<p>大于 0.0 的最小可表示浮点数。另请参阅函数 <code>nexttoward/2</code>。</p>
+<h3 id="float_overflow-atom-rw"><a class="header" href="#float_overflow-atom-rw"><code>float_overflow</code> (<code>atom</code>, <code>rw</code>)</a></h3>
+<p>取值为 <code>error</code>（默认值）或 <code>infinity</code>。前者符合 ISO。使用 <code>infinity</code> 时，浮点溢出会映射为正或负 <code>Inf</code>。参见 IEEE 浮点章节。该标志也影响 <code>read_term/3</code> 及相关谓词，使它们把过大的浮点数读为 infinity。</p>
+<h3 id="float_rounding-atom-rw"><a class="header" href="#float_rounding-atom-rw"><code>float_rounding</code> (<code>atom</code>, <code>rw</code>)</a></h3>
+<p>定义算术如何舍入为浮点数。已定义取值为 <code>to_nearest</code>（默认值）、<code>to_positive</code>、<code>to_negative</code> 或 <code>to_zero</code>。对大多数场景，函数 <code>roundtoward/2</code> 是更安全也更快的替代方案。</p>
+<h3 id="float_undefined-atom-rw"><a class="header" href="#float_undefined-atom-rw"><code>float_undefined</code> (<code>atom</code>, <code>rw</code>)</a></h3>
+<p>取值为 <code>error</code>（默认值）或 <code>nan</code>。前者符合 ISO。使用 <code>nan</code> 时，未定义操作（例如 <code>sqrt(-2.0)</code>）会映射为 <code>NaN</code>。参见 IEEE 浮点章节。</p>
+<h3 id="float_underflow-atom-rw"><a class="header" href="#float_underflow-atom-rw"><code>float_underflow</code> (<code>atom</code>, <code>rw</code>)</a></h3>
+<p>取值为 <code>error</code> 或 <code>ignore</code>（默认值）。后者符合 ISO，会把结果绑定为 0.0。</p>
+<h3 id="float_zero_div-atom-rw"><a class="header" href="#float_zero_div-atom-rw"><code>float_zero_div</code> (<code>atom</code>, <code>rw</code>)</a></h3>
+<p>取值为 <code>error</code>（默认值）或 <code>infinity</code>。前者符合 ISO。使用 <code>infinity</code> 时，除以 0.0 会映射为正或负 <code>Inf</code>。参见 IEEE 浮点章节。</p>
+<h3 id="gc-bool-rw"><a class="header" href="#gc-bool-rw"><code>gc</code> (<code>bool</code>, <code>rw</code>)</a></h3>
+<p>如果为 true（默认值），垃圾回收器处于活动状态。如果为 false，则既不会执行垃圾回收，也不会执行栈移动，即使显式请求也不会执行。可以修改。</p>
+<h3 id="gc_thread-bool-r"><a class="header" href="#gc_thread-bool-r"><code>gc_thread</code> (<code>bool</code>, <code>r</code>)</a></h3>
+<p>如果为 <code>true</code>（启用线程时默认如此），原子和子句垃圾回收会在一个别名为 <code>gc</code> 的独立线程中执行。否则，由检测到足够垃圾的线程执行垃圾回收。由于运行这些全局回收器可能耗时较长，使用独立线程可以改善实时行为。可以使用 <code>set_prolog_gc_thread/1</code> 控制 <code>gc</code> 线程，该谓词要么启用 gc 线程，要么杀死 gc 线程并等待它结束。</p>
+<h3 id="generate_debug_info-bool-rw"><a class="header" href="#generate_debug_info-bool-rw"><code>generate_debug_info</code> (<code>bool</code>, <code>rw</code>)</a></h3>
+<p>如果为 <code>true</code>（默认值），生成可以用 <code>trace/0</code>、<code>spy/1</code> 等调试的代码。可以用 <code>--no-debug</code> 设为 <code>false</code>。该标志在源文件内有作用域。很多库使用 <code>:- set_prolog_flag(generate_debug_info, false)</code> 来在普通 trace 中隐藏其内部细节。在当前实现中，这只会在谓词上设置一个标志，使子调用对调试器隐藏；该名称预示编译器未来可能进一步变化。</p>
+<h3 id="gmp_version-integer-r"><a class="header" href="#gmp_version-integer-r"><code>gmp_version</code> (<code>integer</code>, <code>r</code>)</a></h3>
+<p>如果 Prolog 链接了 GMP，该标志给出所用 GMP 库的主版本。另请参阅 GMP 外部接口章节。链接到 LibBF 时不存在该标志。可通过 Prolog 标志 <code>bounded</code> 不存在来测试大整数和有理数支持。</p>
+<h3 id="gui-bool-r"><a class="header" href="#gui-bool-r"><code>gui</code> (<code>bool</code>, <code>r</code>)</a></h3>
+<p>如果 XPCE 存在且可用于图形界面，则设置为 <code>true</code>。</p>
+<h3 id="halt_grace_time-float-rw"><a class="header" href="#halt_grace_time-float-rw"><code>halt_grace_time</code> (<code>float</code>, <code>rw</code>)</a></h3>
+<p><code>halt/1</code> 等待其他线程优雅结束的时间。默认值为 1 秒。</p>
+<h3 id="heartbeat-integer-rw"><a class="header" href="#heartbeat-integer-rw"><code>heartbeat</code> (<code>integer</code>, <code>rw</code>)</a></h3>
+<p>如果非零，则每 <code>N</code> 次推理调用一次 <code>prolog:heartbeat/0</code>。<code>N</code> 会四舍五入到 16 的倍数。</p>
+<h3 id="home-atom-r"><a class="header" href="#home-atom-r"><code>home</code> (<code>atom</code>, <code>r</code>)</a></h3>
+<p>SWI-Prolog 所认为的 home 目录。SWI-Prolog 使用 home 目录查找启动文件 <code>&lt;home&gt;/boot.prc</code>，并查找库目录 <code>&lt;home&gt;/library</code>。有些安装可能把体系结构无关文件放在共享 home 中，并同时定义 <code>shared_home</code>。系统文件可通过 <code>absolute_file_name/3</code> 以 <code>swi(file)</code> 的形式找到。参见 <code>file_search_path/2</code>。关于该位置如何确定，参见 home 查找章节；关于从命令行设置或报告它，参见 <code>--home</code>。</p>
+<h3 id="integer_rounding_function-downtoward_zero-r"><a class="header" href="#integer_rounding_function-downtoward_zero-r"><code>integer_rounding_function</code> (<code>down,toward_zero</code>, <code>r</code>)</a></h3>
+<p>ISO Prolog 标志，描述算术函数 <code>//</code> 和 <code>rem</code> 的舍入方式。取值取决于所用 C 编译器。</p>
+<h3 id="iso-bool-rw"><a class="header" href="#iso-bool-rw"><code>iso</code> (<code>bool</code>, <code>rw</code>)</a></h3>
+<p>启用一些奇特的 ISO 兼容行为，这些行为与正常 SWI-Prolog 行为不兼容。目前它有下列影响：</p>
+<ul>
+<li>函子 <code>//2</code>（浮点除法）总是返回浮点数，即使应用于可以整除的整数。</li>
+<li>在项的标准序中，所有浮点数都排在所有整数之前。</li>
+<li>如果 <code>atom_length/2</code> 的第一个参数是数字，则产生类型错误。</li>
+<li>访问静态谓词时，<code>clause/[2,3]</code> 会引发权限错误。</li>
+<li>访问静态谓词时，<code>abolish/[1,2]</code> 会引发权限错误。</li>
+<li>语法更接近 ISO 标准：
+<ul>
+<li>在函数式记法和列表记法中，项的优先级必须低于 1000。这意味着作为参数出现的规则和控制结构需要加括号。像 <code>[a :- b, c].</code> 这样的项现在必须消歧为 <code>[(a :- b), c].</code> 或 <code>[(a :- b, c)].</code>。</li>
+<li>作为操作数出现的运算符必须加括号。应写作 <code>X == (-), true.</code>，而不是 <code>X == -, true.</code>。目前这一点还没有完全强制执行。</li>
+<li>反斜线转义的换行会按 ISO 标准解释。参见字符转义语法章节。</li>
+</ul>
+</li>
+</ul>
+<h3 id="large_files-bool-r"><a class="header" href="#large_files-bool-r"><code>large_files</code> (<code>bool</code>, <code>r</code>)</a></h3>
+<p>如果存在且为 <code>true</code>，表示 SWI-Prolog 编译时启用了大文件支持（large file support，LFS），可以访问大于 2GB 的文件。该标志在 64 位硬件上总是 <code>true</code>；在 32 位硬件上，如果配置检测到 LFS 支持，则为 true。注意，特定文件所在的文件系统仍可能限制文件大小。</p>
+<h3 id="last_call_optimisation-bool-rw"><a class="header" href="#last_call_optimisation-bool-rw"><code>last_call_optimisation</code> (<code>bool</code>, <code>rw</code>)</a></h3>
+<p>决定是否启用最后调用优化。通常，该标志的值是 <code>debug</code> 标志的否定。由于省略最后调用优化可能让程序耗尽栈空间，有时需要在调试期间启用它。</p>
+<h3 id="libswipl-atom-rw"><a class="header" href="#libswipl-atom-rw"><code>libswipl</code> (<code>atom</code>, <code>rw</code>)</a></h3>
+<p>SWI-Prolog 共享库 <code>libswipl</code> 所在路径，即提供 Prolog 的 SWI-Prolog 共享对象。在某些系统上，可以从正在运行的系统可靠确定该路径，这些系统上的标志是只读的。在其他系统上，它是配置的目标安装位置；如果安装被移动，该值可能错误。由于没有跨平台的可靠方式计算该路径，这些平台上的标志为读写。当前，该标志在 Windows 以及提供 <code>dladdr()</code> 函数的 POSIX 系统上可靠；Linux 和 MacOS 都提供该函数。</p>
+<h3 id="linux-bool-r"><a class="header" href="#linux-bool-r"><code>linux</code> (<code>bool</code>, <code>r</code>)</a></h3>
+<p>如果存在且为 <code>true</code>，操作系统是某种 Linux。另请参阅 <code>unix</code>。</p>
+<h3 id="malloc-atom-r"><a class="header" href="#malloc-atom-r"><code>malloc</code> (<code>atom</code>, <code>r</code>)</a></h3>
+<p>在成功识别所用 <code>malloc()</code> 实现后设置。当前可能取值为 <code>tcmalloc</code> 和 <code>ptmalloc</code>。详情参见内存分配章节。</p>
+<h3 id="max_answers_for_subgoal-integer-rw"><a class="header" href="#max_answers_for_subgoal-integer-rw"><code>max_answers_for_subgoal</code> (<code>integer</code>, <code>rw</code>)</a></h3>
+<p>限制表中答案数量。原子 <code>infinite</code> 会清除该标志。默认情况下，该标志未定义。详情参见制表限制章节。</p>
+<h3 id="max_answers_for_subgoal_action-atom-rw"><a class="header" href="#max_answers_for_subgoal_action-atom-rw"><code>max_answers_for_subgoal_action</code> (<code>atom</code>, <code>rw</code>)</a></h3>
+<p>当表达到 <code>max_answers_for_subgoal</code> 指定的答案数量时采取的动作。支持的取值为 <code>bounded_rationality</code>、<code>error</code>（默认值）或 <code>suspend</code>。</p>
+<h3 id="max_arity-unbounded-r"><a class="header" href="#max_arity-unbounded-r"><code>max_arity</code> (<code>unbounded</code>, <code>r</code>)</a></h3>
+<p>ISO Prolog 标志，表示复合项没有最大元数限制。</p>
+<h3 id="max_char_code-integer-r"><a class="header" href="#max_char_code-integer-r"><code>max_char_code</code> (<code>integer</code>, <code>r</code>)</a></h3>
+<p>支持的最高 Unicode 码点。SWI-Prolog 支持从 0 到该标志值（含）的所有 Unicode 码点。该值遵循 Unicode 标准，当前为 <code>0x10ffff</code>。</p>
+<h3 id="unicode_syntax_version-atom-r"><a class="header" href="#unicode_syntax_version-atom-r"><code>unicode_syntax_version</code> (<code>atom</code>, <code>r</code>)</a></h3>
+<p>用于构建 SWI-Prolog 源语法分类器的数据的 Unicode 版本，例如 <code>'17.0.0'</code>。它驱动 Unicode Prolog 源语法章节中描述的 identifier、layout 和 solo 类。另请参阅 <code>library(unicode)</code> 中的 <code>unicode_version/1</code>，它报告绑定的 <code>utf8proc</code> 数据版本；该版本可能不同，用于规范化、字素分割和 <code>unicode_property/2</code>。</p>
+<h3 id="max_integer-integer-r"><a class="header" href="#max_integer-integer-r"><code>max_integer</code> (<code>integer</code>, <code>r</code>)</a></h3>
+<p>如果整数是有界的，这是最大整数值。另请参阅标志 <code>bounded</code> 和算术类型章节。</p>
+<h3 id="max_integer_size-integer-rw"><a class="header" href="#max_integer_size-integer-rw"><code>max_integer_size</code> (<code>integer</code>, <code>rw</code>)</a></h3>
+<p>设置这个 tripwire 后，为大整数和有理数分配内存时会限制为给定字节数。最小值为 1,000。未设置时，分配限制由栈限制决定，因为系统无法表示更大的数，也无法表示 <code>malloc()</code> 失败。特别是那些可能代表客户端处理任意算术表达式的服务，可以设置该限制以避免资源耗尽。</p>
+<h3 id="max_procedure_arity-integer-r"><a class="header" href="#max_procedure_arity-integer-r"><code>max_procedure_arity</code> (<code>integer</code>, <code>r</code>)</a></h3>
+<p>谓词的最大元数。尝试定义或调用这样的谓词会产生 <code>representation_error(max_procedure_arity)</code> 异常。当前设为 1024。</p>
+<h3 id="max_rational_size-integer-rw"><a class="header" href="#max_rational_size-integer-rw"><code>max_rational_size</code> (<code>integer</code>, <code>rw</code>)</a></h3>
+<p>限制有理数大小，单位为字节。这个 tripwire 可用于发现把 Prolog 标志 <code>prefer_rationals</code> 设为 <code>true</code> 后产生过大有理数的情况；如果不需要精度，应使用浮点算术。注意，有理数也会被 Prolog 标志 <code>max_integer_size</code> 隐式限制。</p>
+<h3 id="max_rational_size_action-atom-rw"><a class="header" href="#max_rational_size_action-atom-rw"><code>max_rational_size_action</code> (<code>atom</code>, <code>rw</code>)</a></h3>
+<p>超过 <code>max_rational_size</code> tripwire 时采取的动作。可能值为 <code>error</code>（默认值），即抛出 tripwire 资源错误；以及 <code>float</code>，即把有理数转换为浮点数。注意，有理数可能超过浮点数范围。</p>
+<h3 id="max_table_answer_size-integer-rw"><a class="header" href="#max_table_answer_size-integer-rw"><code>max_table_answer_size</code> (<code>integer</code>, <code>rw</code>)</a></h3>
+<p>限制制表中答案替换的大小。原子 <code>infinite</code> 会清除该标志。默认情况下，该标志未定义。详情参见制表限制章节。</p>
+<h3 id="max_table_answer_size_action-atom-rw"><a class="header" href="#max_table_answer_size_action-atom-rw"><code>max_table_answer_size_action</code> (<code>atom</code>, <code>rw</code>)</a></h3>
+<p>如果向表中添加大于 <code>max_table_answer_size</code> 的答案替换，系统采取的动作。支持的取值为 <code>error</code>（默认值）、<code>bounded_rationality</code>、<code>suspend</code> 和 <code>fail</code>。</p>
+<h3 id="max_table_subgoal_size-integer-rw"><a class="header" href="#max_table_subgoal_size-integer-rw"><code>max_table_subgoal_size</code> (<code>integer</code>, <code>rw</code>)</a></h3>
+<p>限制访问表的目标项大小。原子 <code>infinite</code> 会清除该标志。默认情况下，该标志未定义。详情参见制表限制章节。</p>
+<h3 id="max_table_subgoal_size_action-atom-rw"><a class="header" href="#max_table_subgoal_size_action-atom-rw"><code>max_table_subgoal_size_action</code> (<code>atom</code>, <code>rw</code>)</a></h3>
+<p>如果制表目标超过 <code>max_table_subgoal_size</code>，系统采取的动作。支持的取值为 <code>error</code>（默认值）、<code>abstract</code> 和 <code>suspend</code>。</p>
+<h3 id="max_tagged_integer-integer-r"><a class="header" href="#max_tagged_integer-integer-r"><code>max_tagged_integer</code> (<code>integer</code>, <code>r</code>)</a></h3>
+<p>可表示为 tagged 值的最大整数。Tagged 整数需要一个字的存储空间。更大的整数表示为间接数据（indirect data），需要显著更多空间。</p>
+<h3 id="message_context-listatom-rw"><a class="header" href="#message_context-listatom-rw"><code>message_context</code> (<code>list(atom)</code>, <code>rw</code>)</a></h3>
+<p>要添加到 <code>error</code> 和 <code>warning</code> 级别消息中的上下文信息。该列表可以包含元素 <code>thread</code>，用于把生成消息的线程加入消息；也可以包含 <code>time</code> 或 <code>time(Format)</code>，用于添加时间戳。默认时间格式为 <code>%T.%3f</code>。默认值为 <code>[thread]</code>。另请参阅 <code>format_time/3</code> 和 <code>print_message/2</code>。</p>
+<h3 id="min_integer-integer-r"><a class="header" href="#min_integer-integer-r"><code>min_integer</code> (<code>integer</code>, <code>r</code>)</a></h3>
+<p>如果整数是有界的，这是最小整数值。另请参阅标志 <code>bounded</code> 和算术类型章节。</p>
+<h3 id="min_tagged_integer-integer-r"><a class="header" href="#min_tagged_integer-integer-r"><code>min_tagged_integer</code> (<code>integer</code>, <code>r</code>)</a></h3>
+<p>Tagged integer 值范围的起点。</p>
+<h3 id="mitigate_spectre-bool-rw"><a class="header" href="#mitigate_spectre-bool-rw"><code>mitigate_spectre</code> (<code>bool</code>, <code>rw</code>)</a></h3>
+<p>当为 <code>true</code>（默认值为 <code>false</code>）时，强制缓解基于时间的 Spectre 安全漏洞。基于 Spectre 的攻击可以从进程拥有但本应保持不可见的内存中提取信息，例如密码或 Web 服务器的私钥。这类攻击通过导致对敏感数据的推测性访问，并通过连续指令耗时差异等旁路泄漏数据。一个可能受影响的应用示例是 SWISH：它允许用户运行 Prolog 代码，而 SWISH 服务器必须同时保护其他用户的隐私以及 HTTPS 私钥、cookie 和密码。</p>
+<p>目前，启用该标志会把 <code>get_time/1</code> 和 <code>statistics/2</code> CPU 时间的分辨率降低到 20 微秒。</p>
+<p><strong>警告</strong>：虽然更粗粒度的计时器会让这类攻击更难成功，但通常不能可靠防止此类攻击。完整缓解可能需要编译器支持，以禁用对敏感数据的推测性访问。</p>
+<h3 id="msys2-bool-r"><a class="header" href="#msys2-bool-r"><code>msys2</code> (<code>bool</code>, <code>r</code>)</a></h3>
+<p>如果存在，表示 SWI-Prolog 是在 MSYS2 shell 下运行的 MS-Windows 版本。</p>
+<h3 id="occurs_check-atom-rw"><a class="header" href="#occurs_check-atom-rw"><code>occurs_check</code> (<code>atom</code>, <code>rw</code>)</a></h3>
+<p>该标志控制会创建无限树（也称循环项）的合一，并可取三个值。使用 <code>false</code>（默认值）时，合一成功并创建无限树。使用 <code>true</code> 时，合一行为类似 <code>unify_with_occurs_check/2</code>，静默失败。使用 <code>error</code> 时，尝试创建循环项会导致 <code>occurs_check</code> 异常。后者用于调试无意创建循环项的情况。注意，这是一个全局标志，会修改 Prolog 的基础行为。把该标志从默认值改掉，可能导致库无法正常工作。</p>
+<h3 id="on_error-atom-rw"><a class="header" href="#on_error-atom-rw"><code>on_error</code> (<code>atom</code>, <code>rw</code>)</a></h3>
+<p>决定如何处理用 <code>print_message/2</code> 打印的错误，即报告给用户的错误。可能值为 <code>print</code>（默认值）、<code>status</code> 和 <code>halt</code>。使用 <code>halt</code> 时，进程立即以状态 1 停止。否则继续执行。使用 <code>status</code> 时，如果进程打印过一个或多个错误，<code>halt/0</code> 会以状态 1 退出。在编译模式（参见 <code>-c</code>）中，默认值为 <code>status</code>。该标志可通过命令行选项 <code>--on-error</code> 设置。另请参阅编译消息章节。</p>
+<h3 id="on_warning-atom-rw"><a class="header" href="#on_warning-atom-rw"><code>on_warning</code> (<code>atom</code>, <code>rw</code>)</a></h3>
+<p>类似 <code>on_error</code>，但用于警告。默认值始终为 <code>print</code>。对应命令行选项为 <code>--on-warning</code>。</p>
+<h3 id="open_shared_object-bool-r"><a class="header" href="#open_shared_object-bool-r"><code>open_shared_object</code> (<code>bool</code>, <code>r</code>)</a></h3>
+<p>如果为 true，<code>open_shared_object/2</code> 及相关谓词已实现，可访问共享库（<code>.so</code> 文件）或动态链接库（<code>.DLL</code> 文件）。</p>
+<h3 id="optimise-bool-rw"><a class="header" href="#optimise-bool-rw"><code>optimise</code> (<code>bool</code>, <code>rw</code>)</a></h3>
+<p>如果为 <code>true</code>，以优化模式编译。若 Prolog 以命令行选项 <code>-O</code> 启动，初始值为 <code>true</code>。<code>optimise</code> 标志具有源文件作用域。</p>
+<p>当前，优化编译意味着编译算术表达式，并删除可能由 <code>expand_goal/2</code> 产生的冗余 <code>true/0</code>。</p>
+<p>未来版本可能包含其他优化，例如把小谓词集成到调用方、消除常量表达式和其他可预测结构。源代码优化从不应用于声明为动态的谓词（参见 <code>dynamic/1</code>）。</p>
+<h3 id="optimise_unify-bool-rw"><a class="header" href="#optimise_unify-bool-rw"><code>optimise_unify</code> (<code>bool</code>, <code>rw</code>)</a></h3>
+<p>如果为 <code>true</code>（默认值），允许编译器移动或移除显式合一调用（<code>=/2</code>）。虽然这能显著提升性能，但源级调试器尚不能正确处理这种行为。参见函数体索引章节。</p>
+<h3 id="os_argv-list-rw"><a class="header" href="#os_argv-list-rw"><code>os_argv</code> (<code>list</code>, <code>rw</code>)</a></h3>
+<p>一个原子列表，表示用于调用 SWI-Prolog 的命令行参数。注意，返回的列表包含所有参数。若要获取应用程序选项，请参阅 <code>argv</code>。</p>
+<h3 id="packs-bool-r"><a class="header" href="#packs-bool-r"><code>packs</code> (<code>bool</code>, <code>r</code>)</a></h3>
+<p>如果为 <code>true</code>，扩展包（add-ons）已附加。可以使用 <code>--no-packs</code> 设为 <code>false</code>。</p>
+<h3 id="path_max-integer-r"><a class="header" href="#path_max-integer-r"><code>path_max</code> (<code>integer</code>, <code>r</code>)</a></h3>
+<p>操作系统报告的文件路径名最大长度。这个长度通常不直接定义文件名字符数。实际限制可能因编码而更短；例如 POSIX 系统上，它通常定义经常为 UTF-8 编码的名称的长度限制。底层文件系统也可能施加额外限制。</p>
+<h3 id="path_sep-atom-r"><a class="header" href="#path_sep-atom-r"><code>path_sep</code> (<code>atom</code>, <code>r</code>)</a></h3>
+<p>操作系统中文件搜索路径的分隔符，例如环境变量 <code>PATH</code> 使用的分隔符。通常为 <code>:</code>，但 Windows 上为 <code>;</code>。</p>
+<h3 id="pid-int-r"><a class="header" href="#pid-int-r"><code>pid</code> (<code>int</code>, <code>r</code>)</a></h3>
+<p>正在运行的 Prolog 进程的进程标识符。该标志是否存在由实现定义。</p>
+<h3 id="pipe-bool-rw"><a class="header" href="#pipe-bool-rw"><code>pipe</code> (<code>bool</code>, <code>rw</code>)</a></h3>
+<p>如果为 true，支持 <code>open(pipe(command), mode, Stream)</code> 等形式。可以修改，以便在测试该特性的应用程序中禁用 pipe。不推荐这样做。</p>
+<h3 id="portable_vmi-bool-rw"><a class="header" href="#portable_vmi-bool-rw"><code>portable_vmi</code> (<code>bool</code>, <code>rw</code>)</a></h3>
+<p>如果为 <code>true</code>（默认值），生成可同时在 32 位和 64 位硬件上运行的 <code>.qlf</code> 文件和保存状态。如果为 <code>false</code>，某些优化的虚拟机指令只有在整数参数位于 32 位机器 tagged integer 范围内时才使用。</p>
+<h3 id="posix_shell-atom-rw"><a class="header" href="#posix_shell-atom-rw"><code>posix_shell</code> (<code>atom</code>, <code>rw</code>)</a></h3>
+<p>POSIX 兼容 shell 的路径。默认通常为 <code>/bin/sh</code>。该标志由 <code>shell/1</code> 和 <code>qsave_program/2</code> 使用。</p>
+<h3 id="prefer_rationals-bool-rw"><a class="header" href="#prefer_rationals-bool-rw"><code>prefer_rationals</code> (<code>bool</code>, <code>rw</code>)</a></h3>
+<p>只有在系统编译时支持无界和有理数算术时才提供（参见 <code>bounded</code>）。如果为 <code>true</code>，算术会优先产生有理数而非浮点数。这意味着：</p>
+<ul>
+<li>两个整数相除（函数 <code>/2</code>）会产生有理数。</li>
+<li>两个整数求幂（函数 <code>^/2</code>）会产生有理数，即使第二个操作数为负。例如，<code>2^(-2)</code> 求值得到 <code>1/4</code>。</li>
+</ul>
+<p>使用 <code>true</code> 可能创建过大的有理数。Prolog 标志 <code>max_rational_size</code> 可用于检测并处理这个 tripwire。</p>
+<p>如果为 <code>false</code>，有理数只能通过函数 <code>rational/1</code>、<code>rationalize/1</code>、<code>rdiv/2</code> 创建，或通过读取创建。另请参阅 <code>rational_syntax</code>、有理数语法章节和有理数章节。</p>
+<p>当前默认值为 <code>false</code>。未来可能改为 <code>true</code>。强烈建议用户把该标志设为 <code>true</code>，并报告因此产生的问题。</p>
+<h3 id="print_write_options-term-rw"><a class="header" href="#print_write_options-term-rw"><code>print_write_options</code> (<code>term</code>, <code>rw</code>)</a></h3>
+<p>指定 <code>print/1</code> 和 <code>print/2</code> 使用的 <code>write_term/2</code> 选项。</p>
+<h3 id="prompt_alternatives_on-atom-rw"><a class="header" href="#prompt_alternatives_on-atom-rw"><code>prompt_alternatives_on</code> (<code>atom</code>, <code>rw</code>)</a></h3>
+<p>决定 Prolog 顶层如何提示替代答案。默认值为 <code>determinism</code>，表示如果目标成功但留下选择点，系统会提示替代答案。许多经典 Prolog 系统表现为 <code>groundness</code>：当且仅当查询包含变量时提示替代答案。</p>
+<h3 id="protect_static_code-bool-rw"><a class="header" href="#protect_static_code-bool-rw"><code>protect_static_code</code> (<code>bool</code>, <code>rw</code>)</a></h3>
+<p>如果为 <code>true</code>（默认值为 <code>false</code>），<code>clause/2</code> 不操作静态代码，从而对想列出 Prolog 程序静态代码的攻击者提供一些基本防护。一旦该标志为 <code>true</code>，就不能改回 <code>false</code>。ISO 模式默认启用保护（参见 Prolog 标志 <code>iso</code>）。注意，开发环境的很多部分要求 <code>clause/2</code> 能操作静态代码，因此启用该标志应只用于生产代码。</p>
+<h3 id="qcompile-atom-rw"><a class="header" href="#qcompile-atom-rw"><code>qcompile</code> (<code>atom</code>, <code>rw</code>)</a></h3>
+<p>该选项为 <code>load_files/2</code> 的 <code>qcompile(+Atom)</code> 选项提供默认值。</p>
+<h3 id="rational_syntax-atom-rw"><a class="header" href="#rational_syntax-atom-rw"><code>rational_syntax</code> (<code>atom</code>, <code>rw</code>)</a></h3>
+<p>决定有理数的读写语法。可能值为 <code>natural</code>（例如 <code>1/3</code>）或 <code>compatibility</code>（例如 <code>1r3</code>）。<code>compatibility</code> 语法总是被接受。该标志对模块敏感。</p>
+<p>当前默认值为 <code>compatibility</code>，它会把有理数读写为例如 <code>1r3</code>。关于分隔字符仍有一些讨论，参见有理数语法章节。未来可能考虑把默认值改为 <code>natural</code>。强烈建议用户把该标志设为 <code>natural</code>，并报告因此产生的问题。</p>
+<h3 id="rationals-atom-r"><a class="header" href="#rationals-atom-r"><code>rationals</code> (<code>atom</code>, <code>r</code>)</a></h3>
+<p>如果系统支持有理数，则该标志存在且值为 <code>true</code>。对 SWI-Prolog 来说，如果标志 <code>bounded</code> 为 <code>false</code>，该标志总会设置。</p>
+<h3 id="readline-atom-rw"><a class="header" href="#readline-atom-rw"><code>readline</code> (<code>atom</code>, <code>rw</code>)</a></h3>
+<p>指定提供哪种命令行编辑形式。可能值如下：</p>
+<ul>
+<li><code>false</code>：没有可用的命令行编辑。</li>
+<li><code>editline</code>：载入库 <code>library(editline)</code>，提供基于 BSD libedit 的行编辑。如果 <code>library(editline)</code> 可用，这是默认值。</li>
+</ul>
+<h3 id="report_error-bool-rw"><a class="header" href="#report_error-bool-rw"><code>report_error</code> (<code>bool</code>, <code>rw</code>)</a></h3>
+<p>如果为 <code>true</code>，打印错误消息；否则抑制它们。可以修改。另请参阅 Prolog 标志 <code>debug_on_error</code>。默认值为 <code>true</code>，运行时版本除外。</p>
+<h3 id="resource_database-atom-r"><a class="header" href="#resource_database-atom-r"><code>resource_database</code> (<code>atom</code>, <code>r</code>)</a></h3>
+<p>设置为附加状态的绝对文件名。通常是文件 <code>boot32.prc</code>、通过 <code>-x</code> 指定的文件，或正在运行的可执行文件。另请参阅 <code>resource/3</code>。</p>
+<h3 id="runtime-bool-r"><a class="header" href="#runtime-bool-r"><code>runtime</code> (<code>bool</code>, <code>r</code>)</a></h3>
+<p>如果存在且为 <code>true</code>，SWI-Prolog 以 <code>-DO_RUNTIME</code> 编译，会禁用各种有用的开发功能（目前包括 tracer 和 profiler）。</p>
+<h3 id="sandboxed_load-bool-rw"><a class="header" href="#sandboxed_load-bool-rw"><code>sandboxed_load</code> (<code>bool</code>, <code>rw</code>)</a></h3>
+<p>如果为 <code>true</code>（默认值为 <code>false</code>），<code>load_files/2</code> 会调用 hook，使 <code>library(sandbox)</code> 能验证指令的安全性。</p>
+<h3 id="saved_program-bool-r"><a class="header" href="#saved_program-bool-r"><code>saved_program</code> (<code>bool</code>, <code>r</code>)</a></h3>
+<p>如果存在且为 <code>true</code>，表示 Prolog 是从使用 <code>qsave_program/[1,2]</code> 保存的状态启动的。</p>
+<h3 id="shared_home-atom-r"><a class="header" href="#shared_home-atom-r"><code>shared_home</code> (<code>atom</code>, <code>r</code>)</a></h3>
+<p>表示部分 SWI-Prolog 系统文件安装在 <code>&lt;prefix&gt;/share/swipl</code>，而不是 home 下的 <code>&lt;prefix&gt;/lib/swipl</code>。该标志表示这个共享 home 的位置，并且该目录会加入文件搜索路径 <code>swi</code>。参见 <code>file_search_path/2</code> 和标志 <code>home</code>。</p>
+<h3 id="shared_object_extension-atom-r"><a class="header" href="#shared_object_extension-atom-r"><code>shared_object_extension</code> (<code>atom</code>, <code>r</code>)</a></h3>
+<p>操作系统用于共享对象的扩展名。多数 Unix 系统为 <code>.so</code>，Windows 为 <code>.dll</code>。它用于通过 <code>file_type</code> <code>executable</code> 定位文件。另请参阅 <code>absolute_file_name/3</code>。</p>
+<h3 id="shared_object_search_path-atom-r"><a class="header" href="#shared_object_search_path-atom-r"><code>shared_object_search_path</code> (<code>atom</code>, <code>r</code>)</a></h3>
+<p>系统搜索共享对象时使用的环境变量名称。</p>
+<h3 id="shared_table_space-integer-rw"><a class="header" href="#shared_table_space-integer-rw"><code>shared_table_space</code> (<code>integer</code>, <code>rw</code>)</a></h3>
+<p>为存储共享答案表保留的空间。参见共享制表章节和 Prolog 标志 <code>table_space</code>。</p>
+<h3 id="shift_check-bool-rw"><a class="header" href="#shift_check-bool-rw"><code>shift_check</code> (<code>bool</code>, <code>rw</code>)</a></h3>
+<p>当为 <code>true</code>（默认值为 <code>false</code>）时，检查由 <code>shift_for_copy/1</code> 捕获的可疑定界延续。</p>
+<h3 id="signals-bool-r"><a class="header" href="#signals-bool-r"><code>signals</code> (<code>bool</code>, <code>r</code>)</a></h3>
+<p>决定 Prolog 是否处理信号（软件中断）。如果宿主操作系统不支持信号处理，或命令行选项 <code>--no-signals</code> 处于活动状态，该标志为 <code>false</code>。详情参见嵌入式信号章节。</p>
+<h3 id="source-bool-rw"><a class="header" href="#source-bool-rw"><code>source</code> (<code>bool</code>, <code>rw</code>)</a></h3>
+<p>如果为 <code>true</code>，在存在对应 <code>.pl</code> 文件时忽略 <code>.qlf</code> 文件。库中提供的 <code>.qlf</code> 文件是在启用优化（参见 <code>optimise</code>）、启用宏展开（参见 <code>library(apply_macros)</code>）并移除 <code>debug/3</code> 和 <code>assertion/1</code> 语句的情况下编译的。使用该标志会载入源代码，从而更好地支持调试。如果某个调试会话能从更好地访问库调试设施中受益，可以在程序载入文件开头设置该 Prolog 标志，或这样启动 Prolog：</p>
+<pre><code class="language-shell">swipl -Dsource [option ...] myfile.pl ...
+</code></pre>
+<h3 id="source_search_working_directory-bool-rw"><a class="header" href="#source_search_working_directory-bool-rw"><code>source_search_working_directory</code> (<code>bool</code>, <code>rw</code>)</a></h3>
+<p>如果设为 <code>true</code>，从源代码载入相对文件名时，会同时相对源文件所在位置和工作目录搜索。相对工作目录搜索已弃用；如果文件以这种方式找到，会打印警告。未来版本可能把默认值改为 <code>false</code>。搜索工作目录一直支持到 9.3.8。9.3.9 禁用了该行为，9.3.10 又带着警告重新启用了它。</p>
+<h3 id="stack_limit-int-rw"><a class="header" href="#stack_limit-int-rw"><code>stack_limit</code> (<code>int</code>, <code>rw</code>)</a></h3>
+<p>限制当前线程的 Prolog 栈组合大小。另请参阅 <code>--stack-limit</code> 和内存限制章节。</p>
+<h3 id="stream_type_check-atom-rw"><a class="header" href="#stream_type_check-atom-rw"><code>stream_type_check</code> (<code>atom</code>, <code>rw</code>)</a></h3>
+<p>定义系统是否以及多严格地验证：字节 I/O 不应作用于文本流，文本 I/O 不应作用于二进制流。取值为 <code>false</code>（不检查）、<code>true</code>（完整检查）和 <code>loose</code>。使用 <code>loose</code>（默认值）检查模式时，系统接受从使用 ISO Latin-1 编码的文本流进行字节 I/O，也接受向二进制流写入文本。</p>
+<h3 id="string_stack_tripwire-int-rw"><a class="header" href="#string_stack_tripwire-int-rw"><code>string_stack_tripwire</code> (<code>int</code>, <code>rw</code>)</a></h3>
+<p>用于外部语言字符串管理的维护标志。如果字符串栈深度达到 tripwire 值，则打印警告。详情参见外部接口字符串章节。</p>
+<h3 id="system_thread_id-int-r"><a class="header" href="#system_thread_id-int-r"><code>system_thread_id</code> (<code>int</code>, <code>r</code>)</a></h3>
+<p>在多线程版本中可用，前提是操作系统提供系统范围的整数线程标识符。该整数是操作系统用于调用线程的线程标识符。在 Linux 系统上，这是该线程的 PID。</p>
+<h3 id="table_incremental-bool-rw"><a class="header" href="#table_incremental-bool-rw"><code>table_incremental</code> (<code>bool</code>, <code>rw</code>)</a></h3>
+<p>设置是否使用增量制表的默认值。初始值为 <code>false</code>。参见 <code>table/1</code>。</p>
+<h3 id="table_shared-bool-rw"><a class="header" href="#table_shared-bool-rw"><code>table_shared</code> (<code>bool</code>, <code>rw</code>)</a></h3>
+<p>设置是否使用共享制表的默认值。初始值为 <code>false</code>。参见 <code>table/1</code>。</p>
+<h3 id="table_space-integer-rw"><a class="header" href="#table_space-integer-rw"><code>table_space</code> (<code>integer</code>, <code>rw</code>)</a></h3>
+<p>为存储制表谓词的答案表保留的空间（参见 <code>table/1</code>）。目前只计算答案 trie 中节点占用的空间。超过该空间时，会引发 <code>resource_error(table_space)</code> 异常。</p>
+<h3 id="table_subsumptive-bool-rw"><a class="header" href="#table_subsumptive-bool-rw"><code>table_subsumptive</code> (<code>bool</code>, <code>rw</code>)</a></h3>
+<p>设置 variant 制表和 subsumptive 制表之间选择的默认值。初始值为 <code>false</code>。参见 <code>table/1</code>。</p>
+<h3 id="threads-bool-rw"><a class="header" href="#threads-bool-rw"><code>threads</code> (<code>bool</code>, <code>rw</code>)</a></h3>
+<p>当支持线程时为 true。如果系统编译时没有线程支持，值为 <code>false</code> 且只读。否则，除非系统以 <code>--no-threads</code> 启动，值为 <code>true</code>。只有在线程尚未运行时才能禁用线程。另请参阅 <code>gc_thread</code> 标志。</p>
+<h3 id="timezone-integer-r"><a class="header" href="#timezone-integer-r"><code>timezone</code> (<code>integer</code>, <code>r</code>)</a></h3>
+<p>当前时区相对 GMT 向西偏移的秒数。初始化时从与 POSIX <code>tzset()</code> 函数关联的 <code>timezone</code> 变量设置。另请参阅 <code>format_time/3</code>。</p>
+<h3 id="tmp_dir-atom-rw"><a class="header" href="#tmp_dir-atom-rw"><code>tmp_dir</code> (<code>atom</code>, <code>rw</code>)</a></h3>
+<p>临时目录路径。从环境变量 <code>TMP</code> 或 <code>TEMP</code> 初始化。在 Windows 上使用这些变量；如果未定义，则使用默认值。默认值通常是 <code>/tmp</code>，Windows 上通常是 <code>c:/temp</code>。</p>
+<h3 id="toplevel_goal-term-rw"><a class="header" href="#toplevel_goal-term-rw"><code>toplevel_goal</code> (<code>term</code>, <code>rw</code>)</a></h3>
+<p>定义运行初始化目标和入口点后执行的目标（参见 <code>-g</code>、<code>initialization/2</code> 和 PrologScript 章节）。初始值为 <code>default</code>，表示启动普通交互式会话。该值可以用命令行选项 <code>-t</code> 修改。显式值 <code>prolog</code> 等价于 <code>default</code>。如果使用 <code>initialization(Goal,main)</code> 且顶层为 <code>default</code>，顶层会设为 <code>halt</code>（参见 <code>halt/0</code>）。</p>
+<h3 id="toplevel_list_wfs_residual_program-bool-rw"><a class="header" href="#toplevel_list_wfs_residual_program-bool-rw"><code>toplevel_list_wfs_residual_program</code> (<code>bool</code>, <code>rw</code>)</a></h3>
+<p>如果为 <code>true</code>（默认值），且答案根据良基语义（Well Founded Semantics，WFS）为 undefined，则在答案前列出 residual program。否则答案以 <strong>undefined</strong> 终止。另请参阅 <code>undefined/0</code>。</p>
+<h3 id="toplevel_mode-atom-rw"><a class="header" href="#toplevel_mode-atom-rw"><code>toplevel_mode</code> (<code>atom</code>, <code>rw</code>)</a></h3>
+<p>如果为 <code>backtracking</code>（默认值），顶层会在完成查询后回溯。如果为 <code>recursive</code>，顶层实现为递归循环。这意味着使用 <code>b_setval/2</code> 设置的全局变量会在查询之间保持。在 <code>recursive</code> 模式下，顶层变量的答案（参见“复用顶层绑定”）保存在可回溯全局变量中，因此<strong>不会被复制</strong>。在 <code>backtracking</code> 模式下，顶层变量答案保存在 recorded database 中。</p>
+<p>递归模式是为交互式使用 CHR 添加的，因为 CHR 会把全局约束存储保存在可回溯全局变量中。该建议来自 Falco Nogatz。</p>
+<h3 id="toplevel_name_variables-bool-rw"><a class="header" href="#toplevel_name_variables-bool-rw"><code>toplevel_name_variables</code> (<code>bool</code>, <code>rw</code>)</a></h3>
+<p>如果为 <code>true</code>（默认值），在顶层为变量命名，而不是把它们打印为 <code>_NNN</code>。变量会命名为 <code>_A</code>、<code>_B</code> 等。只出现一次的变量（singleton）会打印为 <code>_</code>。</p>
+<h3 id="toplevel_print_anon-bool-rw"><a class="header" href="#toplevel_print_anon-bool-rw"><code>toplevel_print_anon</code> (<code>bool</code>, <code>rw</code>)</a></h3>
+<p>如果为 <code>true</code>，以下划线（<code>_</code>）开头的顶层变量会正常打印。如果为 <code>false</code>（默认值），这类变量的绑定会从答案中省略。可用于在复杂查询中从顶层隐藏绑定。例如，下面 <code>_List</code> 的绑定不会打印：</p>
+<pre><code class="language-prolog">?- numlist(1,1 000 000,_List), sum_list(_List, Sum).
+Sum = 500000500000.
+</code></pre>
+<h3 id="toplevel_print_factorized-bool-rw"><a class="header" href="#toplevel_print_factorized-bool-rw"><code>toplevel_print_factorized</code> (<code>bool</code>, <code>rw</code>)</a></h3>
+<p>如果为 <code>true</code>（默认值为 <code>false</code>），显示答案替换中子项的内部共享。下面的示例揭示了由 <code>library(rbtrees)</code> 谓词 <code>rb_new/1</code> 实现的红黑树中叶节点的内部共享：</p>
+<pre><code class="language-prolog">?- set_prolog_flag(toplevel_print_factorized, true).
+?- rb_new(X).
+X = t(_S1, _S1), % where
+    _S1 = black('', _G387, _G388, '').
+</code></pre>
+<p>如果该标志为 <code>false</code>，<code>% where</code> 记法仍用于表示循环，如下例所示。该示例还显示，实现揭示的是内部循环长度，而不是最小循环长度。在 Prolog 中，不同长度的循环无法区分，<code>S == R</code> 就说明了这一点。</p>
+<pre><code class="language-prolog">?- S = s(S), R = s(s(R)), S == R.
+S = s(S),
+R = s(s(R)).
+</code></pre>
+<h3 id="toplevel_prompt-atom-rw"><a class="header" href="#toplevel_prompt-atom-rw"><code>toplevel_prompt</code> (<code>atom</code>, <code>rw</code>)</a></h3>
+<p>定义交互式顶层使用的提示符。下面的 <code>~</code>（tilde）序列会被替换：</p>
+<div class="table-wrapper"><table><thead><tr><th>序列</th><th>替换内容</th></tr></thead><tbody>
+<tr><td><code>~m</code></td><td>如果不是 <code>user</code>，替换为输入模块（type-in module，参见 <code>module/1</code>）</td></tr>
+<tr><td><code>~l</code></td><td>如果不为 0，替换为 break level（参见 <code>break/0</code>）</td></tr>
+<tr><td><code>~d</code></td><td>如果不是普通执行，替换为调试状态（参见 <code>debug/0</code>、<code>trace/0</code>）</td></tr>
+<tr><td><code>~!</code></td><td>如果启用了历史，替换为历史事件（参见标志 <code>history</code>）</td></tr>
+</tbody></table>
+</div>
+<h3 id="toplevel_residue_vars-bool-rw"><a class="header" href="#toplevel_residue_vars-bool-rw"><code>toplevel_residue_vars</code> (<code>bool</code>, <code>rw</code>)</a></h3>
+<p>当为 <code>true</code>（默认值为 <code>false</code>）时，打印由 <code>call_residue_vars/2</code> 检测到、但未出现在目标返回绑定中的 residual variables。</p>
+<h3 id="toplevel_thread-bool-rw"><a class="header" href="#toplevel_thread-bool-rw"><code>toplevel_thread</code> (<code>bool</code>, <code>rw</code>)</a></h3>
+<p>当为 <code>true</code> 时，该线程正在运行顶层 REPL 循环。参见 <code>prolog/0</code>。</p>
+<h3 id="toplevel_var_size-int-rw"><a class="header" href="#toplevel_var_size-int-rw"><code>toplevel_var_size</code> (<code>int</code>, <code>rw</code>)</a></h3>
+<p>在顶层查询中作为变量绑定返回、并保存下来以便通过 <code>$</code> 变量引用复用的项，其最大大小（按 literal 计）。当为 0 时，变量记录和复用被禁用。参见“复用顶层绑定”。</p>
+<h3 id="trace_gc-bool-rw"><a class="header" href="#trace_gc-bool-rw"><code>trace_gc</code> (<code>bool</code>, <code>rw</code>)</a></h3>
+<p>如果为 <code>true</code>（默认值为 <code>false</code>），垃圾回收和栈移动会在终端上报告。可以修改。值以字节为单位报告为 <code>G+T</code>，其中 <code>G</code> 是全局栈值，<code>T</code> 是 trail 栈值。<code>Gained</code> 描述回收的字节数。<code>used</code> 是 GC 后栈上使用的字节数；<code>free</code> 是已分配但未使用的字节数。下面是输出示例：</p>
+<pre><code class="language-text">% GC: gained 236,416+163,424 in 0.00 sec;
+      used 13,448+5,808; free 72,568+47,440
+</code></pre>
+<h3 id="traditional-bool-r"><a class="header" href="#traditional-bool-r"><code>traditional</code> (<code>bool</code>, <code>r</code>)</a></h3>
+<p>在 SWI-Prolog 7 中可用。如果为 <code>true</code>，表示使用 <code>--traditional</code> 选择了 traditional 模式。注意，某些 SWI7 特性（例如 dict 上的函数式记法）在该模式下不可用。另请参阅扩展章节。</p>
+<h3 id="tty_control-bool-rw"><a class="header" href="#tty_control-bool-rw"><code>tty_control</code> (<code>bool</code>, <code>rw</code>)</a></h3>
+<p>决定终端是否切换到 raw 模式以支持 <code>get_single_char/1</code>，该谓词也读取 trace 中的用户操作。可以设置。如果该标志在启动时为 <code>false</code>，命令行编辑会被禁用。另请参阅命令行选项 <code>--no-tty</code>。</p>
+<h3 id="unicode_atoms-atom-rw"><a class="header" href="#unicode_atoms-atom-rw"><code>unicode_atoms</code> (<code>atom</code>, <code>rw</code>)</a></h3>
+<p>新打开文本流的默认原子内容策略；可通过 <code>set_stream/2</code> 按流覆盖，也可通过 <code>open/4</code> 的 <code>unicode_atoms</code> 选项覆盖，还可通过 <code>read_term/2,3</code> 和 <code>read_clause/2,3</code> 的 <code>unicode_atoms</code> 选项按调用覆盖。四个取值为 <code>accept</code>、<code>nfc</code>、<code>error</code>、<code>reject</code>，其效果见 <code>read_term/2,3</code>。默认值为 <code>accept</code>。</p>
+<p>把该标志设为 <code>nfc</code> 时，如果尚未注册内核规范化 hook，会自动载入 <code>library(unicode)</code>；如果该库不可用，<code>set_prolog_flag/2</code> 调用会传播 <code>use_module/1</code> 引发的 <code>existence_error(source_sink, library(unicode))</code>。模式 <code>error</code> 不需要该 hook：当 <code>atom_normalize_hook</code> 为 <code>false</code> 时，它会回退到基于 wcwidth 的检查，把任何 wcwidth 小于 1 的码点（组合标记、零宽和不可打印字符）视为非 NFC。这可能过度拒绝泰语等在 NFC 中使用组合标记的文字系统。</p>
+<p>不管该标志如何，SWI-Prolog 读取器都会无条件拒绝 Unicode bidi override 和 isolate 码点（U+202A 到 U+202E，以及 U+2066 到 U+2069），如果它们作为原始字节出现在未加引号的原子、运算符、变量、带引号的原子、字符串或注释中。这缓解了 “Trojan source” 攻击（CVE-2021-42574）。如果程序需要在字面量原子或字符串中使用这类码点，必须使用相应的转义序列，例如 <code>\u202E</code>。</p>
+<h3 id="unix-bool-r"><a class="header" href="#unix-bool-r"><code>unix</code> (<code>bool</code>, <code>r</code>)</a></h3>
+<p>如果存在且为 <code>true</code>，操作系统是某种 Unix。如果用于编译该 SWI-Prolog 版本的 C 编译器定义了 <code>__unix__</code> 或 <code>unix</code>，则定义该标志。其他系统上不可用。另请参阅 <code>linux</code>、<code>apple</code> 和 <code>windows</code>。</p>
+<h3 id="unknown-failwarningerror-rw"><a class="header" href="#unknown-failwarningerror-rw"><code>unknown</code> (<code>fail,warning,error</code>, <code>rw</code>)</a></h3>
+<p>决定遇到未定义过程时的行为。如果为 <code>fail</code>，谓词静默失败。如果为 <code>warn</code>，打印警告，并像谓词未定义一样继续执行。如果为 <code>error</code>（默认值），引发 <code>existence_error</code> 异常。该标志局部于每个模块，并从模块的 import-module 继承。使用默认设置时，这意味着普通模块从 <code>user</code> 继承该标志，而 <code>user</code> 又从 <code>system</code> 继承值 <code>error</code>。用户可以修改模块 <code>user</code> 的标志，从而改变所有应用程序模块的默认值，也可以修改特定模块的值。强烈建议保留 <code>error</code> 默认值，并使用 <code>dynamic/1</code> 和/或 <code>multifile/1</code> 指定谓词可能不存在。</p>
+<h3 id="unknown_option-ignorewarningerror-rw"><a class="header" href="#unknown_option-ignorewarningerror-rw"><code>unknown_option</code> (<code>ignore,warning,error</code>, <code>rw</code>)</a></h3>
+<p>决定处理选项列表的谓词收到不认识的选项时的行为。ISO 标准要求引发 <code>domain_error</code> 异常。但这被认为不实用：如果不同 Prolog 系统支持不同选项，它会让编写可移植代码变得困难；也会让那些处理选项并把一部分选项传给一个谓词、另一部分选项传给另一个谓词的谓词难以编写。例如，一个把文件读入项列表的谓词必须把选项分发给 <code>open/4</code> 和 <code>read_term/3</code>。除 ISO 模式外，SWI-Prolog 一直忽略未知选项（参见 <code>iso</code> 标志）。该标志提供对选项处理方式的完整控制。</p>
+<h3 id="unload_foreign_libraries-bool-rw"><a class="header" href="#unload_foreign_libraries-bool-rw"><code>unload_foreign_libraries</code> (<code>bool</code>, <code>rw</code>)</a></h3>
+<p>如果为 <code>true</code>（默认值为 <code>false</code>），卸载所有已载入的外部库。默认值为 <code>false</code>，因为现代操作系统无论如何都会回收资源，而且卸载外部代码可能导致已注册的 hook 指向不再存在的数据或代码。</p>
+<h3 id="user_flags-atom-rw"><a class="header" href="#user_flags-atom-rw"><code>user_flags</code> (<code>Atom</code>, <code>rw</code>)</a></h3>
+<p>定义 <code>set_prolog_flag/2</code> 在标志未知时的行为。取值为 <code>silent</code>、<code>warning</code> 和 <code>error</code>。前两个取值会即时创建标志，其中 <code>warning</code> 会打印消息。取值 <code>error</code> 与 ISO 一致：它引发存在性错误，并且不创建标志。另请参阅 <code>create_prolog_flag/3</code>。默认值为 <code>silent</code>，但未来版本可能改变这一点。鼓励开发者使用其他值，并确保为库使用 <code>create_prolog_flag/3</code> 正确创建标志。</p>
+<h3 id="var_prefix-bool-rw"><a class="header" href="#var_prefix-bool-rw"><code>var_prefix</code> (<code>bool</code>, <code>rw</code>)</a></h3>
+<p>如果为 <code>true</code>（默认值为 <code>false</code>），变量必须以下划线（<code>_</code>）开头。可以修改。该标志局部于修改它的模块。参见变量前缀章节。</p>
+<h3 id="var_tag-atom-rw"><a class="header" href="#var_tag-atom-rw"><code>var_tag</code> (<code>Atom</code>, <code>rw</code>)</a></h3>
+<p>该标志控制当 <code>Tag{...}</code> 中的 <code>Tag</code> 未绑定时如何解释。可能值为：</p>
+<ul>
+<li><code>dict</code>：读作带未绑定 tag 的 dict（参见双向 dict 章节）。这是当前默认值。使用未绑定 tag 已弃用。适当时候默认值会改变，最终改为 <code>attvar</code>。参见 dict 兼容性章节。</li>
+<li><code>attvar</code>：把 <code>Var{...}</code> 读作 attributed variable。这很可能成为未来默认值。</li>
+<li><code>#</code>：把 <code>Var{...}</code> 读作 <code>#{...}</code>。该标志允许快速评估使用 <code>#{...}</code> 而不是带未绑定 tag 的 dict 会对代码造成什么影响。</li>
+<li><code>warning</code>：类似 <code>#</code>，但打印警告。</li>
+<li><code>error</code>：把 <code>Var{...}</code> 视为语法错误。</li>
+</ul>
+<h3 id="verbose-atom-rw"><a class="header" href="#verbose-atom-rw"><code>verbose</code> (<code>atom</code>, <code>rw</code>)</a></h3>
+<p>该标志由 <code>print_message/2</code> 使用。如果值为 <code>silent</code>，类型为 <code>informational</code> 和 <code>banner</code> 的消息会被抑制。命令行选项 <code>-q</code> 会把初始值 <code>normal</code> 切换为 <code>silent</code>。</p>
+<h3 id="verbose_autoload-bool-rw"><a class="header" href="#verbose_autoload-bool-rw"><code>verbose_autoload</code> (<code>bool</code>, <code>rw</code>)</a></h3>
+<p>如果为 <code>true</code>，自动加载库时会打印普通 consult 消息。默认会抑制该消息。该标志用于调试。</p>
+<h3 id="verbose_file_search-bool-rw"><a class="header" href="#verbose_file_search-bool-rw"><code>verbose_file_search</code> (<code>bool</code>, <code>rw</code>)</a></h3>
+<p>如果为 <code>true</code>（默认值为 <code>false</code>），打印消息说明 <code>absolute_file_name/[2,3]</code> 定位文件的进展。用于调试复杂文件搜索路径。另请参阅 <code>file_search_path/2</code>。</p>
+<h3 id="verbose_load-atom-rw"><a class="header" href="#verbose_load-atom-rw"><code>verbose_load</code> (<code>atom</code>, <code>rw</code>)</a></h3>
+<p>决定载入（编译）Prolog 文件时打印哪些消息。当前取值为 <code>full</code>（每个文件载入开始和结束时打印消息）、<code>normal</code>（每个文件载入结束时打印消息）、<code>brief</code>（顶层文件载入结束时打印消息）和 <code>silent</code>（不打印消息，默认值）。该标志的值通常由 <code>load_files/2</code> 提供的 <code>silent(Bool)</code> 选项控制。</p>
+<h3 id="version-integer-r"><a class="header" href="#version-integer-r"><code>version</code> (<code>integer</code>, <code>r</code>)</a></h3>
+<p>版本标识符是一个整数，其值为：</p>
+<pre><code class="language-text">10000 * Major + 100 * Minor + Patch
+</code></pre>
+<h3 id="version_data-swimajor-minor-patch-extra-r"><a class="header" href="#version_data-swimajor-minor-patch-extra-r"><code>version_data</code> (<code>swi(Major, Minor, Patch, Extra)</code>, <code>r</code>)</a></h3>
+<p>方言兼容层的一部分；另请参阅 Prolog 标志 <code>dialect</code> 和方言章节。<code>Extra</code> 以列表形式提供平台特定版本信息。<code>Extra</code> 用于 “7.4.0-rc1” 这样的 tagged version，在这种情况下，<code>Extra</code> 包含项 <code>tag(rc1)</code>。</p>
+<h3 id="version_git-atom-r"><a class="header" href="#version_git-atom-r"><code>version_git</code> (<code>atom</code>, <code>r</code>)</a></h3>
+<p>如果系统是从 git 仓库创建的，则可用。详情参见 <code>git-describe</code>。</p>
+<h3 id="vmi_builtin-bool-rw"><a class="header" href="#vmi_builtin-bool-rw"><code>vmi_builtin</code> (<code>bool</code>, <code>rw</code>)</a></h3>
+<p>决定 <code>true/0</code>、<code>atom/1</code> 等知名内建谓词是否通过转换为虚拟机代码来处理。除非启用调试模式，该标志默认值为 <code>true</code>。把它设为 <code>false</code> 可能改善其他运行时 instrumentation 的结果。注意，优化算术（<code>-O</code>，参见 Prolog 标志 <code>optimise</code>）目前不会转换为普通谓词调用。</p>
+<h3 id="warn_autoload-bool-rw"><a class="header" href="#warn_autoload-bool-rw"><code>warn_autoload</code> (<code>bool</code>, <code>rw</code>)</a></h3>
+<p>如果为 <code>true</code>（默认值为 <code>false</code>），当从定义全局项展开或目标展开规则的文件自动加载谓词时发出警告。这些规则通常能提升性能或提供更清晰语义，因此不建议自动加载。未来版本将默认启用该标志。</p>
+<h3 id="warn_override_implicit_import-bool-rw"><a class="header" href="#warn_override_implicit_import-bool-rw"><code>warn_override_implicit_import</code> (<code>bool</code>, <code>rw</code>)</a></h3>
+<p>如果为 <code>true</code>（默认值），当隐式导入的谓词被本地定义覆盖时打印警告。详情参见 <code>use_module/1</code>。</p>
+<h3 id="win_file_access_check-atom-rw"><a class="header" href="#win_file_access_check-atom-rw"><code>win_file_access_check</code> (<code>atom</code>, <code>rw</code>)</a></h3>
+<p>控制 Windows 下 <code>access_file/2</code> 的行为。在 Windows 上没有可靠方法检查文件和目录访问权限。该标志允许在三种近似方案之间切换：</p>
+<ul>
+<li><code>access</code>：使用 Windows <code>_waccess()</code> 函数。它会忽略 ACL（Access Control List），因此可能在实际不允许访问时指示访问被允许。</li>
+<li><code>getfilesecurity</code>：使用 Windows <code>GetFileSecurity()</code> 函数。它并非在所有文件系统上都可用，但在支持它的文件系统上可能是最佳选择，尤其是本地 NTFS 卷。</li>
+<li><code>openclose</code>：尝试打开并关闭文件。这对文件可靠，但对目录不可靠。目前目录用 <code>_waccess()</code> 检查。这是默认值。</li>
+</ul>
+<h3 id="windows-bool-r"><a class="header" href="#windows-bool-r"><code>windows</code> (<code>bool</code>, <code>r</code>)</a></h3>
+<p>如果存在且为 <code>true</code>，操作系统是 Microsoft Windows 的某种实现。该标志只在基于 MS-Windows 的版本上可用。另请参阅 <code>unix</code>。</p>
+<h3 id="wine_version-atom-r"><a class="header" href="#wine_version-atom-r"><code>wine_version</code> (<code>atom</code>, <code>r</code>)</a></h3>
+<p>如果存在，表示 SWI-Prolog 是在 Wine 仿真器下运行的 MS-Windows 版本。</p>
+<h3 id="write_attributes-atom-rw"><a class="header" href="#write_attributes-atom-rw"><code>write_attributes</code> (<code>atom</code>, <code>rw</code>)</a></h3>
+<p>定义 <code>write/1</code> 及相关谓词如何写出 attributed variables。选项值随 <code>write_term/2</code> 的 <code>attributes</code> 选项一起说明。默认值为 <code>ignore</code>。</p>
+<h3 id="write_help_with_overstrike-bool-r"><a class="header" href="#write_help_with_overstrike-bool-r"><code>write_help_with_overstrike</code> (<code>bool</code>, <code>r</code>)</a></h3>
+<p><code>help/1</code> 写入终端时使用的内部标志。如果存在且为 <code>true</code>，它会使用 overstrike 打印粗体和下划线文本。</p>
+<h3 id="xdg-bool-rw"><a class="header" href="#xdg-bool-rw"><code>xdg</code> (<code>bool</code>, <code>r(w)</code>)</a></h3>
+<p>该标志定义是否遵循 Free Desktop 标准来处理应用程序数据和配置文件。非 Windows 系统上，该标志为 <code>true</code> 且只读。在 Windows 上，如果是在 Conda 或 MSYS2 下编译，该标志为 <code>true</code> 但可读写；否则未定义。在 Windows 上，搜索顺序如下：</p>
+<ul>
+<li>标志未定义：先搜索 Windows 目录，再搜索 XDG 目录。这是 Windows 二进制包的默认值。</li>
+<li>标志为 <code>true</code>：只搜索 XDG 目录。</li>
+<li>标志为 <code>false</code>：只搜索 Windows 目录。</li>
+</ul>
+<h3 id="xpce-bool-r"><a class="header" href="#xpce-bool-r"><code>xpce</code> (<code>bool</code>, <code>r</code>)</a></h3>
+<p>如果 XPCE 图形系统已载入，则可用并设置为 <code>true</code>。</p>
+<h3 id="xpce_version-atom-r"><a class="header" href="#xpce_version-atom-r"><code>xpce_version</code> (<code>atom</code>, <code>r</code>)</a></h3>
+<p>如果 XPCE 系统已载入，则可用并设置为其版本。</p>
+<h3 id="xref-bool-rw"><a class="header" href="#xref-bool-rw"><code>xref</code> (<code>bool</code>, <code>rw</code>)</a></h3>
+<p>如果为 <code>true</code>，源代码是为了分析目的读取，例如交叉引用。否则（默认值）源代码是为了编译而读取。该标志在若干地方由 <code>term_expansion/2</code> 和 <code>goal_expansion/2</code> hook 使用，尤其是这些 hook 带有副作用时。另请参阅库 <code>library(prolog_source)</code> 和 <code>library(prolog_xref)</code>。</p>
+<h2 id="set_prolog_flag2"><a class="header" href="#set_prolog_flag2"><code>set_prolog_flag/2</code></a></h2>
+<p><code>set_prolog_flag(:Key, +Value)</code> 设置一个 Prolog 标志的值。<code>Key</code> 是原子。如果该标志是系统定义的标志，且未在上文标记为可变，尝试修改它会产生 <code>permission_error</code>。如果提供的 <code>Value</code> 与该标志类型不匹配，会引发 <code>type_error</code>。</p>
+<p>有些标志（例如 <code>unknown</code>）按模块维护。目标模块由 <code>Key</code> 这个 meta 参数决定。</p>
+<p>除了 ISO 规定的行为外，SWI-Prolog 允许用户定义 Prolog 标志。新的 Prolog 标志应使用 <code>create_prolog_flag/3</code> 创建。出于历史原因，如果 Prolog 标志 <code>user_flags</code> 为 <code>true</code>（默认值），<code>set_prolog_flag/2</code> 会静默创建 Prolog 标志；也就是说，<code>set_prolog_flag/2</code> 的行为类似下面这样：</p>
+<pre><code class="language-prolog">set_prolog_flag(Key, Value) :-
+    current_prolog_flag(Key, _),
+    !,
+    &lt;set the flag&gt;.
+set_prolog_flag(Key, Value) :-
+    current_prolog_flag(user_flags, true),
+    !,
+    create_prolog_flag(Key, Value, []).
+set_prolog_flag(Key, _) :-
+    existence_error(prolog_flag, Key).
+</code></pre>
+<h2 id="create_prolog_flag3"><a class="header" href="#create_prolog_flag3"><code>create_prolog_flag/3</code></a></h2>
+<p><code>create_prolog_flag(+Key, +Value, +Options)</code> 创建新的 Prolog 标志。ISO 标准没有预见新标志的创建，但许多库都会引入新标志。在多线程环境中，Prolog 标志特别适合管理会变化的全局设置。谓词要么局部于某个线程，要么在所有线程之间共享；而线程会从创建它的线程继承标志（参见 <code>thread_create/3</code>），之后的修改则局部于调用线程。</p>
+<p>SWI-Prolog 标志有类型。如果没有用 <code>type(Type)</code> 选项显式定义类型，类型会从初始值确定。已定义类型包括：<code>boolean</code>（如果初始值是 <code>false</code>、<code>true</code>、<code>on</code> 或 <code>off</code> 之一）、<code>atom</code>（如果初始值是其他原子）、<code>integer</code>（如果该值是可表示为 64 位有符号值的整数）。任何其他初始值都会产生无类型标志，可以表示任何有效 Prolog 项。</p>
+<p>默认情况下，新标志会加入全局标志表，使尚未设置该标志的所有线程都能访问该值。如果该标志已在调用线程中局部定义，则调用线程和全局标志表中的值都会更新。参见 <code>local(+Boolean)</code> 选项。</p>
+<p><code>Options</code> 是下列选项的列表。另请参阅 Prolog 标志 <code>user_flags</code>。</p>
+<ul>
+<li>
+<p><code>access(+Access)</code>：定义该标志的访问权限。取值为 <code>read_write</code> 和 <code>read_only</code>。默认值为 <code>read_write</code>。</p>
+</li>
+<li>
+<p><code>type(+Atom)</code>：定义类型限制。可能值为 <code>boolean</code>、<code>atom</code>、<code>oneof(ListOfAtoms)</code>、<code>integer</code>、<code>float</code> 和 <code>term</code>。默认值由初始值决定。注意，<code>term</code> 会把项限制为 ground。</p>
+</li>
+<li>
+<p><code>keep(+Boolean)</code>：如果为 <code>true</code>，当标志已存在时不修改它。否则（默认值），如果标志已存在，该谓词行为类似 <code>set_prolog_flag/2</code>。</p>
+<p>如果标志已有值，但该值与指定类型不兼容，系统会打印警告，并把标志设置为本次 <code>create_prolog_flag/3</code> 调用指定的值和类型。</p>
+</li>
+<li>
+<p><code>local(+Boolean)</code>：如果为 <code>true</code>（默认值为 <code>false</code>），并且该标志不存在，则只在调用线程中创建它。该标志只对调用线程以及从调用线程继承的线程可见。</p>
+</li>
+<li>
+<p><code>warn_not_accessed(+Boolean)</code>：如果为 <code>true</code>，且该标志从未用 <code>current_prolog_flag/2</code> 读取，则打印警告。该选项用于通过命令行选项 <code>-D&lt;flag&gt;[=&lt;value&gt;]</code> 设置的选项。</p>
+</li>
+</ul>
+<h2 id="push_prolog_flag2"><a class="header" href="#push_prolog_flag2"><code>push_prolog_flag/2</code></a></h2>
+<p><code>push_prolog_flag(:Key, +Value)</code> 保存当前线程局部的 <code>Key</code> 值，并把它设置为 <code>Value</code>。如果 <code>Key</code> 不存在，则创建它（仅在调用线程中），并且被压入的状态会记录其原本不存在。该操作可嵌套，并与 <code>pop_prolog_flag/1</code> 配对。</p>
+<p>这些谓词主要面向两个用例。第一个是使用不同标志进行有作用域的编译。例如，下面的代码会保留子句的书写形式。如果不局部修改该标志，<code>X = 42</code> 通常会被移入头部。</p>
+<pre><code class="language-prolog">:- push_prolog_flag(optimise_unify, false).
+p(X) :-
+    X = 42,
+    format('The answer to the ultimate question~n').
+:- pop_prolog_flag(optimise_unify).
+</code></pre>
+<p>第二个用例是运行时作用域。例如，执行一个带 occurs check 的目标：</p>
+<pre><code class="language-prolog">call_with_occurs_check(Goal) :-
+    setup_call_cleanup(
+        push_prolog_flag(occurs_check, true),
+        Goal,
+        pop_prolog_flag(occurs_check)).
+</code></pre>
+<p>注意，<code>pop</code> 会在 <code>Goal</code> 完成时发生。尤其是当 <code>Goal</code> 成功但留下选择点时，它不会立即执行。</p>
+<h2 id="pop_prolog_flag1"><a class="header" href="#pop_prolog_flag1"><code>pop_prolog_flag/1</code></a></h2>
+<p><code>pop_prolog_flag(:Key)</code> 恢复与之匹配的 <code>push_prolog_flag/2</code> 保存的状态。如果在匹配的 push 时 <code>Key</code> 不存在，则再次移除它。如果当前线程上不存在匹配的 push，则引发 <code>existence_error(pushed_flag, Key)</code>。</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="钩子谓词概览"><a class="header" href="#钩子谓词概览">钩子谓词概览</a></h1>
+<p>SWI-Prolog 提供了大量 hook，主要用于控制消息处理、调试、启动、关闭、宏展开等行为。下面汇总了所有已定义的 hook，并标明其可移植性。</p>
+<ul>
+<li>
+<p><code>portray/1</code></p>
+<p>接入 <code>write_term/3</code>，修改项的打印方式（ISO）。</p>
+</li>
+<li>
+<p><code>message_hook/3</code></p>
+<p>接入 <code>print_message/2</code>，修改系统消息的打印方式（Quintus/SICStus）。</p>
+</li>
+<li>
+<p><code>message_property/2</code></p>
+<p>接入 <code>print_message/2</code>，定义前缀、输出流、颜色等属性。</p>
+</li>
+<li>
+<p><code>message_prefix_hook/2</code></p>
+<p>接入 <code>print_message/2</code>，向消息添加额外前缀，例如时间和线程。</p>
+</li>
+<li>
+<p><code>library_directory/1</code></p>
+<p>接入 <code>absolute_file_name/3</code>，定义新的库目录（多数 Prolog 系统）。</p>
+</li>
+<li>
+<p><code>file_search_path/2</code></p>
+<p>接入 <code>absolute_file_name/3</code>，定义新的搜索路径（Quintus/SICStus）。</p>
+</li>
+<li>
+<p><code>term_expansion/2</code></p>
+<p>接入 <code>load_files/2</code>，在读取到的项被编译前修改它们，也就是进行宏处理（多数 Prolog 系统）。</p>
+</li>
+<li>
+<p><code>goal_expansion/2</code></p>
+<p>类似 <code>term_expansion/2</code>，但作用于单个目标（SICStus）。</p>
+</li>
+<li>
+<p><code>prolog_load_file/2</code></p>
+<p>接入 <code>load_files/2</code>，从“非文件”资源中把其他数据格式载入为 Prolog 源。谓词 <code>load_files/2</code> 是 <code>consult/1</code>、<code>use_module/1</code> 等谓词的祖先。</p>
+</li>
+<li>
+<p><code>prolog_edit:locate/3</code></p>
+<p>接入 <code>edit/1</code>，定位对象（SWI）。</p>
+</li>
+<li>
+<p><code>prolog_edit:edit_source/1</code></p>
+<p>接入 <code>edit/1</code>，调用内部编辑器（SWI）。</p>
+</li>
+<li>
+<p><code>prolog_edit:edit_command/2</code></p>
+<p>接入 <code>edit/1</code>，定义要使用的外部编辑器（SWI）。</p>
+</li>
+<li>
+<p><code>prolog_list_goal/1</code></p>
+<p>接入 tracer，列出与特定目标关联的代码（SWI）。</p>
+</li>
+<li>
+<p><code>prolog_trace_interception/4</code></p>
+<p>接入 tracer，处理 trace 事件（SWI）。</p>
+</li>
+<li>
+<p><code>prolog:debug_control_hook/1</code></p>
+<p>接入 <code>spy/1</code>、<code>nospy/1</code>、<code>nospyall/0</code> 和 <code>debugging/0</code>，把这些控制谓词扩展到更高层的库。</p>
+</li>
+<li>
+<p><code>prolog:help_hook/1</code></p>
+<p>接入 <code>help/0</code>、<code>help/1</code> 和 <code>apropos/1</code>，扩展帮助系统。</p>
+</li>
+<li>
+<p><code>resource/3</code></p>
+<p>定义新的资源。严格来说这不是真正的 hook，但与 hook 类似（SWI）。</p>
+</li>
+<li>
+<p><code>exception/3</code></p>
+<p>早期对通用 hook 机制的一次尝试。它处理未定义谓词（SWI）。</p>
+</li>
+<li>
+<p><code>attr_unify_hook/2</code></p>
+<p>attributed variable 的合一 hook。可以在任何模块中定义。详情参见 attributed variable 章节。</p>
+</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="库的自动加载"><a class="header" href="#库的自动加载">库的自动加载</a></h1>
+<p>如果在运行时捕获到未定义谓词，系统会先尝试从该模块的默认模块导入该谓词（参见 import module 相关章节）。如果失败，自动加载器（auto loader）会被激活。实际过程是先调用 hook <code>user:exception/3</code>；只有该 hook 失败时，才会调用自动加载器。</p>
+<p>第一次激活时，系统会把所有库目录中所有库文件的索引载入内存（参见 <code>library_directory/1</code>、<code>file_search_path/2</code> 和 <code>reload_library_index/0</code>）。如果能在某个库中找到该未定义谓词，对应库文件会被自动载入，并重新启动对这个此前未定义谓词的调用。默认情况下，该机制会静默载入文件。<code>current_prolog_flag/2</code> 的键 <code>verbose_autoload</code> 可用于获得详细载入信息。Prolog 标志 <code>autoload</code> 可用于启用或禁用自动加载系统。<code>autoload/[1,2]</code> 提供了更受控的自动加载形式，也支持应用模块的惰性加载。</p>
+<p>自动加载只处理使用模块机制的库源文件。文件会用 <code>use_module/2</code> 载入，并且只有被捕获的未定义谓词会被导入到调用该未定义谓词的模块中。每个库目录都必须包含一个 <code>INDEX.pl</code> 文件，其中包含该目录所有库文件的索引。该文件由如下格式的行组成：</p>
+<pre><code class="language-prolog">index(Name, Arity, Module, File).
+</code></pre>
+<p>谓词 <code>make/0</code> 会更新自动加载索引。它会搜索所有库目录（参见 <code>library_directory/1</code> 和 <code>file_search_path/2</code>），查找包含 <code>MKINDEX.pl</code> 或 <code>INDEX.pl</code> 的目录。如果当前用户可以写入或创建 <code>INDEX.pl</code>，并且该文件不存在、或早于该目录或其中某个文件，则更新该目录的索引。如果 <code>MKINDEX.pl</code> 存在，则通过载入该文件来更新索引；该文件通常包含一个调用 <code>make_library_index/2</code> 的指令。否则会调用 <code>make_library_index/1</code>，为所有包含模块的 <code>*.pl</code> 文件创建索引。</p>
+<p>下面是一个创建已索引库目录的示例：</p>
+<pre><code class="language-shell">% mkdir ~/${XDG_DATA_HOME-.config}/swi-prolog/lib
+% cd ~/${XDG_DATA_HOME-.config}/swi-prolog/lib
+% swipl -g 'make_library_index(.)' -t halt
+</code></pre>
+<p>如果有多个库文件包含所需谓词，则按下面的搜索方案查找：</p>
+<ol>
+<li>如果某个库文件定义了捕获未定义谓词的模块，则使用该文件。</li>
+<li>否则，按 <code>library_directory/1</code> 谓词中出现的顺序考虑库文件；在同一目录内按字母顺序考虑。</li>
+</ol>
+<h2 id="autoload_path1"><a class="header" href="#autoload_path1"><code>autoload_path/1</code></a></h2>
+<p><code>autoload_path(+DirAlias)</code> 把 <code>DirAlias</code> 添加到自动加载器使用的库中。这会扩展搜索路径 <code>autoload</code>，并重新载入库索引。例如：</p>
+<pre><code class="language-prolog">:- autoload_path(library(http)).
+</code></pre>
+<p>如果该调用作为指令出现，它会被项展开为一个 <code>user:file_search_path/2</code> 子句，以及一个调用 <code>reload_library_index/0</code> 的指令。这样可以保留源代码信息，并允许移除该指令。</p>
+<h2 id="make_library_index1"><a class="header" href="#make_library_index1"><code>make_library_index/1</code></a></h2>
+<p><code>make_library_index(+Directory)</code> 为该目录创建索引。索引会写入指定目录中的 <code>INDEX.pl</code> 文件。如果目录不存在或写保护，则失败并给出警告。</p>
+<h2 id="make_library_index2"><a class="header" href="#make_library_index2"><code>make_library_index/2</code></a></h2>
+<p><code>make_library_index(+Directory, +ListOfPatterns)</code> 通常在 <code>MKINDEX.pl</code> 中使用。该谓词会为 <code>Directory</code> 创建 <code>INDEX.pl</code>，为匹配 <code>ListOfPatterns</code> 中任一文件模式的所有文件建立索引。</p>
+<p>有时库包包含一个公共载入文件，以及若干由该载入文件使用的文件；这些内部文件导出的谓词不应由最终用户直接使用。这样的库可以放在库的子目录中，而包含公共功能的文件可以加入该库的索引。下面以 XPCE 库的 <code>MKINDEX.pl</code> 为例，它把 <code>trace/browse.pl</code> 的公共功能加入 XPCE 包可自动加载的谓词中。</p>
+<pre><code class="language-prolog">:- prolog_load_context(directory, Dir),
+   make_library_index(Dir,
+                      [ '*.pl',
+                        'trace/browse.pl',
+                        'swi/*.pl'
+                      ]).
+</code></pre>
+<h2 id="reload_library_index0"><a class="header" href="#reload_library_index0"><code>reload_library_index/0</code></a></h2>
+<p>修改库目录集合后，可用 <code>reload_library_index/0</code> 强制重新载入索引。修改库目录集合的方式包括：更改 <code>library_directory/1</code>、<code>file_search_path/2</code> 的规则，添加或删除 <code>INDEX.pl</code> 文件。该谓词<strong>不会</strong>更新 <code>INDEX.pl</code> 文件。若要更新索引文件，请查看 <code>make_library_index/[1,2]</code> 和 <code>make/0</code>。</p>
+<p>通常，如果某个谓词无法在索引中找到，并且库目录集合已经改变，索引会自动重新载入。如果目录被移除，或库目录顺序发生改变，则必须使用 <code>reload_library_index/0</code>。</p>
+<p>使用 <code>qsave_program/2</code> 或命令行选项 <code>-c</code> 创建可执行文件时，必须显式载入所有通常会自动加载的谓词。这一点在运行时章节中讨论。另请参阅 <code>autoload_all/0</code>。</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="swi-prolog-语法"><a class="header" href="#swi-prolog-语法">SWI-Prolog 语法</a></h1>
+<p>SWI-Prolog 的语法接近 ISO Prolog 标准语法，而 ISO Prolog 又基于 Edinburgh Prolog 语法。形式化描述可以在 ISO 标准文档中找到。若需要非正式介绍，可参考 Prolog 教科书以及<a href="http://www.swi-prolog.org/Links.html">在线教程</a>。除了这里记录的 ISO 标准差异之外，SWI-Prolog 还提供了若干扩展，其中一部分也扩展了语法。更多信息见扩展相关章节。</p>
+<h2 id="iso-语法支持"><a class="header" href="#iso-语法支持">ISO 语法支持</a></h2>
+<p>本节列出 SWI-Prolog 相对于 ISO Prolog 语法的若干扩展。</p>
+<h3 id="处理器字符集"><a class="header" href="#处理器字符集">处理器字符集</a></h3>
+<p>处理器字符集规定解析 Prolog 源文本时每个字符所属的类别。字符分类固定为 <a href="http://www.unicode.org/">Unicode</a>。另见宽字符支持相关章节。</p>
+<h3 id="嵌套注释"><a class="header" href="#嵌套注释">嵌套注释</a></h3>
+<p>SWI-Prolog 允许嵌套 <code>/* ... */</code> 注释。ISO 标准会把 <code>/* ... /* ... */</code> 接受为一段注释，而 SWI-Prolog 会继续寻找终止用的 <code>*/</code>。如果要把一段本身已经包含 <code>/* ... */</code> 注释的代码整体注释掉，这会很有用。这个修改也避免了下面示例中的意外注释问题：第一段注释的结束 <code>*/</code> 被忘记了。</p>
+<pre><code class="language-prolog">/* comment
+
+code
+
+/* second comment */
+
+code
+</code></pre>
+<h3 id="字符转义语法"><a class="header" href="#字符转义语法">字符转义语法</a></h3>
+<p>在带引号的原子（使用单引号：<code>'&lt;atom&gt;'</code>）中，特殊字符用转义序列表示。转义序列由反斜杠（<code>\</code>）引入。转义序列列表兼容 ISO 标准，但包含一些扩展；为提升兼容性，数值指定字符的解释也略微更灵活。未定义的转义字符会抛出 <code>syntax_error</code> 异常。SWI-Prolog 6.1.9 及以前版本会逐字复制未定义转义字符，即去掉反斜杠。</p>
+<div class="table-wrapper"><table><thead><tr><th>转义</th><th>含义</th></tr></thead><tbody>
+<tr><td><code>\a</code></td><td>警告字符。通常是 ASCII 字符 7（响铃）。</td></tr>
+<tr><td><code>\b</code></td><td>退格字符。</td></tr>
+<tr><td><code>\c</code></td><td>不产生输出。跳过输入中直到第一个非布局字符之前的所有字符。这可用于写出更美观的长行。ISO 不支持。</td></tr>
+<tr><td><code>\</code> 后接换行</td><td>在 ISO 模式中（见 Prolog 标志 <code>iso</code>），只跳过这个序列。在原生模式中，换行后的空白也会被跳过，并打印警告，指出该结构已弃用并建议使用 <code>\c</code>。</td></tr>
+<tr><td><code>\e</code></td><td>转义字符（ASCII 27）。非 ISO，但被广泛支持。</td></tr>
+<tr><td><code>\f</code></td><td>换页字符。</td></tr>
+<tr><td><code>\n</code></td><td>下一行字符。</td></tr>
+<tr><td><code>\r</code></td><td>仅回车，即回到行首。</td></tr>
+<tr><td><code>\s</code></td><td>空格字符。用于允许写出 <code>0'\s</code> 来取得空格字符的字符码。非 ISO。</td></tr>
+<tr><td><code>\t</code></td><td>水平制表符。</td></tr>
+<tr><td><code>\v</code></td><td>垂直制表符（ASCII 11）。</td></tr>
+<tr><td><code>\xXX..\</code></td><td>字符的十六进制表示。按 ISO 标准，结尾的 <code>\</code> 是必需的；但 SWI-Prolog 中它是可选的，以增强与较早 Edinburgh 标准的兼容性。代码 <code>\xa\3</code> 产生字符 10（十六进制 <code>a</code>）后接 <code>3</code>。这种方式指定的字符按 Unicode 字符解释。另见 <code>\u</code>。</td></tr>
+<tr><td><code>\uXXXX</code></td><td>Unicode 字符表示，其中字符用<strong>恰好</strong> 4 个十六进制数字指定。这是 ISO 标准的扩展，修复了两个问题：首先，<code>\x</code> 定义的是数字字符码，但没有指定该字符码应在哪个字符集中解释；其次，不再需要 ISO Prolog 中特别的结尾反斜杠语法。</td></tr>
+<tr><td><code>\UXXXXXXXX</code></td><td>与 <code>\uXXXX</code> 相同，但使用 8 个数字，以覆盖整个 Unicode 集。</td></tr>
+<tr><td><code>\40</code></td><td>八进制字符表示。十六进制表示的规则和说明同样适用于八进制表示。</td></tr>
+<tr><td><code>\\</code></td><td>转义反斜杠本身。因此，<code>'\\'</code> 是一个只包含单个 <code>\</code> 的原子。</td></tr>
+<tr><td><code>\'</code></td><td>单引号。注意，<code>'\''</code> 和 <code>''''</code> 都描述只包含单个 <code>'</code> 的原子，也就是说 <code>'\'' == ''''</code> 为真。</td></tr>
+<tr><td><code>\"</code></td><td>双引号。</td></tr>
+<tr><td><code>\`</code></td><td>反引号。</td></tr>
+</tbody></table>
+</div>
+<p><code>\c</code> 的示例：</p>
+<pre><code class="language-prolog">format('This is a long line that looks better if it was \c
+       split across multiple physical lines in the input')
+</code></pre>
+<p>对于反斜杠后接换行的长行写法，建议使用 <code>\c</code>，或者把布局字符放在 <code>\</code> 之前，如下所示。<code>\c</code> 被多个其他 Prolog 实现支持，并将继续被 SWI-Prolog 支持。下面这种风格是兼容性最好的方案。</p>
+<pre><code class="language-prolog">format('This is a long line that looks better if it was \
+split across multiple physical lines in the input')
+</code></pre>
+<p>而不是：</p>
+<pre><code class="language-prolog">format('This is a long line that looks better if it was\
+ split across multiple physical lines in the input')
+</code></pre>
+<p>注意，SWI-Prolog 也允许未转义的换行出现在带引号的材料中。ISO 标准不允许这样做，但过去这曾是常见实践。</p>
+<p>只有在 <code>current_prolog_flag(character_escapes, true)</code> 生效时，字符转义才可用（默认如此）。见 <code>current_prolog_flag/2</code>。字符转义会以两种方式与 <code>writef/2</code> 冲突：<code>\40</code> 会被 <code>writef/2</code> 解释为十进制 40，但会被 <code>read</code> 解释为八进制 40（十进制 32）。此外，<code>writef/2</code> 序列 <code>\l</code> 是非法的。建议改用支持更广泛的 <code>format/[2,3]</code> 谓词。如果坚持使用 <code>writef/2</code>，可以把 Prolog 标志 <code>character_escapes</code> 切换为 <code>false</code>，也可以使用双重 <code>\\</code>，例如 <code>writef('\\l')</code>。</p>
+<h3 id="非十进制数的语法"><a class="header" href="#非十进制数的语法">非十进制数的语法</a></h3>
+<p>SWI-Prolog 同时实现 Edinburgh 和 ISO 两种非十进制数表示。按照 Edinburgh 语法，这类数写作 <code>&lt;radix&gt;'&lt;number&gt;</code>，其中 <code>&lt;radix&gt;</code> 是 2 到 36 之间的数字。ISO 使用 <code>0[bxo]&lt;number&gt;</code> 定义二进制、八进制和十六进制数。例如，下面是一个合法表达式：</p>
+<pre><code class="language-prolog">A is 0b100 \/ 0xf00
+</code></pre>
+<p>这类数总是无符号的。</p>
+<h3 id="在大整数中使用数字分组"><a class="header" href="#在大整数中使用数字分组">在大整数中使用数字分组</a></h3>
+<p>SWI-Prolog 支持把长整数拆分成数字分组（digit groups）。数字分组可以用“下划线 + 可选空白”的序列分隔。如果基数小于或等于 10，也可以用恰好一个空格分隔。下面几种写法都表示整数 100 万：</p>
+<pre><code class="language-prolog">1_000_000
+1 000 000
+1_000_/*more*/000
+</code></pre>
+<p>可以用 <code>format/2</code> 和格式说明符 <code>~I</code> 按这种记法打印整数。例如：</p>
+<pre><code class="language-prolog">?- format('~I', [1000000]).
+1_000_000
+</code></pre>
+<p>当前语法由 Ulrich Neumerkel 在 SWI-Prolog 邮件列表上提出。</p>
+<h3 id="有理数语法"><a class="header" href="#有理数语法">有理数语法</a></h3>
+<p>从 8.1.22 版开始，如果 SWI-Prolog 在编译时启用了 GMP 库，它会把有理数作为一等原子数据类型支持。这可以用 Prolog 标志 <code>bounded</code> 测试。原子类型也需要一种语法。遗憾的是，在不破坏 ISO 标准的前提下加入有理数，选择并不多。ECLiPSe 使用 <code>numerator_denominator</code>。该语法与 SWI-Prolog 的数字分组冲突（见上一节），而且没有被广泛认可为有理数写法。<code>1/3r</code> 和 <code>1/3R</code> 也曾被提出；<code>1/3r</code> 与 Ruby 兼容，但因为需要向前看而难以解析，也不太自然。另见 <a href="https://en.wikipedia.org/wiki/Rational_data_type">https://en.wikipedia.org/wiki/Rational_data_type</a>。</p>
+<p>ECLiPSe 和 SWI-Prolog 已同意把有理数的规范语法定义为类似 <code>1r3</code> 的形式。此外，ECLiPSe 接受 <code>1_3</code>；SWI-Prolog 可通过模块敏感的 Prolog 标志 <code>rational_syntax</code> 接受 <code>1/3</code>。该标志的取值如下。注意，<code>write_canonical/1</code> 始终使用兼容的 <code>1r3</code> 语法。</p>
+<ul>
+<li>
+<p><code>natural</code>：默认模式。在该模式下，系统忽略歧义问题，并采用最自然的 <code>&lt;integer&gt;/&lt;nonneg&gt;</code> 形式。这里，<code>&lt;integer&gt;</code> 遵循 Prolog 十进制整数的常规规则；<code>&lt;nonneg&gt;</code> 也遵循同样规则，但不允许符号。解析器会把有理数转换为规范形式，这意味着结果的分子和分母没有公因子。有理数示例：</p>
+<div class="table-wrapper"><table><thead><tr><th>输入</th><th>规范形式</th></tr></thead><tbody>
+<tr><td><code>1/2</code></td><td><code>1/2</code></td></tr>
+<tr><td><code>2/4</code></td><td><code>1/2</code></td></tr>
+<tr><td><code>1 000 000/33 000</code></td><td><code>1000/33</code></td></tr>
+<tr><td><code>-3/5</code></td><td><code>-3/5</code></td></tr>
+</tbody></table>
+</div>
+<p>我们预计极少程序会在本来期望项的位置解析出有理数。注意，对于出现在算术表达式中的有理数，唯一差异是求值从运行时移动到了编译时。工具 <code>list_rationals/0</code> 可用于检查已载入程序是否在子句中包含有理数，从而可能受到兼容性影响。如果本意是写项，可以写成 <code>/(1,2)</code>、<code>(1)/2</code>、<code>1 / 2</code> 或类似变体。</p>
+</li>
+<li>
+<p><code>compatibility</code>：以类似 <code>1r3</code> 的形式读写有理数。换句话说，它遵循上面 <code>natural</code> 的同样规则，但使用 <code>r</code> 而不是 <code>/</code>。注意，这可能与传统 Prolog 冲突，因为 <code>r</code> 可以被定义为中缀运算符。ISO 标准中作为数字语法一部分的 <code>0x23</code> 等写法也有同样问题。</p>
+</li>
+</ul>
+<p>有理数语法由标志 <code>rational_syntax</code> 控制；整数除法和乘方的行为由标志 <code>prefer_rationals</code> 控制。有理数算术见相关章节。</p>
+<h3 id="naninfinity-浮点数及其语法"><a class="header" href="#naninfinity-浮点数及其语法">NaN、Infinity 浮点数及其语法</a></h3>
+<p>SWI-Prolog 支持按 Joachim Schimpf 提出的、ECLiPSe Prolog 中可用的 Prolog 标准核心浮点算术更新提案，读取和打印“特殊”浮点值。具体来说：</p>
+<ul>
+<li>
+<p>Infinity 打印为 <code>1.0Inf</code> 或 <code>-1.0Inf</code>。任何匹配正则表达式 <code>[+-]?\sd+[.]\sd+Inf</code> 的序列都会映射为正无穷或负无穷。</p>
+</li>
+<li>
+<p><code>NaN</code>（Not a Number，非数）打印为 <code>1.xxxNaN</code>，其中 <code>1.xxx</code> 是把指数替换为 <code>1</code> 后的浮点数。这些数可以被读取，并产生同一个 <code>NaN</code>。<code>NaN</code> 常量也可以用函数 <code>nan/0</code> 生成，例如：</p>
+</li>
+</ul>
+<pre><code class="language-prolog">?- A is nan.
+A = 1.5NaN.
+</code></pre>
+<p>默认情况下，SWI-Prolog 算术遵循 ISO 标准：浮点运算要么产生普通浮点数，要么抛出异常。IEEE 浮点相关章节描述了可用于支持 IEEE 特殊浮点值的 Prolog 标志。创建、读取和写入这些值的能力，有助于和支持完整 IEEE 双精度范围的语言交换数据。</p>
+<h3 id="强制只有下划线引入变量"><a class="header" href="#强制只有下划线引入变量">强制只有下划线引入变量</a></h3>
+<p>按照 ISO 标准和大多数 Prolog 系统，以大写字母或下划线开头的标识符都是变量。过去，Prolog by BIM 提供过一种替代语法：只有下划线（<code>_</code>）引入变量。从 SWI-Prolog 7.3.27 开始，SWI-Prolog 支持这种替代语法，由 Prolog 标志 <code>var_prefix</code> 控制。与 <code>character_escapes</code> 标志一样，该标志按模块维护；默认值为 <code>false</code>，即支持标准语法。</p>
+<p>如果代码包含大小写敏感外部语言的标识符，那么只有下划线引入变量会特别有用。例如 RDF 库中，代码常常指定属性名和类名；又如 R 接口需要指定以大写字符开头的函数或变量。词汇数据库中也常有部分项以大写字母开头，使用该选项能提高这类代码的可读性。</p>
+<h3 id="unicode-prolog-源码"><a class="header" href="#unicode-prolog-源码">Unicode Prolog 源码</a></h3>
+<p>ISO 标准用 ASCII 字符规定 Prolog 语法。由于 SWI-Prolog 支持在源文件中使用 Unicode，我们必须扩展语法。本节描述这对源文件的影响；编写国际化源文件则在相关章节中描述。</p>
+<p>SWI-Prolog 的 Unicode 字符分类遵循只读 Prolog 标志 <code>unicode_syntax_version</code> 报告的 Unicode 版本。注意，<code>char_type/2</code> 及相关谓词用于处理任意文本而非 Prolog 源码，它们基于 C 库的区域设置分类例程；<code>library(unicode)</code> 中的谓词会报告随附 <code>utf8proc</code> 数据的版本，该版本可能不同于语法分类器的版本（见 <code>unicode_version/1</code>）。</p>
+<ul>
+<li>
+<p><strong>带引号的原子和字符串</strong>：任何文字系统中的任何字符都可以用于带引号的原子和字符串。转义序列 <code>\uXXXX</code> 和 <code>\UXXXXXXXX</code>（见“字符转义语法”）被引入，用于在 ASCII 文件中指定 Unicode 码点。</p>
+</li>
+<li>
+<p><strong>原子和变量</strong>：二者关系密切，因此合在一起说明。Unicode 标准为计算机语言中的标识符定义了一种语法（见 <a href="http://www.unicode.org/reports/tr31/">http://www.unicode.org/reports/tr31/</a>）。SWI-Prolog 使用 <code>XID_Start</code> 和 <code>XID_Continue</code> 集合：标识符由一个 <code>XID_Start</code> 码点开头，后接一串 <code>XID_Continue</code> 码点。作为配置扩展，上标数字（²、³、¹，以及 ⁰--⁹，即 U+00B2、U+00B3、U+00B9、U+2070、U+2074..U+2079）和下标数字（₀--₉，U+2080..U+2089）也被接受为 <code>XID_Continue</code>，从而允许 <code>X²</code> 和 <code>X₁</code> 这样的变量。这类序列作为一个 token 处理。只有当 token 以下划线（<code>_</code>）开头，或以 Unicode 通用类别 <code>Lu</code>（大写字母）中的码点开头时，它才是变量；否则它是原子。注意，标题式大写字母（通用类别 <code>Lt</code>，例如 ǅ）会开启原子，而不是变量；这不同于较早版本使用更宽泛派生属性 <code>Uppercase</code> 的行为。许多语言没有字符大小写概念；在这类语言中，变量<strong>必须</strong>写成 <code>_name</code> 这样的形式。</p>
+</li>
+<li>
+<p><strong>数字</strong>：在源码中（<code>read_term/2</code>），数字字面量只使用 ASCII 数字 <code>0</code> 到 <code>9</code>。通过 <code>atom_number/2</code>、<code>number_codes/2</code> 和 <code>number_chars/2</code> 转换时，对于整数、有理数（见“有理数语法”）和浮点数，还额外接受任意 Unicode <code>Nd</code> 数字块；同一个数字中的所有数字必须来自同一个块，也就是说，如果有理数的分子使用印度文字，分母也必须如此。符号、有理数分隔符、浮点数的 <code>.</code> 和浮点指数始终是 ASCII。</p>
+</li>
+<li>
+<p><strong>空白</strong>：布局字符恰好是 UAX #31 定义的 Unicode <code>Pattern_White_Space</code> 集合：U+0009..U+000D、U+0020、U+0085、U+200E、U+200F、U+2028 和 U+2029。NBSP（U+00A0）有意被排除在 <code>Pattern_White_Space</code> 之外；如果它出现在带引号材料之外，会抛出杂散字符语法错误。从文字处理器粘贴的程序偶尔会在错误位置带入 NBSP，明确报告它比静默当作分隔符更好。</p>
+</li>
+<li>
+<p><strong>行终止</strong>：<code>Pattern_White_Space</code> 中有七个码点会结束一行：U+000A（LF）、U+000B（VT）、U+000C（FF）、U+000D（CR）、U+0085（NEL）、U+2028（LINE SEPARATOR）和 U+2029（PARAGRAPH SEPARATOR）。它们会终止 <code>%</code> 行注释，推动源码位置的行计数器，并在带引号字符串中作为反斜杠-换行续行的换行符（<code>\</code> 后接行尾，再后接零个或多个空白会被消耗）。同一集合通过 <code>code_type/2</code> 和 <code>char_type/2</code> 中的 <code>prolog_end_of_line</code> 暴露给用户代码；不带前缀的 <code>end_of_line</code> 仍限制为四个 ISO/POSIX 控制码（LF、VT、FF、CR），而 11 个成员的 <code>Pattern_White_Space</code> 集合本身是 <code>prolog_layout</code>。</p>
+</li>
+<li>
+<p><strong>源文本中的杂散字符</strong>：在 token 起始位置（也就是允许布局字符的位置），如果某个码点不属于任何已识别语法类别，即布局（见上文）、十进制数字、标识符起始、标识符延续、单独字符、括号开符号或引号开符号，则抛出 <code>syntax_error(illegal_character)</code>。这包括 C0 和 C1 控制范围、未分配码点和非字符码点、代理码点、不在 <code>Pattern_White_Space</code> 中的 <code>Zs</code> / <code>Zl</code> / <code>Zp</code> 分隔符类别（NBSP、OGHAM SPACE MARK、NARROW NO-BREAK SPACE、IDEOGRAPHIC SPACE 等）、既不在 <code>Pattern_White_Space</code> 中也不在 <code>Other_ID_Continue</code> 中的 <code>Cf</code> 格式字符（SOFT HYPHEN、ZERO WIDTH SPACE 等）、包围组合标记（<code>Me</code>），以及不属于显式上标或下标数字配置的其他数字字符（<code>No</code>，例如常用分数和罗马数字形式 U+00BC..U+00BE）。</p>
+<p>非间距组合标记（<code>Mn</code>、<code>Mc</code>）同样会在 token 起始位置被拒绝，因为它们不能开启标识符；但它们属于 <code>XID_Continue</code>，因此会并入前面的标识符（U+0061 后接 U+0300 COMBINING GRAVE 会读作一个由两个码点组成的单 token 标识符）。</p>
+</li>
+<li>
+<p><strong>带引号材料内部</strong>：在单引号原子（<code>'...'</code>）、双引号字符串（<code>"..."</code>）、反引号文本（<code>`...`</code>）、Unicode 引号对（见上文）、<code>%</code> 注释以及 <code>/* ... */</code> 注释内部，<strong>任何</strong> Unicode 标量值（U+0000 到 U+10FFFF，不包括 UTF-8 无法编码的代理码点）都会被逐字接受。转义序列 <code>\uXXXX</code> 和 <code>\UXXXXXXXX</code>（见“字符转义语法”）可用于可移植性和显式清晰性，而不是作为准入门槛。唯一例外是双向文本覆盖/隔离范围（U+202A..U+202E 和 U+2066..U+2069），它们会作为 Trojan-source 防御被拒绝（见 <code>unicode_atoms</code>）。对包含控制码点或零宽码点的原子或字符串进行带引号写出（例如 <code>writeq/1</code>）时，该原子或字符串会被加引号，问题码点会用转义序列写出；见“字符转义语法”。</p>
+</li>
+<li>
+<p><strong>其他字符</strong>：前 128 个字符遵循 ISO Prolog 标准。特别是，ASCII 符号字符会粘连成复合原子，产生熟悉的运算符 token，如 <code>==</code>、<code>=..</code>、<code>:-</code> 等。ASCII 之外，所有 Unicode 符号字符（通用类别 <code>Sm</code>、<code>Sc</code>、<code>Sk</code>、<code>So</code>）以及连接符、短横线和其他标点类别（<code>Pc</code>、<code>Pd</code>、<code>Po</code>）都被视为单独字符（solo）：每个字符各自形成一个原子，不会和相邻符号粘连。这是相对于早期版本的有意改变；早期版本中 Unicode 符号会像 ASCII 符号一样粘连成复合原子。该改变确保 ≤、€、· 等字符保持逐字符意义。由 Unicode 符号构成的运算符必须用 <code>op/3</code> 显式声明。其他类型的数字字符（通用类别 <code>No</code>，例如分数和带圈数字）不属于标识符集合；只有显式列出的上标和下标数字扩展了标识符。</p>
+</li>
+<li>
+<p><strong>括号（成对分隔符）</strong>：开标点/闭标点类别 <code>Ps</code> 和 <code>Pe</code> 形成括号对（bracket pairs）：一个开字符后接一个 Prolog 项，再后接匹配的闭字符，会被读作一元复合项，其函子是两个分隔符字符拼接而成。这与 <code>{Term}</code> 变成 <code>'{}'(Term)</code> 的形态相同，只是推广到了完整 Unicode <code>Ps</code>/<code>Pe</code> 集合（64 对，来源于按通用类别过滤的 Unicode <code>BidiMirroring.txt</code>）。括号内的运算符会被遵守；嵌套也按预期工作。闭字符不匹配或游离闭字符会抛出 <code>syntax_error</code>。与 <code>{}</code> 的类比是完整的：一个空对（可只包含布局）会读作双字符原子，而不是复合项；该原子后接 <code>(</code> 时是函子；输出时，<code>'&lt;open&gt;&lt;close&gt;'(X)</code> 会写作 <code>&lt;open&gt;X&lt;close&gt;</code>，裸原子也不加引号，二者都受写选项 <code>brace_terms(true)</code> 约束。</p>
+</li>
+<li>
+<p><strong>引号（成对字面文本分隔符）</strong>：起始/结束引号类别 <code>Pi</code> 和 <code>Pf</code> 形成引号对（quote pairs）：一个开字符后接字面文本，再后接匹配的闭字符，会被读作一元复合项，其函子是两个分隔符字符拼接而成，参数则是其中的文本，形式由 <code>double_quotes</code> 选择（默认为字符串，也可以是原子、codes 或 chars）。其中的文本<strong>不会</strong>按 Prolog 项解析；转义序列（<code>\n</code>、<code>\uXXXX</code> 等）会像 ASCII 带引号字符串一样处理。例如，在 <code>double_quotes</code> 设置为 <code>string</code> 时，源码文本 <code>«hello, world»</code> 会读作一个复合项，其函子是双字符原子 <code>«»</code>，唯一参数是字符串 <code>"hello, world"</code>。引号对来自 <code>BidiMirroring.txt</code> 中的 <code>Pi</code>/<code>Pf</code> 条目（8 对），再加上标准左右弯引号对 U+2018/U+2019 和 U+201C/U+201D；后两对不在 <code>BidiMirroring.txt</code> 中。闭字符不匹配和开字符无匹配都会抛出 <code>syntax_error</code>。</p>
+</li>
+</ul>
+<p>上述特性让源文本可以不经转义地包含 Unicode：</p>
+<pre><code class="language-prolog">p(X⁰, X) :-              % Superscript variable profile for
+    q(X⁰, X¹),           % threaded variables.
+    r(X¹, X).
+
+?- atom_number('१२३', N).     % Devanagari Nd via atom_number/2
+N = 123.
+
+?- atom_codes(≤, Cs).          % Unicode symbol stays solo
+Cs = [8804].
+
+?- term_string(T, "⟨a, b⟩"),  % bracket pair (Ps/Pe)
+   display(T).
+⟨⟩(','(a,b))
+T = ⟨a, b⟩.
+
+?- term_string(T, "⟨ ⟩").     % empty pair is the atom
+T = ⟨⟩.
+
+?- term_string(T, "«hello").  % quote pair (Pi/Pf)
+T = '«»'("hello").
+</code></pre>
+<h3 id="单例变量检查"><a class="header" href="#单例变量检查">单例变量检查</a></h3>
+<p>单例变量（singleton variable）是在一个子句中只出现一次的变量。它总是可以替换为匿名变量 <code>_</code>。不过，在某些情况下，人们更愿意给这个变量一个名字。由于变量拼写错误是常见错误，如果某个变量只使用一次，Prolog 系统一般会给出警告（由 <code>style_check/1</code> 控制）。如果变量本来就应当只出现一次，可以通过让它以 <code>_</code> 开头来通知系统，例如 <code>_Name</code>。请注意，除单独的 <code>_</code> 之外，任何变量都会与同名变量共享。项 <code>t(_X, _X)</code> 等价于 <code>t(X, X)</code>，这与 <code>t(_, _)</code> <strong>不同</strong>。</p>
+<p>由于许多语言中的变量都必须以下划线开头，这套方案已经被扩展。首先定义两类命名变量。</p>
+<ul>
+<li>
+<p><strong>命名单例变量</strong>：命名单例以双下划线（<code>__</code>）开头，或以单下划线后接大写字母开头，例如 <code>__var</code> 或 <code>_Var</code>。</p>
+</li>
+<li>
+<p><strong>普通变量</strong>：所有其他变量都是“普通”变量。注意，这使 <code>_var</code> 成为普通变量。一些 Prolog 方言会这样书写变量。</p>
+</li>
+</ul>
+<p>任何在子句中只出现一次的普通变量，以及任何出现多于一次的命名单例变量，都会被报告。下面是一些示例，右列给出警告。单例消息可用 <code>style_check/1</code> 指令抑制。</p>
+<p>最后，名为 <code>_&lt;digit&gt;</code> 的变量永远不会接受风格检查。这些变量名由 <code>write/1</code> 等谓词生成。这个例外也可用于把单例传给 <code>debug/3</code>。把单例传给 <code>debug/3</code> 在其他情况下会有问题：使用普通变量时，如果优化移除了 <code>debug/3</code> 语句，就会产生单例警告；使用命名匿名变量时，又会产生多例（multiton）警告。例如：</p>
+<pre><code class="language-prolog">p(X) :-
+    q(X,_0Y),
+    debug(demo, 'q/2 says ~p', [_0Y]).
+</code></pre>
+<div class="table-wrapper"><table><thead><tr><th>示例</th><th>警告</th></tr></thead><tbody>
+<tr><td><code>test(_).</code></td><td></td></tr>
+<tr><td><code>test(_a).</code></td><td><code>Singleton variables: [_a]</code></td></tr>
+<tr><td><code>test(A).</code></td><td><code>Singleton variables: [A]</code></td></tr>
+<tr><td><code>test(_12).</code></td><td></td></tr>
+<tr><td><code>test(_A).</code></td><td></td></tr>
+<tr><td><code>test(__a).</code></td><td></td></tr>
+<tr><td><code>test(_, _).</code></td><td></td></tr>
+<tr><td><code>test(_a, _a).</code></td><td></td></tr>
+<tr><td><code>test(__a, __a).</code></td><td><code>Singleton-marked variables appearing more than once: [__a]</code></td></tr>
+<tr><td><code>test(_A, _A).</code></td><td><code>Singleton-marked variables appearing more than once: [_A]</code></td></tr>
+<tr><td><code>test(A, A).</code></td><td></td></tr>
+</tbody></table>
+</div>
+<p><strong>语义单例变量</strong></p>
+<p>从 6.5.1 版开始，SWI-Prolog 区分语法单例变量（syntactic singletons）和语义单例变量（semantic singletons）。前者由 <code>read_clause/3</code> 检查，也可由带有选项 <code>singletons(warning)</code> 的 <code>read_term/3</code> 检查。后者由编译器针对在某个分支中单独出现的变量生成。例如，在下面的代码中，变量 <code>X</code> 不是<strong>语法</strong>单例变量，但变量 <code>X</code> 不传递任何绑定，把 <code>X</code> 替换为 <code>_</code> 不会改变语义。</p>
+<pre><code class="language-prolog">test :-
+    (   test_1(X)
+    ;   test_2(X)
+    ).
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="有理树循环项"><a class="header" href="#有理树循环项">有理树（循环项）</a></h1>
+<p>SWI-Prolog 支持有理树（rational trees），也称为循环项（cyclic terms）。这里的“支持”定义为：面对有理树时，大多数相关内置谓词都能终止。SWI-Prolog 几乎所有内置项操作谓词，都能以与该项在栈上表示所用内存量成线性关系的时间处理项。下面这些谓词可以安全处理有理树：</p>
+<p><code>=../2</code>、<code>==/2</code>、<code>=@=/2</code>、<code>=/2</code>、<code>@&lt;/2</code>、<code>@=&lt;/2</code>、<code>@&gt;=/2</code>、<code>@&gt;/2</code>、<code>\==/2</code>、<code>\=@=/2</code>、<code>\=/2</code>、<code>acyclic_term/1</code>、<code>bagof/3</code>、<code>compare/3</code>、<code>copy_term/2</code>、<code>cyclic_term/1</code>、<code>dif/2</code>、<code>duplicate_term/2</code>、<code>findall/3</code>、<code>ground/1</code>、<code>term_hash/2</code>、<code>numbervars/3</code>、<code>numbervars/4</code>、<code>recorda/3</code>、<code>recordz/3</code>、<code>setof/3</code>、<code>subsumes_term/2</code>、<code>term_variables/2</code>、<code>throw/1</code>、<code>unify_with_occurs_check/2</code>、<code>unifiable/3</code>、<code>when/2</code>、<code>write/1</code>（以及相关谓词）。</p>
+<p>此外，一些内置谓词会识别有理树并抛出合适的异常。算术求值属于这一类。编译器（<code>asserta/1</code> 等）也会抛出异常。未来版本可能支持有理树。能够对有理树提供有意义处理的谓词会抛出 <code>representation_error</code>。对于没有有意义解释的有理树，相关谓词会抛出 <code>type_error</code>。例如：</p>
+<pre><code class="language-prolog">1 ?- A = f(A), asserta(a(A)).
+ERROR: asserta/1: Cannot represent due to `cyclic_term'
+2 ?- A = 1+A, B is A.
+ERROR: is/2: Type error: `expression' expected, found
+             `@(S_1,[S_1=1+S_1])' (cyclic term)
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="即时子句索引"><a class="header" href="#即时子句索引">即时子句索引</a></h1>
+<p>SWI-Prolog 对多个参数提供“即时”（just-in-time）索引。“即时”表示子句索引不是由编译器（或动态谓词的 <code>asserta/1</code>）预先构建的，而是在第一次调用某个可能受益于索引的谓词时构建，也就是至少有一个参数已经实例化的调用。本节描述索引逻辑使用的规则。注意，这套逻辑并不是一成不变的。系统的索引能力会继续变化。虽然这不可避免地会让某些特定用例发生回退，我们仍会尽力避免显著变慢。</p>
+<p>下面的列表描述不同谓词和调用的子句选择过程。各个备选方案按列出的顺序考虑。</p>
+<ul>
+<li>
+<p><strong>专用代码</strong></p>
+<p>编译器当前识别两种特殊情况：只有一个子句的静态代码；以及有两个子句的静态代码，其中一个子句的某个参数是空列表（<code>[]</code>），另一个子句的同一参数是非空列表（<code>[_|_]</code>）。注意，如果这个参数是输出参数，语义会保持不变，但效率会稍微下降。可以用 <code>mode/1</code> 把该参数声明为 <code>-</code> 来避免这种变慢。9.3.18 及以前版本只考虑第一个参数。</p>
+</li>
+<li>
+<p><strong>在主索引参数上线性扫描</strong></p>
+<p>主子句列表维护一个键（key），通常针对第一个参数。索引键要么是常量，要么是函子（name/arity 引用）。如果调用的主索引参数已实例化，并且子句少于 10 个，系统会使用该索引键做线性扫描，寻找可能匹配的子句。如果结果是确定性的，就使用该结果；否则系统会寻找更好的索引。7.7.2 及以前版本即使结果非确定也会使用。主索引参数是第一个满足如下条件的参数：至少有一个子句在该参数上具有可索引（非变量）值。9.3.18 及以前版本中，主索引固定为第一个参数。</p>
+</li>
+<li>
+<p><strong>哈希查找</strong></p>
+<p>如果上述方案都不适用，系统会考虑已有哈希表中那些对应参数已经实例化的表。如果找到特征可接受的表，就使用它。否则，系统会评估所有已实例化参数上的子句，并选择最好的候选参数来创建新的哈希表。如果没有任何单个参数能提供可接受的哈希质量，系统会搜索参数组合。最后一步是在 SWI-Prolog 7.5.8 中加入的。索引候选搜索只会在前 254 个参数上进行。</p>
+<p>如果单参数索引包含多个具有相同 name/arity 且至少有一个非变量参数的复合项，就会创建列表索引（list index）。后续查询中，如果这个参数绑定为复合项，JITI 索引会递归地应用到该项的参数上。这称为深层索引（deep indexing）。深层索引是在 7.7.4 版中加入的。另见“深层索引”。</p>
+<p>如果某个子句在本可索引的参数位置上是变量，它必须链接到所有哈希桶中。目前，如果某个谓词在特定参数上有超过 10% 的这类子句，该参数就不会被考虑用于索引。</p>
+<p>忽略变量后，一个参数是否适合哈希，用“唯一可索引值的数量”除以“每个值的重复数量的标准差加一”来表示。早期版本只使用唯一值数量；但值分布不佳会让表不那么适合索引。这个问题由 Fabien Noth 和 Günter Kniesel 分析过。</p>
+<p>对动态谓词而言，如果子句数量相对索引创建时翻倍，或减少到低于原来的四分之一，索引会被删除。JIT 方法会在下一次调用时重新创建合适的索引。正在运行的谓词索引不能被删除。它们会被加入该谓词关联的“已移除索引列表”。谓词中过期的索引由 <code>garbage_collect_clauses/0</code> 回收。子句垃圾收集器会基于时间和空间启发式规则自动调度。详情见 <code>garbage_collect_clauses/0</code>。</p>
+</li>
+</ul>
+<p>库 <code>library(prolog_jiti)</code> 提供 <code>jiti_list/0</code> 和 <code>jiti_list/1</code>，用于列出所有或部分已创建哈希表的特征。</p>
+<p><strong>动态谓词</strong>使用与静态谓词相同的规则建立索引，但从不应用专用代码方案。此外，如果子句数量相对该谓词上次评估时翻倍，或缩小到低于四分之一，JITI 索引会被丢弃。后续调用会重新评估动态谓词的统计信息，并在适用时创建新索引。</p>
+<p>JIT 索引由一组名称以 <code>ci_</code> 开头的 Prolog 标志控制，例如 <code>ci_min_speedup</code>。见 <code>current_prolog_flag/2</code>。</p>
+<h2 id="深层索引"><a class="header" href="#深层索引">深层索引</a></h2>
+<p>如“即时子句索引”中介绍，深层索引会创建哈希表，用于区分共享同一 name/arity 复合项的子句。深层索引可以高效查找任意项。如果没有它，通常建议把项拍平，也就是把 <code>F(X)</code> 转为事实中的两个参数：一个参数表示函子 <code>F</code>，另一个参数表示参数 <code>X</code>。只要每个项的元数相同，这种方式就很好用。另一种方式是使用 <code>term_hash/2</code> 或 <code>term_hash/4</code> 增加一列，保存该项的哈希值。这种方式可以处理任意元数，但要求我们知道该项是基项（<code>term_hash/2</code>），或者知道到多深的层级可以获得足够选择性（<code>term_hash/4</code>）。</p>
+<p>深层索引不要求具备这些知识，并且无论查询和项的实例化情况如何，都能带来高效查找。当前版本仍有一些限制：</p>
+<ul>
+<li>在每个层级上，使用哪个索引的决策是独立做出的。未来版本可能会更智能。</li>
+<li>深层索引只适用于单参数索引（可以是任意一个参数）。</li>
+<li>目前，索引深度限制为 7 层。</li>
+</ul>
+<p>注意，编译 DCG 时（见 DCG 相关章节），如果第一个体目标是字面量，它会被包含进子句头。下面给出一个语法及其普通 Prolog 表示形式。</p>
+<pre><code class="language-prolog">det(det(a), sg)  --&gt; "a".
+det(det(an), pl) --&gt; "an".
+det(det(the), _) --&gt; "the".
+</code></pre>
+<pre><code class="language-prolog">?- listing(det).
+det(det(a), sg, [97|A], A).
+det(det(an), pl, [97, 110|A], A).
+det(det(the), _, [116, 104, 101|A], A).
+</code></pre>
+<p>深层参数索引会为第 3 个列表参数创建索引。如果所有规则都以字面量开头，并且所有字面量的前 6 个元素都唯一，这会提供加速，并让子句选择变为确定性。注意，一旦可以做出确定性选择，或不存在两个子句具有相同 name/arity 组合，深层索引创建就会停止。</p>
+<h2 id="未来方向"><a class="header" href="#未来方向">未来方向</a></h2>
+<ul>
+<li>可以扩展“特殊情况”。对于子句数量相对较少、哈希查找成本过高的静态谓词来说，这尤其有吸引力。</li>
+<li>为少量静态子句之间的选择创建高效的决策图。</li>
+<li>实现更好的判断机制，用于在深层索引和普通索引之间做选择。</li>
+</ul>
+<h2 id="体内代码索引"><a class="header" href="#体内代码索引">体内代码索引</a></h2>
+<p>当前 SWI-Prolog 版本只考虑子句头来生成子句索引。这会导致无法检查头参数并在体内传递该参数，除非复制这个参数。考虑下面两个子句。二者在 Prolog 下语义相同。第一个版本会丢失子句索引，第二个版本会创建 <code>f/1</code> 参数的副本。二者都不理想。</p>
+<pre><code class="language-prolog">p(X) :- X = f(I), integer(I), q(X).
+p(f(I)) :- integer(I), q(f(X)).
+</code></pre>
+<p>从 SWI-Prolog 8.3.21 开始，凡是在体内任何其他目标之前发生、并针对头参数的合一，都会被特殊编译。实际效果是，被合一的项会移动到头部（从而提供索引），而使用该项的位置则直接使用相应参数。显式合一会被移除。反编译（<code>clause/2</code>）会反转这个过程，但不一定生成完全相同的项。重新插入的合一会按参数位置排序，而且变量总是位于 <code>=/2</code> 的左侧。因此：</p>
+<pre><code class="language-prolog">p(X,Y) :- f(_) = Y, X = g(_), q(X,Y).
+</code></pre>
+<p>会被反编译为下面这个等价子句。</p>
+<pre><code class="language-prolog">p(X,Y) :- X = g(_), Y = f(_), q(X,Y).
+</code></pre>
+<p>补充说明：</p>
+<ul>
+<li>该转换只对<strong>静态</strong>代码执行。</li>
+<li>合一必须在一个合取中<strong>紧跟</strong>在头部之后。</li>
+<li>唯一例外是会跳过对 <code>true/0</code> 的调用。这允许 <code>goal_expansion/2</code> 把目标转换为 <code>true</code>，同时保留这个优化。</li>
+<li>如果头参数没有被使用，体内合一仍会移动到头部。在这种情况下，反编译器不会反转该过程。因此，<code>p(X) :- X = a.</code> 与 <code>p(a).</code> 完全等价。</li>
+<li>目前，无论 Prolog 标志 <code>optimise</code> 如何设置，都会启用该优化。由于这个优化会妨碍源码级调试，这一点可能并不理想。另一方面，该优化会影响确定性，而我们并不希望确定性取决于是否启用优化。</li>
+</ul>
+<h2 id="索引与可移植性"><a class="header" href="#索引与可移植性">索引与可移植性</a></h2>
+<p>Prolog 实现的基线功能是在第一个参数上按常量和函子（name/arity）建立索引。如果程序需要广泛可移植性，你必须以此为假设。通常可以通过使用 <code>term_hash/2</code> 或 <code>term_hash/4</code>，并且/或者维护同一谓词的多个副本来实现：这些副本使用重新排序的参数，并配合包装器更新所有实现（<code>assert</code>/<code>retract</code>），以及选择合适的实现（查询）。</p>
+<p>YAP 提供完整的 JIT 索引，包括对复合项参数建立索引。YAP 的索引机制是增强 SWI-Prolog 索引能力的灵感来源。</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="宽字符支持"><a class="header" href="#宽字符支持">宽字符支持</a></h1>
+<p>SWI-Prolog 使用 <a href="https://home.unicode.org">Unicode</a> 表示字符。Unicode 定义了范围为 <code>0..0x10FFFF</code> 的码点（code points）。这些码点几乎可以表示任何语言中的任何字符。此外，Unicode 标准还定义了字符类别（字母、数字、标点等）、大小写转换以及更多内容。Unicode 是 ISO 8859-1（ISO Latin-1）的超集，而 ISO Latin-1 又是 US-ASCII 的超集。</p>
+<p>SWI-Prolog 对原子和字符串对象有两种表示（见字符串相关章节）。如果文本可以放入 ISO Latin-1，就表示为 8 位字符数组。否则，文本表示为 <code>wchar_t</code> 字符数组。除 MS-Windows 外，几乎所有系统上的 <code>wchar_t</code> 都是 32 位无符号整数，因此能够表示所有 Unicode 码点。在 MS-Windows 上，<code>wchar_t</code> 是 16 位无符号整数，因此只能表示 <code>0..0xFFFF</code> 范围内的码点。从 SWI-Prolog 8.5.14 开始，Windows 上的 <code>wchar_t</code> 会被解释为 UTF-16 字符串。UTF-16 编码使用代理对（surrogate pairs），把 <code>0x10000..0x10FFFF</code> 范围内的码点表示为 <code>0xD800..0xDFFF</code> 范围内的两个码元（code units）。作为 Unicode 码点，这个范围是未分配的。为保持一致性，SWI-Prolog 不接受代理对范围内的整数作为有效码点，例如：</p>
+<pre><code class="language-prolog">?- char_code(X, 0xD800).
+ERROR: Type error: `character_code' expected, found `55296' (an integer)
+</code></pre>
+<p>内部字符表示对 Prolog 用户完全透明。不过，使用外部语言接口的用户有时需要了解这些问题，相关内容见外部语言接口章节。</p>
+<p>当需要从文件读取字符串字符、向文件写入字符串字符，或通过外部语言接口与其他软件组件通信时，字符编码就会显现出来。本节只处理通过流进行的 I/O，包括文件 I/O 以及通过网络套接字进行的 I/O。</p>
+<h2 id="流上的宽字符编码"><a class="header" href="#流上的宽字符编码">流上的宽字符编码</a></h2>
+<p>虽然内部使用 Unicode 标准唯一地编码字符，但流和文件是面向字节（8 位）的，而在 8 位八位组流中表示较大的 Unicode 码点有多种方式。最流行的一种，尤其是在 Web 语境中，是 UTF-8。字节 <code>0..127</code> 直接表示对应的 US-ASCII 字符，而字节 <code>128..255</code> 用于对 Unicode 空间中更高位置的字符进行多字节编码。特别是在 MS-Windows 上，以字节对表示的 16 位 UTF-16 标准也很流行。</p>
+<p>Prolog I/O 流有一个名为编码（encoding）的属性，它指定所用编码，并影响 <code>get_code/2</code>、<code>put_code/2</code> 以及所有其他文本 I/O 谓词。</p>
+<p>文件的默认编码来自 Prolog 标志 <code>encoding</code>。该标志由 <code>setlocale(LC_CTYPE, NULL)</code> 初始化为 <code>text</code>、<code>utf8</code> 或 <code>iso_latin_1</code> 之一。如果识别出编码名称，就使用后两者之一；否则默认使用 <code>text</code>。使用 <code>text</code> 时，转换留给 C 库的宽字符函数处理。Prolog 原生 UTF-8 模式明显快于通用的 <code>mbrtowc()</code> 模式。在 MS-Windows 上，默认值无条件为 <code>utf8</code>，不受系统代码页影响，因为 UTF-8 是源文件的事实编码，而 Windows C 运行时基于 locale 的宽字符函数提供的 Unicode 覆盖弱于 Prolog 自己的表。</p>
+<p>可以在 <code>load_files/2</code> 中为使用替代编码载入的 Prolog 源显式指定编码；打开文件时可以在 <code>open/4</code> 中指定；也可以在任意已打开流上用 <code>set_stream/2</code> 指定。对于 Prolog 源文件，还提供了 <code>encoding/1</code> 指令，可用于在与 US-ASCII 兼容的编码之间切换（<code>ascii</code>、<code>iso_latin_1</code>、<code>utf8</code> 以及许多 locale）。编写包含非 US-ASCII 字符的 Prolog 文件见国际化源文件相关章节；语法问题见 Unicode Prolog 源码相关章节。更多信息和 Unicode 资源见 <a href="http://www.unicode.org/">http://www.unicode.org/</a>。</p>
+<p>SWI-Prolog 当前定义并支持以下编码：</p>
+<ul>
+<li>
+<p><code>octet</code>：<code>binary</code> 流的默认编码。这会使流在读写时完全不做转换。</p>
+</li>
+<li>
+<p><code>ascii</code>：8 位字节中的 7 位编码。等价于 <code>iso_latin_1</code>，但遇到大于 127 的值时会生成错误和警告。</p>
+</li>
+<li>
+<p><code>iso_latin_1</code>：支持许多西方语言的 8 位编码。这会使流在读写时完全不做转换。上面是 SWI-Prolog 的原生名称。该编码也可以使用官方 <a href="https://www.iana.org">IANA</a> 名称 <code>ISO-8859-1</code> 指定。</p>
+</li>
+<li>
+<p><code>text</code>：文本文件的 C 库默认 locale 编码。文件使用 C 库函数 <code>mbrtowc()</code> 和 <code>wcrtomb()</code> 读写。它可能与其他某种编码相同，尤其是在西方语言环境中可能等同于 <code>iso_latin_1</code>，在 UTF-8 环境中可能等同于 <code>utf8</code>。</p>
+</li>
+<li>
+<p><code>utf8</code>：完整 Unicode 的多字节编码，与 <code>ascii</code> 兼容。见上文。上面是 SWI-Prolog 的原生名称。该编码也可以使用官方 <a href="https://www.iana.org">IANA</a> 名称 <code>UTF-8</code> 指定。</p>
+</li>
+<li>
+<p><code>utf16be</code> / <code>utf16le</code>：UTF-16 编码。按字节对读取输入。<code>utf16be</code> 是大端（Big Endian），高有效字节在前；<code>utf16le</code> 是小端（Little Endian），高有效字节在后。UTF-16 可以通过代理对表示完整 Unicode。上面是 SWI-Prolog 的原生名称。这些编码也可以使用官方 <a href="https://www.iana.org">IANA</a> 名称 <code>UTF-16BE</code> 和 <code>UTF-16LE</code> 指定。为了向后兼容，也支持 <code>unicode_be</code> 和 <code>unicode_le</code>。</p>
+</li>
+</ul>
+<p>注意，并非所有编码都能表示所有字符。这意味着向流写入文本时，可能因为该流无法表示这些字符而出错。流在遇到这些错误时的行为可以用 <code>set_stream/2</code> 控制。初始状态下，终端流会使用 Prolog 转义序列写出这些字符，而其他流会生成 I/O 异常。</p>
+<h3 id="bom字节顺序标记"><a class="header" href="#bom字节顺序标记">BOM：字节顺序标记</a></h3>
+<p>读完“流上的宽字符编码”后，你可能已经感觉到文本文件很复杂。本节处理一个相关主题：它通常让用户的生活更轻松，但也给程序员带来另一层顾虑。<strong>BOM</strong>，即字节顺序标记（Byte Order Marker），是一种识别 Unicode 文本文件及其所用编码的技术。这类文件以 Unicode 字符 <code>0xFEFF</code> 开头；这是一个不换行、零宽的空格字符。它是一个相当独特的序列，不太可能出现在非 Unicode 文件开头，并能唯一地区分各种 Unicode 文件格式。由于它是零宽空白，甚至不会产生任何输出。这似乎解决了所有问题，或者说……</p>
+<p>有些格式以 US-ASCII 开始，并可能包含某种编码标记来切换到 UTF-8，例如 XML 头中的 <code>encoding="UTF-8"</code>。这类格式通常明确禁止使用 UTF-8 BOM。另一些情况下，文件中还有额外信息揭示编码，使 BOM 变得多余，甚至非法。</p>
+<p>BOM 由 SWI-Prolog 的 <code>open/4</code> 谓词处理。默认情况下，读取文本文件时会探测 BOM。如果找到 BOM，就相应设置编码，并且可通过 <code>stream_property/2</code> 获得属性 <code>bom(true)</code>。以写入方式打开文件时，可以通过 <code>open/4</code> 的选项 <code>bom(true)</code> 请求写入 BOM。</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="系统限制"><a class="header" href="#系统限制">系统限制</a></h1>
+<h2 id="内存区域限制"><a class="header" href="#内存区域限制">内存区域限制</a></h2>
+<p>SWI-Prolog 引擎使用三种栈。局部栈（local stack，也称环境栈 environment stack）保存用于调用谓词的环境帧以及选择点。全局栈（global stack，也称堆 heap）包含项、浮点数、字符串和大整数。最后，轨迹栈（trail stack）记录变量绑定和赋值，以支持回溯（backtracking）。除可用内存外，栈大小没有硬限制。9.3.6 以前的旧版本在 32 位硬件上每个栈有 128Mb 的硬限制。</p>
+<p>组合后的栈大小（按线程计）有一个软限制，由可写标志 <code>stack_limit</code> 或命令行选项 <code>--stack-limit</code> 实现。目前默认限制是 1Gb。考虑到可移植性，需要修改默认限制的应用建议使用 Prolog 标志 <code>stack_limit</code>。</p>
+<div class="table-wrapper"><table><thead><tr><th>区域名称</th><th>描述</th></tr></thead><tbody>
+<tr><td>局部栈</td><td>局部栈用于存储过程调用的执行环境。环境占用的空间会在以下情况下回收：该环境失败；退出时没有留下选择点；备选分支被 <code>!/0</code> 谓词剪切；或自调用以来没有创建选择点并且最后一个子子句开始执行（最后调用优化）。</td></tr>
+<tr><td>全局栈</td><td>全局栈用于存储 Prolog 执行期间创建的项、字符串、大整数、有理数和浮点数。该栈上的数据会在回溯到数据创建之前的某个点时回收，或在数据不再被引用时由垃圾收集回收。</td></tr>
+<tr><td>轨迹栈</td><td>轨迹栈用于存储执行期间的赋值。该栈上的条目会一直存活，直到回溯到创建点之前，或垃圾收集器判定它们不再需要。由于轨迹栈和全局栈一起进行垃圾收集，过小的轨迹栈可能导致过多垃圾收集。为避免这种情况，轨迹栈会自动调整大小，使其至少达到全局栈大小的六分之一。</td></tr>
+</tbody></table>
+</div>
+<h3 id="堆"><a class="header" href="#堆">堆</a></h3>
+<p>这里所说的堆，是指 <code>malloc()</code> 及相关函数使用的内存区域。SWI-Prolog 使用这一区域存储原子、函子、谓词及其子句、记录和其他动态数据。对 <code>malloc()</code> 及相关函数返回的地址不施加限制。</p>
+<h2 id="其他限制"><a class="header" href="#其他限制">其他限制</a></h2>
+<ul>
+<li>
+<p><strong>子句</strong></p>
+<p>子句唯一的限制是元数（头部参数数量），目前限制为 1024。提高这个限制很容易，而且代价相对较低；移除该限制则更困难。</p>
+</li>
+<li>
+<p><strong>原子和字符串</strong></p>
+<p>SWI-Prolog 对原子或字符串长度没有限制。原子数量没有限制。原子受垃圾收集管理。见原子垃圾收集相关章节。原子和字符串都可以表示所有 Unicode 码点，包括 0（<code>\u0000</code>）。目前，SWI-Prolog 对 ISO Latin-1 文本（码点 <code>0..255</code>）和包含更高码点的文本使用不同表示。后者使用 C 的 <code>wchar_t</code> 类型表示。在大多数系统上，这意味着 UCS-4，也就是 32 位无符号整数。在 Windows 上，<code>wchar_t</code> 使用 UTF-16，这意味着它不能把为代理对保留的码点表示为单个码点。未来版本可能会切换为全程使用 UTF-8。</p>
+</li>
+<li>
+<p><strong>项的嵌套</strong></p>
+<p>大多数处理 Prolog 项的内置谓词都会创建一个显式管理的栈，并针对处理项的最后一个参数进行优化。这意味着它们可以在 C 栈使用量恒定且较低的情况下处理深度嵌套的项；如果无法再分配栈，系统会抛出资源错误。目前只有 <code>read/1</code> 和 <code>write/1</code>（以及它们的所有变体）仍使用 C 栈，可能导致系统以不受控方式崩溃，也就是不会映射为可捕获的 Prolog 异常。</p>
+</li>
+<li>
+<p><strong>整数</strong></p>
+<p>SWI-Prolog 有两种整数表示。有标签整数（tagged integers）目前限制为 57 位。9.3.6 以前，32 位系统上的有标签整数为 25 位，并且还有第三种 64 位整数表示。无界整数默认由 GNU GMP 库提供。也可以由随附的 LibBf 库提供。系统也可以构建为不支持无界整数。</p>
+</li>
+<li>
+<p><strong>浮点数</strong></p>
+<p>浮点数表示为 C 原生双精度浮点数，在大多数机器上是 64 位 IEEE。</p>
+</li>
+</ul>
+<h2 id="保留名称"><a class="header" href="#保留名称">保留名称</a></h2>
+<p>引导编译器（见 <code>-b</code> 选项）不支持模块系统。由于系统的大部分内容本身就是用 Prolog 编写的，我们需要某种方式避免与用户的谓词、数据库键等发生名称冲突。与 Edinburgh C-Prolog 一样，所有应对用户隐藏的谓词、数据库键等，都以美元符号（<code>$</code>）开头。</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="swi-prolog-和-32-位机器"><a class="header" href="#swi-prolog-和-32-位机器">SWI-Prolog 和 32 位机器</a></h1>
+<p>如今的大多数平台原生就是 64 位，并且更推荐使用 64 位应用。当前版本的 SWI-Prolog 主要面向 64 位平台。32 位平台仍受支持，因为它们仍用于嵌入式设备，并且 WASM（Web Assembly，见 WASM 版本相关章节）对 64 位的支持仍然较弱。</p>
+<p>虽然当前稳定的 9.2 系列仍有真正的 32 位版本，其中 Prolog 数据结构基于 32 位字（word）单元；但 9.3 开发系列会把所有 Prolog 数据都表示为 64 位单元，而不管硬件指针大小如何。这提供了更好的统一性，并避免了 32 位 9.2 系列的 128Mb 栈限制。</p>
+<p>数据表示中的一些选择，例如标签（tag）位的位置和数量，仍然基于 32 位单元。预计这会在适当时候改变，从而简化代码并提升性能。</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="二进制兼容性"><a class="header" href="#二进制兼容性">二进制兼容性</a></h1>
+<p>SWI-Prolog 首先尝试维护版本之间的源代码兼容性。数据和程序通常也可以用二进制形式表示。这涉及多个接口，而这些接口具有不同程度的兼容性。相关版本号和签名可通过 <code>PL_version_info()</code>、<code>--abi-version</code> 以及 Prolog 标志 <code>abi_version</code> 获得。</p>
+<ul>
+<li>
+<p><strong>外部扩展</strong></p>
+<p>可动态载入的外部扩展通常依赖体系结构、C 编译器的 ABI 模型、动态链接库格式等。它们还依赖 <code>libswipl</code> 提供的 <code>PL_*</code> API 函数的向后兼容性。</p>
+<p>兼容的 API 允许以二进制形式分发外部扩展，尤其适用于编译较复杂的平台（例如 Windows）。因此，这种兼容性在优先级列表中很靠前，但偶尔仍必须妥协。</p>
+<p>对应版本信息：<code>PL_version_info()</code> 中的 <code>PL_VERSION_FLI</code>；<code>abi_version</code> 键：<code>foreign_interface</code>。</p>
+</li>
+<li>
+<p><strong>二进制项</strong></p>
+<p>项可以使用 <code>PL_record_external()</code> 和 <code>fast_write/2</code> 表示为二进制格式。由于这些格式用于在数据库中存储二进制项，或在 Prolog 进程之间以二进制形式传递项，因此会非常谨慎地维护兼容性。</p>
+<p>对应版本信息：<code>PL_version_info()</code> 中的 <code>PL_VERSION_REC</code>；<code>abi_version</code> 键：<code>record</code>。</p>
+</li>
+<li>
+<p><strong>QLF 文件</strong></p>
+<p>QLF 文件（见 <code>qcompile/1</code>）是 Prolog 文件或模块的二进制表示。它们把子句表示为虚拟机（VM）指令序列。其兼容性依赖 QLF 文件格式以及 VM 的 ABI。系统会以一定程度的谨慎来维护兼容性。</p>
+<p>对应版本信息：<code>PL_version_info()</code> 中的 <code>PL_VERSION_QLF</code>、<code>PL_VERSION_QLF_LOAD</code> 和 <code>PL_VERSION_VM</code>；<code>abi_version</code> 键：<code>qlf</code>、<code>qlf_min_load</code>、<code>vmi</code>。</p>
+</li>
+<li>
+<p><strong>保存状态</strong></p>
+<p>保存状态（见 <code>-c</code> 和 <code>qsave_program/2</code>）是一个 zip 文件，使用与 QLF 文件相同的表示包含整个 Prolog 数据库。保存状态可以包含额外资源，例如外部扩展、数据文件等。除 QLF 文件的依赖性问题外，内置谓词和核心库谓词还可能调用<strong>内部</strong>外部谓词。公共内置谓词和内部外部谓词之间的接口经常变化。稳定分支中的补丁级发布会尽可能维持兼容性。</p>
+<p>相关 ABI 版本键与 QLF 文件相同，另加一项：<code>PL_version_info()</code> 中的 <code>PL_VERSION_BUILT_IN</code>；<code>abi_version</code> 键：<code>built_in</code>。</p>
+</li>
+</ul>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+        <script>
+        window.addEventListener('load', function() {
+            window.setTimeout(window.print, 100);
+        });
+        </script>
+
+    </div>
+    </body>
+</html>

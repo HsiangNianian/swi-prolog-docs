@@ -1,0 +1,271 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>库的自动加载 - SWI-Prolog 中文文档</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body class="sidebar-visible no-js">
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('light')
+            html.classList.add(theme);
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var body = document.querySelector('body');
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../chapter_1/index.html"><strong aria-hidden="true">1.</strong> 快速入门</a></li><li class="chapter-item expanded "><a href="../chapter_2/index.html"><strong aria-hidden="true">2.</strong> 用户的初始化文件</a></li><li class="chapter-item expanded "><a href="../chapter_3/index.html"><strong aria-hidden="true">3.</strong> 初始化文件和目标</a></li><li class="chapter-item expanded "><a href="../chapter_4/index.html"><strong aria-hidden="true">4.</strong> 命令行选项</a></li><li class="chapter-item expanded "><a href="../chapter_5/index.html"><strong aria-hidden="true">5.</strong> UI 主题</a></li><li class="chapter-item expanded "><a href="../chapter_6/index.html"><strong aria-hidden="true">6.</strong> GNU Emacs 接口</a></li><li class="chapter-item expanded "><a href="../chapter_7/index.html"><strong aria-hidden="true">7.</strong> 在线帮助</a></li><li class="chapter-item expanded "><a href="../chapter_8/index.html"><strong aria-hidden="true">8.</strong> 命令行历史</a></li><li class="chapter-item expanded "><a href="../chapter_9/index.html"><strong aria-hidden="true">9.</strong> 复用顶层绑定</a></li><li class="chapter-item expanded "><a href="../chapter_10/index.html"><strong aria-hidden="true">10.</strong> 调试器概览</a></li><li class="chapter-item expanded "><a href="../chapter_11/index.html"><strong aria-hidden="true">11.</strong> 加载和运行项目</a></li><li class="chapter-item expanded "><a href="../chapter_12/index.html"><strong aria-hidden="true">12.</strong> 环境控制（Prolog 标志）</a></li><li class="chapter-item expanded "><a href="../chapter_13/index.html"><strong aria-hidden="true">13.</strong> 钩子谓词概览</a></li><li class="chapter-item expanded "><a href="../chapter_14/index.html" class="active"><strong aria-hidden="true">14.</strong> 库的自动加载</a></li><li class="chapter-item expanded "><a href="../chapter_15/index.html"><strong aria-hidden="true">15.</strong> SWI-Prolog 语法</a></li><li class="chapter-item expanded "><a href="../chapter_16/index.html"><strong aria-hidden="true">16.</strong> 有理树（循环项）</a></li><li class="chapter-item expanded "><a href="../chapter_17/index.html"><strong aria-hidden="true">17.</strong> 即时子句索引</a></li><li class="chapter-item expanded "><a href="../chapter_18/index.html"><strong aria-hidden="true">18.</strong> 宽字符支持</a></li><li class="chapter-item expanded "><a href="../chapter_19/index.html"><strong aria-hidden="true">19.</strong> 系统限制</a></li><li class="chapter-item expanded "><a href="../chapter_20/index.html"><strong aria-hidden="true">20.</strong> SWI-Prolog 和 32 位机器</a></li><li class="chapter-item expanded "><a href="../chapter_21/index.html"><strong aria-hidden="true">21.</strong> 二进制兼容性</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">SWI-Prolog 中文文档</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        <a href="https://github.com/HsiangNianian/swi-prolog-docs/tree/main" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+                        <a href="https://github.com/HsiangNianian/swi-prolog-docs/edit/main/swi-prolog-docs/src/chapter_14/README.md" title="Suggest an edit" aria-label="Suggest an edit">
+                            <i id="git-edit-button" class="fa fa-edit"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="库的自动加载"><a class="header" href="#库的自动加载">库的自动加载</a></h1>
+<p>如果在运行时捕获到未定义谓词，系统会先尝试从该模块的默认模块导入该谓词（参见 import module 相关章节）。如果失败，自动加载器（auto loader）会被激活。实际过程是先调用 hook <code>user:exception/3</code>；只有该 hook 失败时，才会调用自动加载器。</p>
+<p>第一次激活时，系统会把所有库目录中所有库文件的索引载入内存（参见 <code>library_directory/1</code>、<code>file_search_path/2</code> 和 <code>reload_library_index/0</code>）。如果能在某个库中找到该未定义谓词，对应库文件会被自动载入，并重新启动对这个此前未定义谓词的调用。默认情况下，该机制会静默载入文件。<code>current_prolog_flag/2</code> 的键 <code>verbose_autoload</code> 可用于获得详细载入信息。Prolog 标志 <code>autoload</code> 可用于启用或禁用自动加载系统。<code>autoload/[1,2]</code> 提供了更受控的自动加载形式，也支持应用模块的惰性加载。</p>
+<p>自动加载只处理使用模块机制的库源文件。文件会用 <code>use_module/2</code> 载入，并且只有被捕获的未定义谓词会被导入到调用该未定义谓词的模块中。每个库目录都必须包含一个 <code>INDEX.pl</code> 文件，其中包含该目录所有库文件的索引。该文件由如下格式的行组成：</p>
+<pre><code class="language-prolog">index(Name, Arity, Module, File).
+</code></pre>
+<p>谓词 <code>make/0</code> 会更新自动加载索引。它会搜索所有库目录（参见 <code>library_directory/1</code> 和 <code>file_search_path/2</code>），查找包含 <code>MKINDEX.pl</code> 或 <code>INDEX.pl</code> 的目录。如果当前用户可以写入或创建 <code>INDEX.pl</code>，并且该文件不存在、或早于该目录或其中某个文件，则更新该目录的索引。如果 <code>MKINDEX.pl</code> 存在，则通过载入该文件来更新索引；该文件通常包含一个调用 <code>make_library_index/2</code> 的指令。否则会调用 <code>make_library_index/1</code>，为所有包含模块的 <code>*.pl</code> 文件创建索引。</p>
+<p>下面是一个创建已索引库目录的示例：</p>
+<pre><code class="language-shell">% mkdir ~/${XDG_DATA_HOME-.config}/swi-prolog/lib
+% cd ~/${XDG_DATA_HOME-.config}/swi-prolog/lib
+% swipl -g 'make_library_index(.)' -t halt
+</code></pre>
+<p>如果有多个库文件包含所需谓词，则按下面的搜索方案查找：</p>
+<ol>
+<li>如果某个库文件定义了捕获未定义谓词的模块，则使用该文件。</li>
+<li>否则，按 <code>library_directory/1</code> 谓词中出现的顺序考虑库文件；在同一目录内按字母顺序考虑。</li>
+</ol>
+<h2 id="autoload_path1"><a class="header" href="#autoload_path1"><code>autoload_path/1</code></a></h2>
+<p><code>autoload_path(+DirAlias)</code> 把 <code>DirAlias</code> 添加到自动加载器使用的库中。这会扩展搜索路径 <code>autoload</code>，并重新载入库索引。例如：</p>
+<pre><code class="language-prolog">:- autoload_path(library(http)).
+</code></pre>
+<p>如果该调用作为指令出现，它会被项展开为一个 <code>user:file_search_path/2</code> 子句，以及一个调用 <code>reload_library_index/0</code> 的指令。这样可以保留源代码信息，并允许移除该指令。</p>
+<h2 id="make_library_index1"><a class="header" href="#make_library_index1"><code>make_library_index/1</code></a></h2>
+<p><code>make_library_index(+Directory)</code> 为该目录创建索引。索引会写入指定目录中的 <code>INDEX.pl</code> 文件。如果目录不存在或写保护，则失败并给出警告。</p>
+<h2 id="make_library_index2"><a class="header" href="#make_library_index2"><code>make_library_index/2</code></a></h2>
+<p><code>make_library_index(+Directory, +ListOfPatterns)</code> 通常在 <code>MKINDEX.pl</code> 中使用。该谓词会为 <code>Directory</code> 创建 <code>INDEX.pl</code>，为匹配 <code>ListOfPatterns</code> 中任一文件模式的所有文件建立索引。</p>
+<p>有时库包包含一个公共载入文件，以及若干由该载入文件使用的文件；这些内部文件导出的谓词不应由最终用户直接使用。这样的库可以放在库的子目录中，而包含公共功能的文件可以加入该库的索引。下面以 XPCE 库的 <code>MKINDEX.pl</code> 为例，它把 <code>trace/browse.pl</code> 的公共功能加入 XPCE 包可自动加载的谓词中。</p>
+<pre><code class="language-prolog">:- prolog_load_context(directory, Dir),
+   make_library_index(Dir,
+                      [ '*.pl',
+                        'trace/browse.pl',
+                        'swi/*.pl'
+                      ]).
+</code></pre>
+<h2 id="reload_library_index0"><a class="header" href="#reload_library_index0"><code>reload_library_index/0</code></a></h2>
+<p>修改库目录集合后，可用 <code>reload_library_index/0</code> 强制重新载入索引。修改库目录集合的方式包括：更改 <code>library_directory/1</code>、<code>file_search_path/2</code> 的规则，添加或删除 <code>INDEX.pl</code> 文件。该谓词<strong>不会</strong>更新 <code>INDEX.pl</code> 文件。若要更新索引文件，请查看 <code>make_library_index/[1,2]</code> 和 <code>make/0</code>。</p>
+<p>通常，如果某个谓词无法在索引中找到，并且库目录集合已经改变，索引会自动重新载入。如果目录被移除，或库目录顺序发生改变，则必须使用 <code>reload_library_index/0</code>。</p>
+<p>使用 <code>qsave_program/2</code> 或命令行选项 <code>-c</code> 创建可执行文件时，必须显式载入所有通常会自动加载的谓词。这一点在运行时章节中讨论。另请参阅 <code>autoload_all/0</code>。</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../chapter_13/index.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="../chapter_15/index.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../chapter_13/index.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="../chapter_15/index.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr.min.js"></script>
+        <script src="../mark.min.js"></script>
+        <script src="../searcher.js"></script>
+
+        <script src="../clipboard.min.js"></script>
+        <script src="../highlight.js"></script>
+        <script src="../book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>

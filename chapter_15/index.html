@@ -1,0 +1,436 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>SWI-Prolog 语法 - SWI-Prolog 中文文档</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body class="sidebar-visible no-js">
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('light')
+            html.classList.add(theme);
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var body = document.querySelector('body');
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../chapter_1/index.html"><strong aria-hidden="true">1.</strong> 快速入门</a></li><li class="chapter-item expanded "><a href="../chapter_2/index.html"><strong aria-hidden="true">2.</strong> 用户的初始化文件</a></li><li class="chapter-item expanded "><a href="../chapter_3/index.html"><strong aria-hidden="true">3.</strong> 初始化文件和目标</a></li><li class="chapter-item expanded "><a href="../chapter_4/index.html"><strong aria-hidden="true">4.</strong> 命令行选项</a></li><li class="chapter-item expanded "><a href="../chapter_5/index.html"><strong aria-hidden="true">5.</strong> UI 主题</a></li><li class="chapter-item expanded "><a href="../chapter_6/index.html"><strong aria-hidden="true">6.</strong> GNU Emacs 接口</a></li><li class="chapter-item expanded "><a href="../chapter_7/index.html"><strong aria-hidden="true">7.</strong> 在线帮助</a></li><li class="chapter-item expanded "><a href="../chapter_8/index.html"><strong aria-hidden="true">8.</strong> 命令行历史</a></li><li class="chapter-item expanded "><a href="../chapter_9/index.html"><strong aria-hidden="true">9.</strong> 复用顶层绑定</a></li><li class="chapter-item expanded "><a href="../chapter_10/index.html"><strong aria-hidden="true">10.</strong> 调试器概览</a></li><li class="chapter-item expanded "><a href="../chapter_11/index.html"><strong aria-hidden="true">11.</strong> 加载和运行项目</a></li><li class="chapter-item expanded "><a href="../chapter_12/index.html"><strong aria-hidden="true">12.</strong> 环境控制（Prolog 标志）</a></li><li class="chapter-item expanded "><a href="../chapter_13/index.html"><strong aria-hidden="true">13.</strong> 钩子谓词概览</a></li><li class="chapter-item expanded "><a href="../chapter_14/index.html"><strong aria-hidden="true">14.</strong> 库的自动加载</a></li><li class="chapter-item expanded "><a href="../chapter_15/index.html" class="active"><strong aria-hidden="true">15.</strong> SWI-Prolog 语法</a></li><li class="chapter-item expanded "><a href="../chapter_16/index.html"><strong aria-hidden="true">16.</strong> 有理树（循环项）</a></li><li class="chapter-item expanded "><a href="../chapter_17/index.html"><strong aria-hidden="true">17.</strong> 即时子句索引</a></li><li class="chapter-item expanded "><a href="../chapter_18/index.html"><strong aria-hidden="true">18.</strong> 宽字符支持</a></li><li class="chapter-item expanded "><a href="../chapter_19/index.html"><strong aria-hidden="true">19.</strong> 系统限制</a></li><li class="chapter-item expanded "><a href="../chapter_20/index.html"><strong aria-hidden="true">20.</strong> SWI-Prolog 和 32 位机器</a></li><li class="chapter-item expanded "><a href="../chapter_21/index.html"><strong aria-hidden="true">21.</strong> 二进制兼容性</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">SWI-Prolog 中文文档</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        <a href="https://github.com/HsiangNianian/swi-prolog-docs/tree/main" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+                        <a href="https://github.com/HsiangNianian/swi-prolog-docs/edit/main/swi-prolog-docs/src/chapter_15/README.md" title="Suggest an edit" aria-label="Suggest an edit">
+                            <i id="git-edit-button" class="fa fa-edit"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="swi-prolog-语法"><a class="header" href="#swi-prolog-语法">SWI-Prolog 语法</a></h1>
+<p>SWI-Prolog 的语法接近 ISO Prolog 标准语法，而 ISO Prolog 又基于 Edinburgh Prolog 语法。形式化描述可以在 ISO 标准文档中找到。若需要非正式介绍，可参考 Prolog 教科书以及<a href="http://www.swi-prolog.org/Links.html">在线教程</a>。除了这里记录的 ISO 标准差异之外，SWI-Prolog 还提供了若干扩展，其中一部分也扩展了语法。更多信息见扩展相关章节。</p>
+<h2 id="iso-语法支持"><a class="header" href="#iso-语法支持">ISO 语法支持</a></h2>
+<p>本节列出 SWI-Prolog 相对于 ISO Prolog 语法的若干扩展。</p>
+<h3 id="处理器字符集"><a class="header" href="#处理器字符集">处理器字符集</a></h3>
+<p>处理器字符集规定解析 Prolog 源文本时每个字符所属的类别。字符分类固定为 <a href="http://www.unicode.org/">Unicode</a>。另见宽字符支持相关章节。</p>
+<h3 id="嵌套注释"><a class="header" href="#嵌套注释">嵌套注释</a></h3>
+<p>SWI-Prolog 允许嵌套 <code>/* ... */</code> 注释。ISO 标准会把 <code>/* ... /* ... */</code> 接受为一段注释，而 SWI-Prolog 会继续寻找终止用的 <code>*/</code>。如果要把一段本身已经包含 <code>/* ... */</code> 注释的代码整体注释掉，这会很有用。这个修改也避免了下面示例中的意外注释问题：第一段注释的结束 <code>*/</code> 被忘记了。</p>
+<pre><code class="language-prolog">/* comment
+
+code
+
+/* second comment */
+
+code
+</code></pre>
+<h3 id="字符转义语法"><a class="header" href="#字符转义语法">字符转义语法</a></h3>
+<p>在带引号的原子（使用单引号：<code>'&lt;atom&gt;'</code>）中，特殊字符用转义序列表示。转义序列由反斜杠（<code>\</code>）引入。转义序列列表兼容 ISO 标准，但包含一些扩展；为提升兼容性，数值指定字符的解释也略微更灵活。未定义的转义字符会抛出 <code>syntax_error</code> 异常。SWI-Prolog 6.1.9 及以前版本会逐字复制未定义转义字符，即去掉反斜杠。</p>
+<div class="table-wrapper"><table><thead><tr><th>转义</th><th>含义</th></tr></thead><tbody>
+<tr><td><code>\a</code></td><td>警告字符。通常是 ASCII 字符 7（响铃）。</td></tr>
+<tr><td><code>\b</code></td><td>退格字符。</td></tr>
+<tr><td><code>\c</code></td><td>不产生输出。跳过输入中直到第一个非布局字符之前的所有字符。这可用于写出更美观的长行。ISO 不支持。</td></tr>
+<tr><td><code>\</code> 后接换行</td><td>在 ISO 模式中（见 Prolog 标志 <code>iso</code>），只跳过这个序列。在原生模式中，换行后的空白也会被跳过，并打印警告，指出该结构已弃用并建议使用 <code>\c</code>。</td></tr>
+<tr><td><code>\e</code></td><td>转义字符（ASCII 27）。非 ISO，但被广泛支持。</td></tr>
+<tr><td><code>\f</code></td><td>换页字符。</td></tr>
+<tr><td><code>\n</code></td><td>下一行字符。</td></tr>
+<tr><td><code>\r</code></td><td>仅回车，即回到行首。</td></tr>
+<tr><td><code>\s</code></td><td>空格字符。用于允许写出 <code>0'\s</code> 来取得空格字符的字符码。非 ISO。</td></tr>
+<tr><td><code>\t</code></td><td>水平制表符。</td></tr>
+<tr><td><code>\v</code></td><td>垂直制表符（ASCII 11）。</td></tr>
+<tr><td><code>\xXX..\</code></td><td>字符的十六进制表示。按 ISO 标准，结尾的 <code>\</code> 是必需的；但 SWI-Prolog 中它是可选的，以增强与较早 Edinburgh 标准的兼容性。代码 <code>\xa\3</code> 产生字符 10（十六进制 <code>a</code>）后接 <code>3</code>。这种方式指定的字符按 Unicode 字符解释。另见 <code>\u</code>。</td></tr>
+<tr><td><code>\uXXXX</code></td><td>Unicode 字符表示，其中字符用<strong>恰好</strong> 4 个十六进制数字指定。这是 ISO 标准的扩展，修复了两个问题：首先，<code>\x</code> 定义的是数字字符码，但没有指定该字符码应在哪个字符集中解释；其次，不再需要 ISO Prolog 中特别的结尾反斜杠语法。</td></tr>
+<tr><td><code>\UXXXXXXXX</code></td><td>与 <code>\uXXXX</code> 相同，但使用 8 个数字，以覆盖整个 Unicode 集。</td></tr>
+<tr><td><code>\40</code></td><td>八进制字符表示。十六进制表示的规则和说明同样适用于八进制表示。</td></tr>
+<tr><td><code>\\</code></td><td>转义反斜杠本身。因此，<code>'\\'</code> 是一个只包含单个 <code>\</code> 的原子。</td></tr>
+<tr><td><code>\'</code></td><td>单引号。注意，<code>'\''</code> 和 <code>''''</code> 都描述只包含单个 <code>'</code> 的原子，也就是说 <code>'\'' == ''''</code> 为真。</td></tr>
+<tr><td><code>\"</code></td><td>双引号。</td></tr>
+<tr><td><code>\`</code></td><td>反引号。</td></tr>
+</tbody></table>
+</div>
+<p><code>\c</code> 的示例：</p>
+<pre><code class="language-prolog">format('This is a long line that looks better if it was \c
+       split across multiple physical lines in the input')
+</code></pre>
+<p>对于反斜杠后接换行的长行写法，建议使用 <code>\c</code>，或者把布局字符放在 <code>\</code> 之前，如下所示。<code>\c</code> 被多个其他 Prolog 实现支持，并将继续被 SWI-Prolog 支持。下面这种风格是兼容性最好的方案。</p>
+<pre><code class="language-prolog">format('This is a long line that looks better if it was \
+split across multiple physical lines in the input')
+</code></pre>
+<p>而不是：</p>
+<pre><code class="language-prolog">format('This is a long line that looks better if it was\
+ split across multiple physical lines in the input')
+</code></pre>
+<p>注意，SWI-Prolog 也允许未转义的换行出现在带引号的材料中。ISO 标准不允许这样做，但过去这曾是常见实践。</p>
+<p>只有在 <code>current_prolog_flag(character_escapes, true)</code> 生效时，字符转义才可用（默认如此）。见 <code>current_prolog_flag/2</code>。字符转义会以两种方式与 <code>writef/2</code> 冲突：<code>\40</code> 会被 <code>writef/2</code> 解释为十进制 40，但会被 <code>read</code> 解释为八进制 40（十进制 32）。此外，<code>writef/2</code> 序列 <code>\l</code> 是非法的。建议改用支持更广泛的 <code>format/[2,3]</code> 谓词。如果坚持使用 <code>writef/2</code>，可以把 Prolog 标志 <code>character_escapes</code> 切换为 <code>false</code>，也可以使用双重 <code>\\</code>，例如 <code>writef('\\l')</code>。</p>
+<h3 id="非十进制数的语法"><a class="header" href="#非十进制数的语法">非十进制数的语法</a></h3>
+<p>SWI-Prolog 同时实现 Edinburgh 和 ISO 两种非十进制数表示。按照 Edinburgh 语法，这类数写作 <code>&lt;radix&gt;'&lt;number&gt;</code>，其中 <code>&lt;radix&gt;</code> 是 2 到 36 之间的数字。ISO 使用 <code>0[bxo]&lt;number&gt;</code> 定义二进制、八进制和十六进制数。例如，下面是一个合法表达式：</p>
+<pre><code class="language-prolog">A is 0b100 \/ 0xf00
+</code></pre>
+<p>这类数总是无符号的。</p>
+<h3 id="在大整数中使用数字分组"><a class="header" href="#在大整数中使用数字分组">在大整数中使用数字分组</a></h3>
+<p>SWI-Prolog 支持把长整数拆分成数字分组（digit groups）。数字分组可以用“下划线 + 可选空白”的序列分隔。如果基数小于或等于 10，也可以用恰好一个空格分隔。下面几种写法都表示整数 100 万：</p>
+<pre><code class="language-prolog">1_000_000
+1 000 000
+1_000_/*more*/000
+</code></pre>
+<p>可以用 <code>format/2</code> 和格式说明符 <code>~I</code> 按这种记法打印整数。例如：</p>
+<pre><code class="language-prolog">?- format('~I', [1000000]).
+1_000_000
+</code></pre>
+<p>当前语法由 Ulrich Neumerkel 在 SWI-Prolog 邮件列表上提出。</p>
+<h3 id="有理数语法"><a class="header" href="#有理数语法">有理数语法</a></h3>
+<p>从 8.1.22 版开始，如果 SWI-Prolog 在编译时启用了 GMP 库，它会把有理数作为一等原子数据类型支持。这可以用 Prolog 标志 <code>bounded</code> 测试。原子类型也需要一种语法。遗憾的是，在不破坏 ISO 标准的前提下加入有理数，选择并不多。ECLiPSe 使用 <code>numerator_denominator</code>。该语法与 SWI-Prolog 的数字分组冲突（见上一节），而且没有被广泛认可为有理数写法。<code>1/3r</code> 和 <code>1/3R</code> 也曾被提出；<code>1/3r</code> 与 Ruby 兼容，但因为需要向前看而难以解析，也不太自然。另见 <a href="https://en.wikipedia.org/wiki/Rational_data_type">https://en.wikipedia.org/wiki/Rational_data_type</a>。</p>
+<p>ECLiPSe 和 SWI-Prolog 已同意把有理数的规范语法定义为类似 <code>1r3</code> 的形式。此外，ECLiPSe 接受 <code>1_3</code>；SWI-Prolog 可通过模块敏感的 Prolog 标志 <code>rational_syntax</code> 接受 <code>1/3</code>。该标志的取值如下。注意，<code>write_canonical/1</code> 始终使用兼容的 <code>1r3</code> 语法。</p>
+<ul>
+<li>
+<p><code>natural</code>：默认模式。在该模式下，系统忽略歧义问题，并采用最自然的 <code>&lt;integer&gt;/&lt;nonneg&gt;</code> 形式。这里，<code>&lt;integer&gt;</code> 遵循 Prolog 十进制整数的常规规则；<code>&lt;nonneg&gt;</code> 也遵循同样规则，但不允许符号。解析器会把有理数转换为规范形式，这意味着结果的分子和分母没有公因子。有理数示例：</p>
+<div class="table-wrapper"><table><thead><tr><th>输入</th><th>规范形式</th></tr></thead><tbody>
+<tr><td><code>1/2</code></td><td><code>1/2</code></td></tr>
+<tr><td><code>2/4</code></td><td><code>1/2</code></td></tr>
+<tr><td><code>1 000 000/33 000</code></td><td><code>1000/33</code></td></tr>
+<tr><td><code>-3/5</code></td><td><code>-3/5</code></td></tr>
+</tbody></table>
+</div>
+<p>我们预计极少程序会在本来期望项的位置解析出有理数。注意，对于出现在算术表达式中的有理数，唯一差异是求值从运行时移动到了编译时。工具 <code>list_rationals/0</code> 可用于检查已载入程序是否在子句中包含有理数，从而可能受到兼容性影响。如果本意是写项，可以写成 <code>/(1,2)</code>、<code>(1)/2</code>、<code>1 / 2</code> 或类似变体。</p>
+</li>
+<li>
+<p><code>compatibility</code>：以类似 <code>1r3</code> 的形式读写有理数。换句话说，它遵循上面 <code>natural</code> 的同样规则，但使用 <code>r</code> 而不是 <code>/</code>。注意，这可能与传统 Prolog 冲突，因为 <code>r</code> 可以被定义为中缀运算符。ISO 标准中作为数字语法一部分的 <code>0x23</code> 等写法也有同样问题。</p>
+</li>
+</ul>
+<p>有理数语法由标志 <code>rational_syntax</code> 控制；整数除法和乘方的行为由标志 <code>prefer_rationals</code> 控制。有理数算术见相关章节。</p>
+<h3 id="naninfinity-浮点数及其语法"><a class="header" href="#naninfinity-浮点数及其语法">NaN、Infinity 浮点数及其语法</a></h3>
+<p>SWI-Prolog 支持按 Joachim Schimpf 提出的、ECLiPSe Prolog 中可用的 Prolog 标准核心浮点算术更新提案，读取和打印“特殊”浮点值。具体来说：</p>
+<ul>
+<li>
+<p>Infinity 打印为 <code>1.0Inf</code> 或 <code>-1.0Inf</code>。任何匹配正则表达式 <code>[+-]?\sd+[.]\sd+Inf</code> 的序列都会映射为正无穷或负无穷。</p>
+</li>
+<li>
+<p><code>NaN</code>（Not a Number，非数）打印为 <code>1.xxxNaN</code>，其中 <code>1.xxx</code> 是把指数替换为 <code>1</code> 后的浮点数。这些数可以被读取，并产生同一个 <code>NaN</code>。<code>NaN</code> 常量也可以用函数 <code>nan/0</code> 生成，例如：</p>
+</li>
+</ul>
+<pre><code class="language-prolog">?- A is nan.
+A = 1.5NaN.
+</code></pre>
+<p>默认情况下，SWI-Prolog 算术遵循 ISO 标准：浮点运算要么产生普通浮点数，要么抛出异常。IEEE 浮点相关章节描述了可用于支持 IEEE 特殊浮点值的 Prolog 标志。创建、读取和写入这些值的能力，有助于和支持完整 IEEE 双精度范围的语言交换数据。</p>
+<h3 id="强制只有下划线引入变量"><a class="header" href="#强制只有下划线引入变量">强制只有下划线引入变量</a></h3>
+<p>按照 ISO 标准和大多数 Prolog 系统，以大写字母或下划线开头的标识符都是变量。过去，Prolog by BIM 提供过一种替代语法：只有下划线（<code>_</code>）引入变量。从 SWI-Prolog 7.3.27 开始，SWI-Prolog 支持这种替代语法，由 Prolog 标志 <code>var_prefix</code> 控制。与 <code>character_escapes</code> 标志一样，该标志按模块维护；默认值为 <code>false</code>，即支持标准语法。</p>
+<p>如果代码包含大小写敏感外部语言的标识符，那么只有下划线引入变量会特别有用。例如 RDF 库中，代码常常指定属性名和类名；又如 R 接口需要指定以大写字符开头的函数或变量。词汇数据库中也常有部分项以大写字母开头，使用该选项能提高这类代码的可读性。</p>
+<h3 id="unicode-prolog-源码"><a class="header" href="#unicode-prolog-源码">Unicode Prolog 源码</a></h3>
+<p>ISO 标准用 ASCII 字符规定 Prolog 语法。由于 SWI-Prolog 支持在源文件中使用 Unicode，我们必须扩展语法。本节描述这对源文件的影响；编写国际化源文件则在相关章节中描述。</p>
+<p>SWI-Prolog 的 Unicode 字符分类遵循只读 Prolog 标志 <code>unicode_syntax_version</code> 报告的 Unicode 版本。注意，<code>char_type/2</code> 及相关谓词用于处理任意文本而非 Prolog 源码，它们基于 C 库的区域设置分类例程；<code>library(unicode)</code> 中的谓词会报告随附 <code>utf8proc</code> 数据的版本，该版本可能不同于语法分类器的版本（见 <code>unicode_version/1</code>）。</p>
+<ul>
+<li>
+<p><strong>带引号的原子和字符串</strong>：任何文字系统中的任何字符都可以用于带引号的原子和字符串。转义序列 <code>\uXXXX</code> 和 <code>\UXXXXXXXX</code>（见“字符转义语法”）被引入，用于在 ASCII 文件中指定 Unicode 码点。</p>
+</li>
+<li>
+<p><strong>原子和变量</strong>：二者关系密切，因此合在一起说明。Unicode 标准为计算机语言中的标识符定义了一种语法（见 <a href="http://www.unicode.org/reports/tr31/">http://www.unicode.org/reports/tr31/</a>）。SWI-Prolog 使用 <code>XID_Start</code> 和 <code>XID_Continue</code> 集合：标识符由一个 <code>XID_Start</code> 码点开头，后接一串 <code>XID_Continue</code> 码点。作为配置扩展，上标数字（²、³、¹，以及 ⁰--⁹，即 U+00B2、U+00B3、U+00B9、U+2070、U+2074..U+2079）和下标数字（₀--₉，U+2080..U+2089）也被接受为 <code>XID_Continue</code>，从而允许 <code>X²</code> 和 <code>X₁</code> 这样的变量。这类序列作为一个 token 处理。只有当 token 以下划线（<code>_</code>）开头，或以 Unicode 通用类别 <code>Lu</code>（大写字母）中的码点开头时，它才是变量；否则它是原子。注意，标题式大写字母（通用类别 <code>Lt</code>，例如 ǅ）会开启原子，而不是变量；这不同于较早版本使用更宽泛派生属性 <code>Uppercase</code> 的行为。许多语言没有字符大小写概念；在这类语言中，变量<strong>必须</strong>写成 <code>_name</code> 这样的形式。</p>
+</li>
+<li>
+<p><strong>数字</strong>：在源码中（<code>read_term/2</code>），数字字面量只使用 ASCII 数字 <code>0</code> 到 <code>9</code>。通过 <code>atom_number/2</code>、<code>number_codes/2</code> 和 <code>number_chars/2</code> 转换时，对于整数、有理数（见“有理数语法”）和浮点数，还额外接受任意 Unicode <code>Nd</code> 数字块；同一个数字中的所有数字必须来自同一个块，也就是说，如果有理数的分子使用印度文字，分母也必须如此。符号、有理数分隔符、浮点数的 <code>.</code> 和浮点指数始终是 ASCII。</p>
+</li>
+<li>
+<p><strong>空白</strong>：布局字符恰好是 UAX #31 定义的 Unicode <code>Pattern_White_Space</code> 集合：U+0009..U+000D、U+0020、U+0085、U+200E、U+200F、U+2028 和 U+2029。NBSP（U+00A0）有意被排除在 <code>Pattern_White_Space</code> 之外；如果它出现在带引号材料之外，会抛出杂散字符语法错误。从文字处理器粘贴的程序偶尔会在错误位置带入 NBSP，明确报告它比静默当作分隔符更好。</p>
+</li>
+<li>
+<p><strong>行终止</strong>：<code>Pattern_White_Space</code> 中有七个码点会结束一行：U+000A（LF）、U+000B（VT）、U+000C（FF）、U+000D（CR）、U+0085（NEL）、U+2028（LINE SEPARATOR）和 U+2029（PARAGRAPH SEPARATOR）。它们会终止 <code>%</code> 行注释，推动源码位置的行计数器，并在带引号字符串中作为反斜杠-换行续行的换行符（<code>\</code> 后接行尾，再后接零个或多个空白会被消耗）。同一集合通过 <code>code_type/2</code> 和 <code>char_type/2</code> 中的 <code>prolog_end_of_line</code> 暴露给用户代码；不带前缀的 <code>end_of_line</code> 仍限制为四个 ISO/POSIX 控制码（LF、VT、FF、CR），而 11 个成员的 <code>Pattern_White_Space</code> 集合本身是 <code>prolog_layout</code>。</p>
+</li>
+<li>
+<p><strong>源文本中的杂散字符</strong>：在 token 起始位置（也就是允许布局字符的位置），如果某个码点不属于任何已识别语法类别，即布局（见上文）、十进制数字、标识符起始、标识符延续、单独字符、括号开符号或引号开符号，则抛出 <code>syntax_error(illegal_character)</code>。这包括 C0 和 C1 控制范围、未分配码点和非字符码点、代理码点、不在 <code>Pattern_White_Space</code> 中的 <code>Zs</code> / <code>Zl</code> / <code>Zp</code> 分隔符类别（NBSP、OGHAM SPACE MARK、NARROW NO-BREAK SPACE、IDEOGRAPHIC SPACE 等）、既不在 <code>Pattern_White_Space</code> 中也不在 <code>Other_ID_Continue</code> 中的 <code>Cf</code> 格式字符（SOFT HYPHEN、ZERO WIDTH SPACE 等）、包围组合标记（<code>Me</code>），以及不属于显式上标或下标数字配置的其他数字字符（<code>No</code>，例如常用分数和罗马数字形式 U+00BC..U+00BE）。</p>
+<p>非间距组合标记（<code>Mn</code>、<code>Mc</code>）同样会在 token 起始位置被拒绝，因为它们不能开启标识符；但它们属于 <code>XID_Continue</code>，因此会并入前面的标识符（U+0061 后接 U+0300 COMBINING GRAVE 会读作一个由两个码点组成的单 token 标识符）。</p>
+</li>
+<li>
+<p><strong>带引号材料内部</strong>：在单引号原子（<code>'...'</code>）、双引号字符串（<code>"..."</code>）、反引号文本（<code>`...`</code>）、Unicode 引号对（见上文）、<code>%</code> 注释以及 <code>/* ... */</code> 注释内部，<strong>任何</strong> Unicode 标量值（U+0000 到 U+10FFFF，不包括 UTF-8 无法编码的代理码点）都会被逐字接受。转义序列 <code>\uXXXX</code> 和 <code>\UXXXXXXXX</code>（见“字符转义语法”）可用于可移植性和显式清晰性，而不是作为准入门槛。唯一例外是双向文本覆盖/隔离范围（U+202A..U+202E 和 U+2066..U+2069），它们会作为 Trojan-source 防御被拒绝（见 <code>unicode_atoms</code>）。对包含控制码点或零宽码点的原子或字符串进行带引号写出（例如 <code>writeq/1</code>）时，该原子或字符串会被加引号，问题码点会用转义序列写出；见“字符转义语法”。</p>
+</li>
+<li>
+<p><strong>其他字符</strong>：前 128 个字符遵循 ISO Prolog 标准。特别是，ASCII 符号字符会粘连成复合原子，产生熟悉的运算符 token，如 <code>==</code>、<code>=..</code>、<code>:-</code> 等。ASCII 之外，所有 Unicode 符号字符（通用类别 <code>Sm</code>、<code>Sc</code>、<code>Sk</code>、<code>So</code>）以及连接符、短横线和其他标点类别（<code>Pc</code>、<code>Pd</code>、<code>Po</code>）都被视为单独字符（solo）：每个字符各自形成一个原子，不会和相邻符号粘连。这是相对于早期版本的有意改变；早期版本中 Unicode 符号会像 ASCII 符号一样粘连成复合原子。该改变确保 ≤、€、· 等字符保持逐字符意义。由 Unicode 符号构成的运算符必须用 <code>op/3</code> 显式声明。其他类型的数字字符（通用类别 <code>No</code>，例如分数和带圈数字）不属于标识符集合；只有显式列出的上标和下标数字扩展了标识符。</p>
+</li>
+<li>
+<p><strong>括号（成对分隔符）</strong>：开标点/闭标点类别 <code>Ps</code> 和 <code>Pe</code> 形成括号对（bracket pairs）：一个开字符后接一个 Prolog 项，再后接匹配的闭字符，会被读作一元复合项，其函子是两个分隔符字符拼接而成。这与 <code>{Term}</code> 变成 <code>'{}'(Term)</code> 的形态相同，只是推广到了完整 Unicode <code>Ps</code>/<code>Pe</code> 集合（64 对，来源于按通用类别过滤的 Unicode <code>BidiMirroring.txt</code>）。括号内的运算符会被遵守；嵌套也按预期工作。闭字符不匹配或游离闭字符会抛出 <code>syntax_error</code>。与 <code>{}</code> 的类比是完整的：一个空对（可只包含布局）会读作双字符原子，而不是复合项；该原子后接 <code>(</code> 时是函子；输出时，<code>'&lt;open&gt;&lt;close&gt;'(X)</code> 会写作 <code>&lt;open&gt;X&lt;close&gt;</code>，裸原子也不加引号，二者都受写选项 <code>brace_terms(true)</code> 约束。</p>
+</li>
+<li>
+<p><strong>引号（成对字面文本分隔符）</strong>：起始/结束引号类别 <code>Pi</code> 和 <code>Pf</code> 形成引号对（quote pairs）：一个开字符后接字面文本，再后接匹配的闭字符，会被读作一元复合项，其函子是两个分隔符字符拼接而成，参数则是其中的文本，形式由 <code>double_quotes</code> 选择（默认为字符串，也可以是原子、codes 或 chars）。其中的文本<strong>不会</strong>按 Prolog 项解析；转义序列（<code>\n</code>、<code>\uXXXX</code> 等）会像 ASCII 带引号字符串一样处理。例如，在 <code>double_quotes</code> 设置为 <code>string</code> 时，源码文本 <code>«hello, world»</code> 会读作一个复合项，其函子是双字符原子 <code>«»</code>，唯一参数是字符串 <code>"hello, world"</code>。引号对来自 <code>BidiMirroring.txt</code> 中的 <code>Pi</code>/<code>Pf</code> 条目（8 对），再加上标准左右弯引号对 U+2018/U+2019 和 U+201C/U+201D；后两对不在 <code>BidiMirroring.txt</code> 中。闭字符不匹配和开字符无匹配都会抛出 <code>syntax_error</code>。</p>
+</li>
+</ul>
+<p>上述特性让源文本可以不经转义地包含 Unicode：</p>
+<pre><code class="language-prolog">p(X⁰, X) :-              % Superscript variable profile for
+    q(X⁰, X¹),           % threaded variables.
+    r(X¹, X).
+
+?- atom_number('१२३', N).     % Devanagari Nd via atom_number/2
+N = 123.
+
+?- atom_codes(≤, Cs).          % Unicode symbol stays solo
+Cs = [8804].
+
+?- term_string(T, "⟨a, b⟩"),  % bracket pair (Ps/Pe)
+   display(T).
+⟨⟩(','(a,b))
+T = ⟨a, b⟩.
+
+?- term_string(T, "⟨ ⟩").     % empty pair is the atom
+T = ⟨⟩.
+
+?- term_string(T, "«hello").  % quote pair (Pi/Pf)
+T = '«»'("hello").
+</code></pre>
+<h3 id="单例变量检查"><a class="header" href="#单例变量检查">单例变量检查</a></h3>
+<p>单例变量（singleton variable）是在一个子句中只出现一次的变量。它总是可以替换为匿名变量 <code>_</code>。不过，在某些情况下，人们更愿意给这个变量一个名字。由于变量拼写错误是常见错误，如果某个变量只使用一次，Prolog 系统一般会给出警告（由 <code>style_check/1</code> 控制）。如果变量本来就应当只出现一次，可以通过让它以 <code>_</code> 开头来通知系统，例如 <code>_Name</code>。请注意，除单独的 <code>_</code> 之外，任何变量都会与同名变量共享。项 <code>t(_X, _X)</code> 等价于 <code>t(X, X)</code>，这与 <code>t(_, _)</code> <strong>不同</strong>。</p>
+<p>由于许多语言中的变量都必须以下划线开头，这套方案已经被扩展。首先定义两类命名变量。</p>
+<ul>
+<li>
+<p><strong>命名单例变量</strong>：命名单例以双下划线（<code>__</code>）开头，或以单下划线后接大写字母开头，例如 <code>__var</code> 或 <code>_Var</code>。</p>
+</li>
+<li>
+<p><strong>普通变量</strong>：所有其他变量都是“普通”变量。注意，这使 <code>_var</code> 成为普通变量。一些 Prolog 方言会这样书写变量。</p>
+</li>
+</ul>
+<p>任何在子句中只出现一次的普通变量，以及任何出现多于一次的命名单例变量，都会被报告。下面是一些示例，右列给出警告。单例消息可用 <code>style_check/1</code> 指令抑制。</p>
+<p>最后，名为 <code>_&lt;digit&gt;</code> 的变量永远不会接受风格检查。这些变量名由 <code>write/1</code> 等谓词生成。这个例外也可用于把单例传给 <code>debug/3</code>。把单例传给 <code>debug/3</code> 在其他情况下会有问题：使用普通变量时，如果优化移除了 <code>debug/3</code> 语句，就会产生单例警告；使用命名匿名变量时，又会产生多例（multiton）警告。例如：</p>
+<pre><code class="language-prolog">p(X) :-
+    q(X,_0Y),
+    debug(demo, 'q/2 says ~p', [_0Y]).
+</code></pre>
+<div class="table-wrapper"><table><thead><tr><th>示例</th><th>警告</th></tr></thead><tbody>
+<tr><td><code>test(_).</code></td><td></td></tr>
+<tr><td><code>test(_a).</code></td><td><code>Singleton variables: [_a]</code></td></tr>
+<tr><td><code>test(A).</code></td><td><code>Singleton variables: [A]</code></td></tr>
+<tr><td><code>test(_12).</code></td><td></td></tr>
+<tr><td><code>test(_A).</code></td><td></td></tr>
+<tr><td><code>test(__a).</code></td><td></td></tr>
+<tr><td><code>test(_, _).</code></td><td></td></tr>
+<tr><td><code>test(_a, _a).</code></td><td></td></tr>
+<tr><td><code>test(__a, __a).</code></td><td><code>Singleton-marked variables appearing more than once: [__a]</code></td></tr>
+<tr><td><code>test(_A, _A).</code></td><td><code>Singleton-marked variables appearing more than once: [_A]</code></td></tr>
+<tr><td><code>test(A, A).</code></td><td></td></tr>
+</tbody></table>
+</div>
+<p><strong>语义单例变量</strong></p>
+<p>从 6.5.1 版开始，SWI-Prolog 区分语法单例变量（syntactic singletons）和语义单例变量（semantic singletons）。前者由 <code>read_clause/3</code> 检查，也可由带有选项 <code>singletons(warning)</code> 的 <code>read_term/3</code> 检查。后者由编译器针对在某个分支中单独出现的变量生成。例如，在下面的代码中，变量 <code>X</code> 不是<strong>语法</strong>单例变量，但变量 <code>X</code> 不传递任何绑定，把 <code>X</code> 替换为 <code>_</code> 不会改变语义。</p>
+<pre><code class="language-prolog">test :-
+    (   test_1(X)
+    ;   test_2(X)
+    ).
+</code></pre>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../chapter_14/index.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="../chapter_16/index.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../chapter_14/index.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="../chapter_16/index.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr.min.js"></script>
+        <script src="../mark.min.js"></script>
+        <script src="../searcher.js"></script>
+
+        <script src="../clipboard.min.js"></script>
+        <script src="../highlight.js"></script>
+        <script src="../book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>

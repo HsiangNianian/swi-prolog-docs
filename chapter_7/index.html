@@ -1,0 +1,359 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>在线帮助 - SWI-Prolog 中文文档</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body class="sidebar-visible no-js">
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('light')
+            html.classList.add(theme);
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var body = document.querySelector('body');
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../chapter_1/index.html"><strong aria-hidden="true">1.</strong> 快速入门</a></li><li class="chapter-item expanded "><a href="../chapter_2/index.html"><strong aria-hidden="true">2.</strong> 用户的初始化文件</a></li><li class="chapter-item expanded "><a href="../chapter_3/index.html"><strong aria-hidden="true">3.</strong> 初始化文件和目标</a></li><li class="chapter-item expanded "><a href="../chapter_4/index.html"><strong aria-hidden="true">4.</strong> 命令行选项</a></li><li class="chapter-item expanded "><a href="../chapter_5/index.html"><strong aria-hidden="true">5.</strong> UI 主题</a></li><li class="chapter-item expanded "><a href="../chapter_6/index.html"><strong aria-hidden="true">6.</strong> GNU Emacs 接口</a></li><li class="chapter-item expanded "><a href="../chapter_7/index.html" class="active"><strong aria-hidden="true">7.</strong> 在线帮助</a></li><li class="chapter-item expanded "><a href="../chapter_8/index.html"><strong aria-hidden="true">8.</strong> 命令行历史</a></li><li class="chapter-item expanded "><a href="../chapter_9/index.html"><strong aria-hidden="true">9.</strong> 复用顶层绑定</a></li><li class="chapter-item expanded "><a href="../chapter_10/index.html"><strong aria-hidden="true">10.</strong> 调试器概览</a></li><li class="chapter-item expanded "><a href="../chapter_11/index.html"><strong aria-hidden="true">11.</strong> 加载和运行项目</a></li><li class="chapter-item expanded "><a href="../chapter_12/index.html"><strong aria-hidden="true">12.</strong> 环境控制（Prolog 标志）</a></li><li class="chapter-item expanded "><a href="../chapter_13/index.html"><strong aria-hidden="true">13.</strong> 钩子谓词概览</a></li><li class="chapter-item expanded "><a href="../chapter_14/index.html"><strong aria-hidden="true">14.</strong> 库的自动加载</a></li><li class="chapter-item expanded "><a href="../chapter_15/index.html"><strong aria-hidden="true">15.</strong> SWI-Prolog 语法</a></li><li class="chapter-item expanded "><a href="../chapter_16/index.html"><strong aria-hidden="true">16.</strong> 有理树（循环项）</a></li><li class="chapter-item expanded "><a href="../chapter_17/index.html"><strong aria-hidden="true">17.</strong> 即时子句索引</a></li><li class="chapter-item expanded "><a href="../chapter_18/index.html"><strong aria-hidden="true">18.</strong> 宽字符支持</a></li><li class="chapter-item expanded "><a href="../chapter_19/index.html"><strong aria-hidden="true">19.</strong> 系统限制</a></li><li class="chapter-item expanded "><a href="../chapter_20/index.html"><strong aria-hidden="true">20.</strong> SWI-Prolog 和 32 位机器</a></li><li class="chapter-item expanded "><a href="../chapter_21/index.html"><strong aria-hidden="true">21.</strong> 二进制兼容性</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">SWI-Prolog 中文文档</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        <a href="https://github.com/HsiangNianian/swi-prolog-docs/tree/main" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+                        <a href="https://github.com/HsiangNianian/swi-prolog-docs/edit/main/swi-prolog-docs/src/chapter_7/README.md" title="Suggest an edit" aria-label="Suggest an edit">
+                            <i id="git-edit-button" class="fa fa-edit"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="在线帮助"><a class="header" href="#在线帮助">在线帮助</a></h1>
+<h2 id="71-libraryhelp基于文本的手册"><a class="header" href="#71-libraryhelp基于文本的手册">7.1 <code>library(help)</code>：基于文本的手册</a></h2>
+<p>该模块提供 <code>help/1</code> 和 <code>apropos/1</code>。前者给出某个主题的帮助，后者在手册中搜索相关主题。</p>
+<p>默认情况下，<code>help/1</code> 的结果会通过诸如 <code>less</code> 这样的分页器发送。该行为由以下内容控制：</p>
+<ul>
+<li>
+<p>Prolog 标志 <code>help_pager</code>，可以设置为下列值之一：</p>
+<ul>
+<li>
+<p><code>false</code></p>
+<p>永不使用分页器。</p>
+</li>
+<li>
+<p><code>default</code></p>
+<p>使用默认行为。系统会尝试判断 Prolog 是否运行在允许分页器的交互式环境中。如果是，它会检查环境变量 <code>PAGER</code>；否则尝试查找 <code>less</code> 程序。</p>
+</li>
+<li>
+<p><code>Callable</code></p>
+<p><code>Callable</code> 项会被解释为 <code>program_name(Arg, ...)</code>。例如，<code>less('-r')</code> 可以作为默认值。注意，如果使用单引号，程序名可以是绝对路径。</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="help"><a class="header" href="#help"><code>help</code></a></h3>
+<h3 id="helpwhat"><a class="header" href="#helpwhat"><code>help(+What)</code></a></h3>
+<p>显示 <code>What</code> 的帮助。<code>What</code> 是一个描述帮助主题的项。<code>What</code> 的可用记法包括：</p>
+<ul>
+<li>
+<p><code>Atom</code></p>
+<p>最常用但也有歧义的形式，会显示所有匹配文档。例如：</p>
+<pre><code class="language-prolog">?- help(append).
+</code></pre>
+</li>
+<li>
+<p><code>Name/Arity</code></p>
+<p>显示匹配 <code>Name/Arity</code> 的谓词帮助。<code>Arity</code> 可以未绑定。</p>
+</li>
+<li>
+<p><code>Name//Arity</code></p>
+<p>显示匹配的 DCG 规则，也就是非终结符。</p>
+</li>
+<li>
+<p><code>Module:Name</code></p>
+<p>显示 <code>Module</code> 中名为 <code>Name</code>、任意 arity 的谓词帮助。仅用于已载入代码。</p>
+</li>
+<li>
+<p><code>Module:Name/Arity</code></p>
+<p>显示 <code>Module</code> 中名为 <code>Name</code> 且 arity 为 <code>Arity</code> 的谓词帮助。仅用于已载入代码。</p>
+</li>
+<li>
+<p><code>f(Name/Arity)</code></p>
+<p>显示匹配的 Prolog 算术函数帮助。</p>
+</li>
+<li>
+<p><code>c(Name)</code></p>
+<p>显示匹配的 C 接口函数帮助。</p>
+</li>
+<li>
+<p><code>section(Label)</code></p>
+<p>显示手册中匹配 <code>Label</code> 的章节。</p>
+</li>
+</ul>
+<p><code>help/1</code> 会显示手册中的文档，也会显示已载入用户代码中的文档，前提是该代码使用 PlDoc 编写了文档。若只想显示已载入谓词的文档，可以在谓词指示器前加上定义该谓词的模块。</p>
+<p>如果精确匹配失败，该谓词会尝试模糊匹配；如果成功，会显示结果，并在开头给出警告，说明这些匹配基于模糊匹配。</p>
+<p>如果可能，结果会通过诸如 <code>less</code> 的分页器发送。该行为由 Prolog 标志 <code>help_pager</code> 控制。参见本节开头的说明。</p>
+<p>另请参阅 <code>apropos/1</code>，它用于搜索手册名称和摘要。</p>
+<h3 id="show_html_hookhtmlstring"><a class="header" href="#show_html_hookhtmlstring"><code>show_html_hook(+HTML:string)</code></a></h3>
+<p>这是一个半确定的 multifile 钩子，用于显示抽取出的 HTML 文档。如果该钩子失败，HTML 会使用 <code>html_text/2</code> 渲染为纯文本并显示在控制台上。</p>
+<h3 id="aproposquery"><a class="header" href="#aproposquery"><code>apropos(+Query)</code></a></h3>
+<p>打印手册中名称或摘要与 <code>Query</code> 匹配的对象。<code>Query</code> 可采用下列形式：</p>
+<ul>
+<li>
+<p><code>Type:Text</code></p>
+<p>查找与 <code>Text</code> 匹配的对象，并按 <code>Type</code> 过滤结果。<code>Type</code> 匹配采用大小写不敏感的前缀匹配。已定义的类型包括 <code>section</code>、<code>cfunction</code>、<code>function</code>、<code>iso_predicate</code>、<code>swi_builtin_predicate</code>、<code>library_predicate</code>、<code>dcg</code>，以及别名 <code>chapter</code>、<code>arithmetic</code>、<code>c_function</code>、<code>predicate</code>、<code>nonterminal</code> 和 <code>non_terminal</code>。例如：</p>
+<pre><code class="language-prolog">?- apropos(c:close).
+?- apropos(f:min).
+</code></pre>
+</li>
+<li>
+<p><code>Text</code></p>
+<p><code>Text</code> 会被拆分为多个 token。如果某个主题的名称或摘要中包含所有 token，则认为匹配。匹配不区分大小写。结果会按匹配质量排序。</p>
+</li>
+</ul>
+<h3 id="help_aproposquery--obj--summary--score"><a class="header" href="#help_aproposquery--obj--summary--score"><code>help_apropos(+Query, -Obj, -Summary, -Score)</code></a></h3>
+<p>在帮助数据库中查找匹配的已文档化对象。<code>Obj</code> 是正式对象标识符，<code>Summary</code> 是摘要说明，<code>Score</code> 是表示匹配质量的数字。</p>
+<h3 id="help_textpredicateterm--helptextstring"><a class="header" href="#help_textpredicateterm--helptextstring"><code>help_text(+Predicate:term, -HelpText:string)</code></a></h3>
+<p>如果 <code>Predicate</code> 是形如 <code>Name/Arity</code> 的项，且存在对应文档，则 <code>HelpText</code> 是从 HTML 帮助解析出的文本格式文档。</p>
+<h2 id="72-libraryexplain描述-prolog-项"><a class="header" href="#72-libraryexplain描述-prolog-项">7.2 <code>library(explain)</code>：描述 Prolog 项</a></h2>
+<p><code>library(explain)</code> 用于描述 Prolog 项。它最有用的功能是交叉引用能力。</p>
+<pre><code class="language-prolog">?- explain(subset(_,_)).
+"subset(_, _)" is a compound term
+    from 2-th clause of lists:subset/2
+    Referenced from 46-th clause of prolog_xref:imported/3
+    Referenced from 68-th clause of prolog_xref:imported/3
+lists:subset/2 is a predicate defined in
+    /staff/jan/lib/pl-5.6.17/library/lists.pl:307
+    Referenced from 2-th clause of lists:subset/2
+    Possibly referenced from 2-th clause of lists:subset/2
+</code></pre>
+<p>注意，PceEmacs 可以跳转到定义，<code>gxref/0</code> 可用于查看依赖概览。</p>
+<h3 id="explainterm"><a class="header" href="#explainterm"><code>explain(@Term)</code></a></h3>
+<p>解释 <code>Term</code>。<code>Term</code> 可以是任意 Prolog 数据对象。某些项具有特殊含义：</p>
+<ul>
+<li>
+<p>对谓词的完整或部分引用，会给出谓词、它的主要属性以及对该谓词的引用。部分引用包括：</p>
+<ul>
+<li><code>Module:Name/Arity</code></li>
+<li><code>Module:Head</code></li>
+<li><code>Name/Arity</code></li>
+<li><code>Name//Arity</code></li>
+<li><code>Name</code></li>
+<li><code>Module:Name</code></li>
+</ul>
+</li>
+<li>
+<p>某些谓词属性。这会列出具有该属性的谓词，谓词形式如上。该说明可以写成 <code>Module:Property</code>，也可以只写 <code>Property</code>。带模块限定的版本会把结果限制到 <code>Module</code> 中定义的谓词。支持的属性包括：</p>
+<ul>
+<li><code>dynamic</code></li>
+<li><code>thread_local</code></li>
+<li><code>multifile</code></li>
+<li><code>tabled</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="explainterm--explanation"><a class="header" href="#explainterm--explanation"><code>explain(@Term, -Explanation)</code></a></h3>
+<p>当 <code>Explanation</code> 是 <code>Term</code> 的解释时为真。<code>Explanation</code> 是一个元素列表，会使用 <code>print_message(information, explain(Explanation))</code> 打印。</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../chapter_6/index.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="../chapter_8/index.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../chapter_6/index.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="../chapter_8/index.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr.min.js"></script>
+        <script src="../mark.min.js"></script>
+        <script src="../searcher.js"></script>
+
+        <script src="../clipboard.min.js"></script>
+        <script src="../highlight.js"></script>
+        <script src="../book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>
