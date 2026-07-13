@@ -103,6 +103,11 @@ include_chapter!(
     "SWI-Prolog 语法",
     "../swi-prolog-docs/src/chapter_15/README.md"
 );
+include_chapter!(
+    chapter_16,
+    "有理树（循环项）",
+    "../swi-prolog-docs/src/chapter_16/README.md"
+);
 
 /// Chapters exposed in the same order as the mdBook summary.
 pub const CHAPTERS: &[Chapter] = &[
@@ -180,5 +185,10 @@ pub const CHAPTERS: &[Chapter] = &[
         slug: "chapter_15",
         title: chapter_15::TITLE,
         markdown: chapter_15::MARKDOWN,
+    },
+    Chapter {
+        slug: "chapter_16",
+        title: chapter_16::TITLE,
+        markdown: chapter_16::MARKDOWN,
     },
 ];
