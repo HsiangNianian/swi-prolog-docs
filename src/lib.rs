@@ -128,6 +128,11 @@ include_chapter!(
     "SWI-Prolog 和 32 位机器",
     "../swi-prolog-docs/src/chapter_20/README.md"
 );
+include_chapter!(
+    chapter_21,
+    "二进制兼容性",
+    "../swi-prolog-docs/src/chapter_21/README.md"
+);
 
 /// Chapters exposed in the same order as the mdBook summary.
 pub const CHAPTERS: &[Chapter] = &[
@@ -230,5 +235,10 @@ pub const CHAPTERS: &[Chapter] = &[
         slug: "chapter_20",
         title: chapter_20::TITLE,
         markdown: chapter_20::MARKDOWN,
+    },
+    Chapter {
+        slug: "chapter_21",
+        title: chapter_21::TITLE,
+        markdown: chapter_21::MARKDOWN,
     },
 ];

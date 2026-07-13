@@ -38,14 +38,12 @@ Use this map when translating, re-translating, or checking whether
 | `chapter_18` | 宽字符支持 | Wide character support | `widechars` | <https://www.swi-prolog.org/pldoc/man?section=widechars> |
 | `chapter_19` | 系统限制 | System limits | `limits` | <https://www.swi-prolog.org/pldoc/man?section=limits> |
 | `chapter_20` | SWI-Prolog 和 32 位机器 | SWI-Prolog and 32-bit machines | `32bits` | <https://www.swi-prolog.org/pldoc/man?section=32bits> |
+| `chapter_21` | 二进制兼容性 | Binary compatibility | `abi-versions` | <https://www.swi-prolog.org/pldoc/man?section=abi-versions> |
 
 ## Overview Translation Queue
 
-Continue the Overview chapter in this upstream order:
-
-| Proposed local chapter | Chinese title | Upstream title | Upstream label | Online section |
-| --- | --- | --- | --- | --- |
-| `chapter_21` | 二进制兼容性 | Binary compatibility | `abi-versions` | <https://www.swi-prolog.org/pldoc/man?section=abi-versions> |
+All mapped Overview chapters from the source snapshot above are now represented
+as local translated chapters.
 
 ## Translation Notes
 

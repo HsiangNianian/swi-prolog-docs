@@ -18,3 +18,4 @@
 - [宽字符支持](./chapter_18/README.md)
 - [系统限制](./chapter_19/README.md)
 - [SWI-Prolog 和 32 位机器](./chapter_20/README.md)
+- [二进制兼容性](./chapter_21/README.md)
