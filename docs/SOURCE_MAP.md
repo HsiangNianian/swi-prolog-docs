@@ -27,6 +27,7 @@ Use this map when translating, re-translating, or checking whether
 | `chapter_7` | 在线帮助 | Online Help | `online-help` | <https://www.swi-prolog.org/pldoc/man?section=online-help> |
 | `chapter_8` | 命令行历史 | Command line history | `history` | <https://www.swi-prolog.org/pldoc/man?section=history> |
 | `chapter_9` | 复用顶层绑定 | Reuse of top-level bindings | `topvars` | <https://www.swi-prolog.org/pldoc/man?section=topvars> |
+| `chapter_10` | 调试器概览 | Overview of the Debugger | `debugoverview` | <https://www.swi-prolog.org/pldoc/man?section=debugoverview> |
 
 ## Overview Translation Queue
 
@@ -34,7 +35,6 @@ Continue the Overview chapter in this upstream order:
 
 | Proposed local chapter | Chinese title | Upstream title | Upstream label | Online section |
 | --- | --- | --- | --- | --- |
-| `chapter_10` | 调试器概览 | Overview of the Debugger | `debugoverview` | <https://www.swi-prolog.org/pldoc/man?section=debugoverview> |
 | `chapter_11` | 加载和运行项目 | Loading and running projects | `compilation` | <https://www.swi-prolog.org/pldoc/man?section=compilation> |
 | `chapter_12` | 环境控制（Prolog 标志） | Environment Control (Prolog flags) | `flags` | <https://www.swi-prolog.org/pldoc/man?section=flags> |
 | `chapter_13` | 钩子谓词概览 | An overview of hook predicates | `hooks` | <https://www.swi-prolog.org/pldoc/man?section=hooks> |

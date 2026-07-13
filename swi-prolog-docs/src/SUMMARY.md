@@ -7,3 +7,4 @@
 - [在线帮助](./chapter_7/README.md)
 - [命令行历史](./chapter_8/README.md)
 - [复用顶层绑定](./chapter_9/README.md)
+- [调试器概览](./chapter_10/README.md)
