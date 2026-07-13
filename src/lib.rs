@@ -88,6 +88,11 @@ include_chapter!(
     "环境控制（Prolog 标志）",
     "../swi-prolog-docs/src/chapter_12/README.md"
 );
+include_chapter!(
+    chapter_13,
+    "钩子谓词概览",
+    "../swi-prolog-docs/src/chapter_13/README.md"
+);
 
 /// Chapters exposed in the same order as the mdBook summary.
 pub const CHAPTERS: &[Chapter] = &[
@@ -150,5 +155,10 @@ pub const CHAPTERS: &[Chapter] = &[
         slug: "chapter_12",
         title: chapter_12::TITLE,
         markdown: chapter_12::MARKDOWN,
+    },
+    Chapter {
+        slug: "chapter_13",
+        title: chapter_13::TITLE,
+        markdown: chapter_13::MARKDOWN,
     },
 ];
