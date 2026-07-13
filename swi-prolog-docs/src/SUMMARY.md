@@ -8,3 +8,4 @@
 - [命令行历史](./chapter_8/README.md)
 - [复用顶层绑定](./chapter_9/README.md)
 - [调试器概览](./chapter_10/README.md)
+- [加载和运行项目](./chapter_11/README.md)
